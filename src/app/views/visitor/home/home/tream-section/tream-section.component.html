@@ -1,0 +1,57 @@
+<!-- ======= Trainers Section ======= -->
+<section id="trainers" class="trainers">
+  <div class="" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Meet the Heroes</h2>
+      <h5>On THE-BRIDGE, instructors from all over the world instruct millions of students. We offer the knowledge and abilities.</h5>
+    </div>
+    <div class="row" data-aos="zoom-in" data-aos-delay="100">
+      <!-- Carousel wrapper -->
+      <div id="carouselMultiItemExample" class="carousel slide carousel-dark text-center" data-mdb-ride="carousel">
+        <!-- Controls -->
+        <div class="d-flex justify-content-center mb-4"></div>
+        <!-- Inner -->
+        <div class="carousel-inner py-4">
+          <!-- Slide items -->
+          <div *ngFor="let chunk of tabCoachChunks; let i = index" class="carousel-item" [class.active]="i === 0">
+            <div class="container">
+              <div class="row justify-content-between">
+                <div *ngFor="let coach of chunk" class="col-lg-4  ">
+                  <div class="card p-4 shadow" style="border: none;">
+                    <div class="col d-flex justify-content-center">
+                      <img class=  "rounded-circle shadow-1-strong mb-4"
+                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar" style="height: 150px; ; width: 150px ; " />
+                    </div>
+                    <h5 class="mb-3">{{ coach.firstName  }} {{ coach.lastName  }}</h5>
+                    <div *ngFor="let i of tabFormateur">
+                      <p *ngIf="coach.id==i.user.id" class="fw-normal mb-1">{{i.skills}}</p>
+                    </div>
+
+                    <p class="text-muted">{{ coach.description }}</p>
+                    <div class="social">
+                      <a href=""><i class="bi bi-twitter"></i></a>
+                      <a href=""><i class="bi bi-github"></i></a>
+                      <a href=""><i class="bi bi-instagram"></i></a>
+                      <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselMultiItemExample"
+          data-mdb-slide="prev">
+          <span style="margin-right:50px" class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-mdb-target="#carouselMultiItemExample"
+          data-mdb-slide="next">
+          <span style="margin-left:50px" class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
