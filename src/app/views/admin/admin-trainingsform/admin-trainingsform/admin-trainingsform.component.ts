@@ -17,11 +17,12 @@ export class AdminTrainingsformComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private cs: CategorieService,
-    private FormationService: FormationsService
+    private FormationService: FormationsService,
+    private TrainingService: TrainingService
   ) {
     this.trainingForm = this.fb.group({
       categorie: ['', Validators.required],
-      name: ['', Validators.required],
+      nomFormation: ['', Validators.required],
       description: ['', Validators.required],
       nbExercices: ['', Validators.required],
       nbProjects: ['', Validators.required],
@@ -45,7 +46,13 @@ export class AdminTrainingsformComponent implements OnInit {
   addTraining() {
     if (this.trainingForm.valid) {
       let trainingData = this.trainingForm.value;
-      // Perform necessary actions with trainingData
+      console.log(trainingData);
+      trainingData.categorie = Number(trainingData.categorie);
+
+      this.TrainingService.ajoutTraining(trainingData).subscribe((res) => {
+        console.log(res);
+      }
+      );
     } else {
       // Handle form validation errors
     }

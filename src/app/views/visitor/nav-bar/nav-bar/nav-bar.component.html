@@ -33,25 +33,11 @@
                 <li class="nav-item dropdown ">
                   <a href="#"  data-bs-auto-close="outside" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">Hackerspace</a>
                   <ul class="dropdown-menu">
+<li *ngFor="let i of tabHackerSpace">
+                   <a href="#" routerLink="./hackerspace/{{i.region}}"class="dropdown-item  " data-bs-toggle="dropdown" >{{i.region}}</a>
 
-                   <a href="#" class="dropdown-item dropdown-toggle " data-bs-toggle="dropdown" >Tunis</a>
-                     <ul class="dropdown-menu">
-                      <li><a routerLink="hackerspace" class="dropdown-item"></a></li>
-                      <li><a routerLink="hackerspace" class="dropdown-item">bardo</a></li>
+                  </li>
 
-                  </ul>
-                  <a href="#" class="dropdown-item dropdown-toggle " data-bs-toggle="dropdown" >Gabes</a>
-                  <ul class="dropdown-menu">
-                   <li><a routerLink="hackerspace" class="dropdown-item">Chneni</a></li>
-                   <li><a routerLink="hackerspace" class="dropdown-item">hama</a></li>
-
-               </ul>
-               <a href="#" class="dropdown-item dropdown-toggle " data-bs-toggle="dropdown" >Soussa</a>
-               <ul class="dropdown-menu">
-                <li><a routerLink="hackerspace" class="dropdown-item">hamem sousa</a></li>
-                <li><a routerLink="hackerspace" class="dropdown-item">soussa centre</a></li>
-
-            </ul>
               </ul>
               </li>
                 <li><a class="nav-link" href="#">Online</a></li>

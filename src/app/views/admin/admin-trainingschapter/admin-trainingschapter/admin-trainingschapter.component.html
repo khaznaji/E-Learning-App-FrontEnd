@@ -19,20 +19,20 @@
         <form>
           <div class="form-group mb-3">
             <label for="categorie">Training</label>
-            <select [(ngModel)]="Formation" class="form-select" id="Formation" aria-label="Default select example">
+            <select [(ngModel)]="Formation" name="Formation" class="form-select" id="Formation" aria-label="Default select example">
               <option value="" disabled>Select a Training</option>
-              <option  *ngFor="let x of tabFormation" [id]="x.id">{{ x.nomFormation }}</option>
+              <option *ngFor="let x of tabFormation" [value]="x.id">{{ x.nomFormation }}</option>
             </select>
-          </div>
+                      </div>
 
           <div class="form-group mb-3">
             <label for="name">Name of the Chapter</label>
-            <input [(ngModel)]="Namechapter" type="text" class="form-control" id="name" placeholder="Web...">
+            <input name="Namechapter"[(ngModel)]="Namechapter" type="text" class="form-control" id="name" placeholder="Web...">
           </div>
 
           <div class="form-group mb-3">
             <label for="description">Description</label>
-            <textarea [(ngModel)]="description" class="form-control" id="description" rows="3"></textarea>
+            <textarea name="description" [(ngModel)]="description" class="form-control" id="description" rows="3"></textarea>
           </div>
 
           <div class="text-end">

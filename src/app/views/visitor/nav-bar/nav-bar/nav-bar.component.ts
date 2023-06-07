@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategorieService } from 'src/app/MesServices/Categorie/categorie.service';
 import { FormationsService } from 'src/app/MesServices/Formations/formations.service';
+import { HackerspacesService } from 'src/app/MesServices/Hackerspaces/hackerspaces.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,8 +14,9 @@ export class NavBarComponent implements OnInit {
   Formation: any = [];
   tabFormation : any= [] ;
   id :any ;
+  tabHackerSpace:any=[]
 
-  constructor(private cs: CategorieService , private fs: FormationsService) { }
+  constructor(private cs: CategorieService , private fs: FormationsService, private HackerSpaceService:HackerspacesService) { }
   getAllCategorie() {
     this.cs.getCategories().subscribe(res=>{
       this.tabCategorie=res
@@ -22,6 +24,15 @@ export class NavBarComponent implements OnInit {
 
     })
 
+  }
+
+  getAllHackerSpace()
+  {
+    this.HackerSpaceService.getAllHackerspaces().subscribe(res=>{
+      this.tabHackerSpace=res
+      console.log(this.tabHackerSpace);
+
+    })
   }
 
   getFormationByCategorie(categoryId: any) {
@@ -34,6 +45,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.getAllCategorie()
    this.getFormationByCategorie(this.id)
+   this.getAllHackerSpace()
 
 
 

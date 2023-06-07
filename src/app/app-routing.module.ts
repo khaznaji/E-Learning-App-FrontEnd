@@ -12,7 +12,7 @@ const routes: Routes = [
 children:[
   {path:'',loadChildren:()=>import('./views/visitor/home/home.module').then(m=>m.HomeModule)},
   {path:'contact',loadChildren:()=>import('./views/visitor/contact/contact.module').then(m=>m.ContactModule)},
-  {path:'hackerspace',loadChildren:()=>import('./views/visitor/hackerspace/hackerspace.module').then(m=>m.HackerspaceModule)},
+  {path:'hackerspace/:region',loadChildren:()=>import('./views/visitor/hackerspace/hackerspace.module').then(m=>m.HackerspaceModule)},
   {path:'training',loadChildren:()=>import('./views/visitor/training/training.module').then(m=>m.TrainingModule)},
   {path:'login',loadChildren:()=>import('./views/visitor/login/login.module').then(m=>m.LoginModule)},
   {path:'forgotpassword',loadChildren:()=>import('./views/visitor/forgot-password/forgot-password.module').then(m=>m.ForgotPasswordModule)},

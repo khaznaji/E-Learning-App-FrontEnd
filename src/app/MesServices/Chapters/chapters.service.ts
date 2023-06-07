@@ -11,7 +11,7 @@ export class ChaptersService {
   constructor(private http:HttpClient) { }
 
   //add chapters by id formation
-  ajoutChapters(Chapters: any, id: any): Observable<any> {
-    return this.http.post(`${environement.BASE_URL}/chapters/addChapters/${id}`, Chapters);
+  ajoutChapters(Chapters: any,id:Number): Observable<any> {
+    return this.http.post(`${environement.BASE_URL}/chapters/addChapters/`+id, Chapters);
   }
 }

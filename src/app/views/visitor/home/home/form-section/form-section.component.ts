@@ -13,7 +13,7 @@ import { UserService } from 'src/app/MesServices/UserService/user-service.servic
 export class FormSectionComponent implements OnInit {
 
 AddStudent!: FormGroup;
-  
+
   Role = "ETUDIANT"
 
   Addetat!: boolean ;
@@ -27,13 +27,13 @@ AddStudent!: FormGroup;
 
   }
 
-  
+
 //hedhy tebaa required ?
 
   AddStudentForm() {
     if(this.AddStudent.invalid){
       return;
-    } 
+    }
     //ken maamlnesh fazet lappend kifeh bsh naatiw paasword l ponenumber
     const formData = new FormData();
     formData.append('username', this.AddStudent.get('fusername')?.value);
@@ -49,23 +49,23 @@ AddStudent!: FormGroup;
         console.log(data);
         this.Addetat = true;
         this.msjEtat = "Ajout avec succés";
-       
+
       }
     )
-    
+
   }
-  
-  
-  
+
+
+
   // Function to check if an email address is valid
   isValidEmail(email:any) {
     // Regular expression to match email addresses
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
-  
 
-      
+
+
 
 
   getALLFormations() {
@@ -76,7 +76,7 @@ AddStudent!: FormGroup;
       }
     )
   }
-  
+
   get f() { return this.AddStudent.controls; }
 
   ngOnInit(): void {
@@ -92,6 +92,6 @@ AddStudent!: FormGroup;
     });
 
   }
- 
+
 
 }

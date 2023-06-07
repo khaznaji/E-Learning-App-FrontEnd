@@ -15,7 +15,7 @@ interface Formation {
   styleUrls: ['./admin-trainingschapter.component.css']
 })
 export class AdminTrainingschapterComponent implements OnInit {
-  Formation: any = [];
+  Formation!: number;
   tabFormation : any= [] ;
   Namechapter!: any;
   description!: any;
@@ -32,15 +32,14 @@ export class AdminTrainingschapterComponent implements OnInit {
 
   addChapters() {
     let chapters: any = {
-      Namechapter: this.Namechapter,
-      description: this.description,
-
+      "title": this.Namechapter,
+      "description": this.description,
+      "Formation": Number(this.Formation)
     };
 
-    let formationId = this.Formation; // Get the selected formation ID from the dropdown
 
     console.log(chapters);
-    this.cs.ajoutChapters(chapters, formationId).subscribe((res) => {
+    this.cs.ajoutChapters(chapters, Number(this.Formation)).subscribe((res) => {
       console.log(res);
     });
   }

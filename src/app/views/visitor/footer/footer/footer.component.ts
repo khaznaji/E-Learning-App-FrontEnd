@@ -19,10 +19,11 @@ imagepath = ""
 msjEtat: string = "";
 
 Allformation: any = [];
+isLoading: boolean = false;
 constructor(
 private  UserService: UserService,
 private FormationsService: FormationsService,
-private formBuilder: FormBuilder,
+  private formBuilder: FormBuilder,
 ) {
 }
 AddCoachForm() {
@@ -41,13 +42,15 @@ const formData = new FormData();
   formData.append('skills', this.AddCoach.get('fSkills')?.value);
   formData.append('photo', this.AddCoach.get('fileName')!.value);
   formData.append('roles', this.Role);
+  this.isLoading = true;
   this.UserService.ajoutFormateur(formData).subscribe(
     (data: any) => {
       console.log(data);
-     
+
       this.Addetat = true;
       this.msjEtat = "Ajout avec succés";
-      
+      this.isLoading = false;
+
     }
   )
 }
@@ -68,7 +71,6 @@ this.FormationsService.getFormations().subscribe(
 
 }
 onFileSelected(event: any) {
-//if no image selected select imagepath
 
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -95,7 +97,7 @@ this.AddCoach = this.formBuilder.group({
   fCountry: ['Select Country',[Validators.required]],
   fSkills: ['',[Validators.required]],
   photo: [''],
-  fileName: '' 
+  fileName: ''
 });
 }
 
