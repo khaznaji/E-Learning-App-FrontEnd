@@ -19,4 +19,7 @@ export class FormationsService {
   getFormationById(id:any){
     return this.http.get(`${environement.BASE_URL}/formation/getFormationById/${id}`);
   }
+  getFormationByNomFormation(nom:any){
+    return this.http.get(`${environement.BASE_URL}/formation/getFormationByNomFormation/${nom}`);
+  }
 }

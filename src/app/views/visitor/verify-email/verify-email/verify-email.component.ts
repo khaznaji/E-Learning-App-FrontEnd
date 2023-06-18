@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
 
@@ -7,7 +7,7 @@ import { UserService } from 'src/app/MesServices/UserService/user-service.servic
   templateUrl: './verify-email.component.html',
   styleUrls: ['./verify-email.component.css']
 })
-export class VerifyEmailComponent {
+export class VerifyEmailComponent implements OnInit {
 
 
 etat!:boolean
@@ -21,6 +21,7 @@ etat!:boolean
   checkPassword()
   {
     this.sr.checkCode(this.code).subscribe(res=>{
+      localStorage.setItem("code",this.code)
 
       this.router.navigate(['../resetpassword']);
 
@@ -30,5 +31,12 @@ etat!:boolean
     console.log("error")
   })
 
+  }
+
+  ngOnInit(): void {
+    if(localStorage.getItem("email")==null)
+    {
+      this.router.navigate(['../forgotpassword']);
+    }
   }
 }

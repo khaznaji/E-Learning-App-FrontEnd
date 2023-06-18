@@ -19,11 +19,14 @@ AddStudent!: FormGroup;
   Addetat!: boolean ;
   msjEtat: string = "";
   Allformation: any = [];
+  isLoading: boolean = false;
   constructor(
     private FormationsService:FormationsService ,
     private UserService: UserService,
     private formBuilder: FormBuilder,
   ) {
+    this.Addetat = false;
+    this.msjEtat = '';
 
   }
 
@@ -44,13 +47,22 @@ AddStudent!: FormGroup;
     formData.append('typeFormation', this.AddStudent.get('fFormation')?.value);
     formData.append('country', this.AddStudent.get('fCountry')?.value);
     formData.append('roles', this.Role);
+    this.isLoading = true;
     this.UserService.ajoutStudent(formData).subscribe(
-      (data) => {
+      (data: any) => {
         console.log(data);
         this.Addetat = true;
-        this.msjEtat = "Ajout avec succés";
+        this.msjEtat = "Ajout avec succès";
+        this.isLoading = false;
+      },
+      (error) => {
+        console.log(error);
+        this.Addetat = true;
 
+        this.isLoading = false;
       }
+
+
     )
 
   }

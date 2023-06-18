@@ -5,6 +5,7 @@ import { HackerspaceRoutingModule } from './hackerspace-routing.module';
 import { HackerspaceComponent } from './hackerspace/hackerspace.component';
 import { HomeModule } from '../home/home.module';
 import { SafeUrlPipe } from './hackerspace/SafeUrlPipe';
+import { SafePipeModule } from 'safe-pipe';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SafeUrlPipe } from './hackerspace/SafeUrlPipe';
   imports: [
     CommonModule,
     HackerspaceRoutingModule,
-    HomeModule
+    HomeModule,
+    SafePipeModule
 
   ]
 })

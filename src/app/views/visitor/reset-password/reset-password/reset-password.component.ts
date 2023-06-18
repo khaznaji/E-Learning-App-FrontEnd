@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
 
@@ -7,7 +7,7 @@ import { UserService } from 'src/app/MesServices/UserService/user-service.servic
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css']
 })
-export class ResetPasswordComponent {
+export class ResetPasswordComponent implements OnInit{
 
   pass1 = ""
   pass2 = ""
@@ -24,6 +24,13 @@ export class ResetPasswordComponent {
         this.router.navigate(['/login']);
 
       })
+    }
+  }
+
+  ngOnInit(): void {
+    if(localStorage.getItem("code")==null)
+    {
+      this.router.navigate(['../forgotpassword']);
     }
   }
 

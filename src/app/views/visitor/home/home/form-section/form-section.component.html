@@ -93,19 +93,25 @@
               </select>
             </div>
           </div>
-          <div *ngIf="Addetat==true" class="alert alert-success" role="alert">
-            {{msjEtat}}
+           <div *ngIf="Addetat && msjEtat !== ''" class="alert alert-success" role="alert" style="color: green;">
+            {{ msjEtat }}
           </div>
-          <div *ngIf="Addetat==false" class="alert alert-danger" role="alert">
-            {{msjEtat}}
+          <div *ngIf="Addetat && msjEtat === ''" class="alert alert-danger" role="alert" style="color: red;">
+            Error occurred during registration.
           </div>
-          <div class="text-end mt-5 m-3 "><button type="submit" (click)="AddStudentForm()"
-              class=" btn get-started">Register</button></div>
-          </form>
+
+
+
+
+
+          <div class="text-end mt-5 m-3">
+            <button type="submit" (click)="AddStudentForm()" class="btn get-started" [disabled]="isLoading">
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <span *ngIf="!isLoading">Register</span>
+            </button>
+          </div>
+        </form>
       </div>
-
     </div>
-
-
   </div>
 </section><!-- End inscription Section -->

@@ -19,19 +19,19 @@
                   <div class="address">
                     <i class="bi bi-geo-alt"></i>
                     <h4>Location:</h4>
-                    <p>A108 Adam Street, New York, NY 535022</p>
+                    <p>{{adresse}}</p>
                   </div>
 
                   <div class="email">
                     <i class="bi bi-envelope"></i>
                     <h4>Email:</h4>
-                    <p>9antra@gmail.com</p>
+                    <p>{{email}}</p>
                   </div>
 
                   <div class="phone">
                     <i class="bi bi-phone"></i>
                     <h4>Call:</h4>
-                    <p>+1012 3456 789</p>
+                    <p>{{phone}}</p>
                   </div>
 
                 </div>
@@ -49,9 +49,9 @@
               <h5>
                 Premier hackerspace de THE BRIDGE, nos locaux à Tunis offrent une vue splendide sur le lac. L’espace est composé d’un espace d’accueil, d’une “coding area”, de box de réunion et d’un espace ouvert pour plus d’interaction.</h5>
             </div>
-
             <div class="row">
-              <img [src]="photo" class="img-fluid mb-4" style="border-radius: 20px;" alt="">
+              <img [src]="photo | safe: 'url'"
+              class="img-fluid mb-4" style="border-radius: 20px;" alt="">
             </div>
                     </div>
         </section>

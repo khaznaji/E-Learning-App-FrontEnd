@@ -17,6 +17,9 @@ Addetat!: boolean ;
 
 imagepath = ""
 msjEtat: string = "";
+uploadInProgress: boolean = false;
+
+
 
 Allformation: any = [];
 isLoading: boolean = false;
@@ -27,8 +30,7 @@ private FormationsService: FormationsService,
 ) {
 }
 AddCoachForm() {
-
-const formData = new FormData();
+  const formData = new FormData();
   formData.append('username', this.AddCoach.get('fusername')?.value);
   formData.append('firstName', this.AddCoach.get('fFirstName')?.value);
   formData.append('lastName', this.AddCoach.get('fLastName')?.value);
@@ -42,18 +44,28 @@ const formData = new FormData();
   formData.append('skills', this.AddCoach.get('fSkills')?.value);
   formData.append('photo', this.AddCoach.get('fileName')!.value);
   formData.append('roles', this.Role);
+
+
   this.isLoading = true;
+  this.uploadInProgress = true;
+
   this.UserService.ajoutFormateur(formData).subscribe(
     (data: any) => {
       console.log(data);
-
       this.Addetat = true;
-      this.msjEtat = "Ajout avec succés";
+      this.msjEtat = "Ajout avec succès";
+      this.uploadInProgress = false; // Set upload in progress to false when upload is complete
       this.isLoading = false;
-
+    },
+    (error) => {
+      console.log(error);
+      this.Addetat = true;
+      this.uploadInProgress = false; // Set upload in progress to false on error as well
+      this.isLoading = false;
     }
-  )
+  );
 }
+
 
 // Function to check if an email address is valid
 isValidEmail(email:any) {
@@ -71,14 +83,17 @@ this.FormationsService.getFormations().subscribe(
 
 }
 onFileSelected(event: any) {
-
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.AddCoach.get('CV')!.setValue(file);
-    }else{
-      this.AddCoach.get('CV')!.setValue(this.imagepath);
-    }
+  if (event.target.files.length > 0) {
+    const file = event.target.files[0];
+    this.AddCoach.get('CV')!.setValue(file);
+    this.uploadInProgress = true; // Set upload in progress to true when file selection starts
+  } else {
+    this.AddCoach.get('CV')!.setValue(this.imagepath);
+    this.uploadInProgress = false; // Set upload in progress to false when no file is selected
+  }
 }
+
+
 
 get f() { return this.AddCoach.controls; }
 

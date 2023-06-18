@@ -21,6 +21,7 @@ export class AdminHackerspaceformComponent implements OnInit {
     const formData = new FormData();
     formData.append('Region', this.HackerForm.get('region')?.value);
     formData.append('Location', this.HackerForm.get('location')?.value);
+    formData.append('adresse', this.HackerForm.get('adresse')?.value);
     formData.append('Description', this.HackerForm.get('description')?.value);
     const photoFile = this.HackerForm.get('Photo')?.value;
     if (photoFile instanceof File) {
@@ -57,6 +58,7 @@ export class AdminHackerspaceformComponent implements OnInit {
     this.HackerForm = this.formBuilder.group({
       region: [''],
       location: [''],
+      adresse:[''],
       description: [''],
       phone: [''],
       email: [''],

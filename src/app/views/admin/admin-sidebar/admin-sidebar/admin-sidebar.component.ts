@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
+import { UserAuthService } from 'src/app/MesServices/user-auth.service';
 
 @Component({
   selector: 'app-admin-sidebar',
@@ -9,7 +11,7 @@ import { UserService } from 'src/app/MesServices/UserService/user-service.servic
 export class AdminSidebarComponent  implements OnInit {
   data: any = [];
   username!:string;
-    constructor(private sr:UserService) { }
+    constructor(private sr:UserService,private Auth:UserAuthService, private route:Router) { }
 
 
     getUserByid(id:any){
@@ -20,6 +22,11 @@ export class AdminSidebarComponent  implements OnInit {
 
       })
     }
+
+logout(){
+  this.Auth.clear()
+  this.route.navigate(['/login'])
+}
 
     ngOnInit(): void {
 

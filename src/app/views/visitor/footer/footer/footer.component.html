@@ -1,222 +1,230 @@
-   <!-- ======= Footer ======= -->
-   <footer id="footer">
+<!-- ======= Footer ======= -->
+<footer id="footer">
 
 
 
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
 
-          <div class="col-lg-4 col-md-12 footer-contact">
-            <h3>The-Bridge</h3>
-            <p>
-              Top learning experiences that create <br>
-              more talent in the world.
-            </p>
-          </div>
+        <div class="col-lg-4 col-md-12 footer-contact">
+          <h3>The-Bridge</h3>
+          <p>
+            Top learning experiences that create <br>
+            more talent in the world.
+          </p>
+        </div>
 
-          <div class="col-lg-2 col-md-6 col-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li> <a href="#">Home</a></li>
-              <li> <a href="#">About us</a></li>
-              <li> <a href="#">Services</a></li>
-              <li>
-                <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Are you coach?</a> </li>
+        <div class="col-lg-2 col-md-6 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li> <a href="#">Home</a></li>
+            <li> <a href="#">About us</a></li>
+            <li> <a href="#">Services</a></li>
+            <li>
+              <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Are you coach?</a> </li>
 
-                        <!-- Modal -->
-                       <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title ms-5" id="staticBackdropLabel" style="color: #AF3065; font-weight: bold;"> Register to join us</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <form [formGroup]="AddCoach" >
+                      <!-- Modal -->
+                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title ms-5" id="staticBackdropLabel" style="color: #AF3065; font-weight: bold;"> Register to join us</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form [formGroup]="AddCoach" >
 
 
 
-                                  <div class="row">
+                                <div class="row">
+                                   <div class="form__group field col-md-6 ">
+                                       <input name="FirstName" formControlName="fFirstName" type="input" class="form__field" placeholder="Subject" name="name" id="name" required>
+                                       <label for="name" class="form__label mb-4">First Name</label>
+                                       <div *ngIf="AddCoach.controls['fFirstName'].invalid && (AddCoach.controls['fFirstName'].dirty||AddCoach.controls['fFirstName'].touched)">
+                                        <div *ngIf="AddCoach.controls['fFirstName'].errors&&AddCoach.controls['fFirstName'].errors['required']">
+                                          <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> First Name is required</span>
+                                     </div>
+                                     </div>
+                                   </div>
                                      <div class="form__group field col-md-6 ">
-                                         <input name="FirstName" formControlName="fFirstName" type="input" class="form__field" placeholder="Subject" name="name" id="name" required>
-                                         <label for="name" class="form__label mb-4">First Name</label>
-                                         <div *ngIf="AddCoach.controls['fFirstName'].invalid && (AddCoach.controls['fFirstName'].dirty||AddCoach.controls['fFirstName'].touched)">
-                                          <div *ngIf="AddCoach.controls['fFirstName'].errors&&AddCoach.controls['fFirstName'].errors['required']">
-                                            <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> First Name is required</span>
-                                       </div>
+                                       <input name="LastName" formControlName="fLastName" type="input" class="form__field" placeholder="Subject" name="name" id="name" required>
+                                       <label for="name" class="form__label mb-4">Last Name</label>
+                                       <div *ngIf="AddCoach.controls['fLastName'].invalid && (AddCoach.controls['fLastName'].dirty||AddCoach.controls['fLastName'].touched)">
+                                        <div *ngIf="AddCoach.controls['fLastName'].errors&&AddCoach.controls['fLastName'].errors['required']">
+
+                                            <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> Last Name is required</span>
+                                          </div>
                                        </div>
                                      </div>
-                                       <div class="form__group field col-md-6 ">
-                                         <input name="LastName" formControlName="fLastName" type="input" class="form__field" placeholder="Subject" name="name" id="name" required>
-                                         <label for="name" class="form__label mb-4">Last Name</label>
-                                         <div *ngIf="AddCoach.controls['fLastName'].invalid && (AddCoach.controls['fLastName'].dirty||AddCoach.controls['fLastName'].touched)">
-                                          <div *ngIf="AddCoach.controls['fLastName'].errors&&AddCoach.controls['fLastName'].errors['required']">
+                                </div>
 
-                                              <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> Last Name is required</span>
-                                            </div>
-                                         </div>
-                                       </div>
-                                  </div>
+                                <div class="row">
+                                   <div class="form__group field col-md-6 ">
+                                    <select name="Country" formControlName="fCountry" id="id_select" autofocus="true" class="form__field " >
 
-                                  <div class="row">
+
+                                      <option disabled selected>Select Country</option>
+                                      <option value="Tunisia"> Tunisia </option>
+                                      <option value="Algeria"> Algeria </option>
+                                    </select>
+
+                                     </div>
                                      <div class="form__group field col-md-6 ">
-                                      <select name="Country" formControlName="fCountry" id="id_select" autofocus="true" class="form__field " >
-
-
-                                        <option disabled selected>Select Country</option>
-                                        <option value="Tunisia"> Tunisia </option>
-                                        <option value="Algeria"> Algeria </option>
-                                      </select>
-
-                                       </div>
-                                       <div class="form__group field col-md-6 ">
-                                         <input  name="PhoneNumber" formControlName="fPhoneNumber" type="input" class="form__field" placeholder="Subject" name="name" id="name" required>
-                                         <label for="name" class="form__label mb-4">Phone number</label>
-                                         <div *ngIf="AddCoach.controls['fPhoneNumber'].invalid && (AddCoach.controls['fPhoneNumber'].dirty||AddCoach.controls['fPhoneNumber'].touched)">
-                                          <div *ngIf="AddCoach.controls['fPhoneNumber'].errors&&AddCoach.controls['fPhoneNumber'].errors['required']">
-                                            <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> PhoneNumber is required</span>
-                                      </div>
+                                       <input  name="PhoneNumber" formControlName="fPhoneNumber" type="input" class="form__field" placeholder="Subject" name="name" id="name" required>
+                                       <label for="name" class="form__label mb-4">Phone number</label>
+                                       <div *ngIf="AddCoach.controls['fPhoneNumber'].invalid && (AddCoach.controls['fPhoneNumber'].dirty||AddCoach.controls['fPhoneNumber'].touched)">
+                                        <div *ngIf="AddCoach.controls['fPhoneNumber'].errors&&AddCoach.controls['fPhoneNumber'].errors['required']">
+                                          <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> PhoneNumber is required</span>
                                     </div>
-                                       </div>
                                   </div>
+                                     </div>
+                                </div>
 
-                                  <div class="row">
-
-                                       <div class="form__group field col-md-12 ">
-                                         <input name="username" formControlName="fusername" type="input" class="form__field" placeholder="Subject" name="name" id="name" required>
-                                         <label for="name" class="form__label mb-4">E-mail</label>
-                                         <div *ngIf="AddCoach.controls['fusername'].invalid && (AddCoach.controls['fusername'].dirty||AddCoach.controls['fusername'].touched)">
-                                          <div *ngIf="AddCoach.controls['fusername'].errors&&AddCoach.controls['fusername'].errors['required']">
-                                          </div>
-                                          <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> Email is required</span>
-                                      </div>
-
-                                       </div>
-                                  </div>
-                                  <div class="row">
+                                <div class="row">
 
                                      <div class="form__group field col-md-12 ">
-                                       <input name="linkedin" formControlName="fLinkedin" type="input" class="form__field" placeholder="Subject" name="name" id="name" required>
-                                       <label for="name" class="form__label mb-4">Lien linkedin</label>
-                                       <div *ngIf="AddCoach.controls['fLinkedin'].invalid && (AddCoach.controls['fLinkedin'].dirty||AddCoach.controls['fusername'].touched)">
-                                        <div *ngIf="AddCoach.controls['fLinkedin'].errors&&AddCoach.controls['fLinkedin'].errors['required']">
-                                          <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> Linkedin is required</span>
+                                       <input name="username" formControlName="fusername" type="input" class="form__field" placeholder="Subject" name="name" id="name" required>
+                                       <label for="name" class="form__label mb-4">E-mail</label>
+                                       <div *ngIf="AddCoach.controls['fusername'].invalid && (AddCoach.controls['fusername'].dirty||AddCoach.controls['fusername'].touched)">
+                                        <div *ngIf="AddCoach.controls['fusername'].errors&&AddCoach.controls['fusername'].errors['required']">
+                                        </div>
+                                        <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> Email is required</span>
                                     </div>
-                                  </div>
+
                                      </div>
                                 </div>
                                 <div class="row">
 
-                                 <div class="form__group field col-md-12 ">
-                                   <input name="Github" formControlName="fGithub" type="input" class="form__field" placeholder="Subject" name="name" id="name" required>
-                                   <label for="name" class="form__label mb-4">Lien GitHub</label>
-                                   <div *ngIf="AddCoach.controls['fGithub'].invalid && (AddCoach.controls['fGithub'].dirty||AddCoach.controls['fusername'].touched)">
-                                    <div *ngIf="AddCoach.controls['fGithub'].errors&&AddCoach.controls['fGithub'].errors['required']">
-                                      <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> Github is required</span>
+                                   <div class="form__group field col-md-12 ">
+                                     <input name="linkedin" formControlName="fLinkedin" type="input" class="form__field" placeholder="Subject" name="name" id="name" required>
+                                     <label for="name" class="form__label mb-4">Lien linkedin</label>
+                                     <div *ngIf="AddCoach.controls['fLinkedin'].invalid && (AddCoach.controls['fLinkedin'].dirty||AddCoach.controls['fusername'].touched)">
+                                      <div *ngIf="AddCoach.controls['fLinkedin'].errors&&AddCoach.controls['fLinkedin'].errors['required']">
+                                        <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> Linkedin is required</span>
+                                  </div>
                                 </div>
+                                   </div>
                               </div>
-                                 </div>
-                            </div>
+                              <div class="row">
 
-                            <div class="row">
-
-                             <div class="form__group field col-md-12 mb-4">
-                               <textarea name="Skills" formControlName="fSkills" class="form__field" placeholder="Subject" name="name" id="name" required></textarea>
-                               <label for="name" class="form__label mb-4">Skills</label>
-                               <div *ngIf="AddCoach.controls['fSkills'].invalid && (AddCoach.controls['fSkills'].dirty||AddCoach.controls['fSkills'].touched)">
-                                <div *ngIf="AddCoach.controls['fSkills'].errors&&AddCoach.controls['fSkills'].errors['required']">
-                                  <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> Skills is required</span>
+                               <div class="form__group field col-md-12 ">
+                                 <input name="Github" formControlName="fGithub" type="input" class="form__field" placeholder="Subject" name="name" id="name" required>
+                                 <label for="name" class="form__label mb-4">Lien GitHub</label>
+                                 <div *ngIf="AddCoach.controls['fGithub'].invalid && (AddCoach.controls['fGithub'].dirty||AddCoach.controls['fusername'].touched)">
+                                  <div *ngIf="AddCoach.controls['fGithub'].errors&&AddCoach.controls['fGithub'].errors['required']">
+                                    <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> Github is required</span>
+                              </div>
                             </div>
+                               </div>
                           </div>
-                             </div>
-                         </div>
 
+                          <div class="row">
 
-                         <div class="row">
-                         <div class="flex  items-center justify-center mt-4">
-                             <label class="w-100 flex flex-col items-center px-4 py-6 bg-white text-black rounded-lg shadow-lg tracking-wide uppercase border border-black cursor-pointer hover:bg-black hover:text-grey">
-                                 <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                     <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                                 </svg>
-                                 <span class="mt-2 mx-4 text-base leading-normal">Drop your resume</span>
-                                 <input (change)="onFileSelected($event)" formControlName="CV" type="file" class="hidden" />
-                             </label>
-                         </div>
-                         </div>
-
-
-                                  </form>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="submit" (click)="AddCoachForm()" class="register btn" style="  border-radius: 5px;">Register</button>
-                                <div *ngIf="isLoading" class="loader"></div>
-
-                              </div>
-
-
-                              <div *ngIf="Addetat" class="alert alert-success" role="alert">
-                                {{msjEtat}}
-                              </div>
-
-
-                            </div>
+                           <div class="form__group field col-md-12 mb-4">
+                             <textarea name="Skills" formControlName="fSkills" class="form__field" placeholder="Subject" name="name" id="name" required></textarea>
+                             <label for="name" class="form__label mb-4">Skills</label>
+                             <div *ngIf="AddCoach.controls['fSkills'].invalid && (AddCoach.controls['fSkills'].dirty||AddCoach.controls['fSkills'].touched||AddCoach.controls['fSkills'].touched)">
+                              <div *ngIf="AddCoach.controls['fSkills'].errors&&AddCoach.controls['fSkills'].errors['required']">
+                                <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> Skills is required</span>
                           </div>
                         </div>
-              <li> <a routerLink="/login">Login</a></li>
-            </ul>
-          </div>
+                           </div>
+                       </div>
 
-          <div class="col-lg-2 col-md-6 col-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li> <a href="#">Web Design</a></li>
-              <li> <a href="#">Web Development</a></li>
-              <li> <a href="#">Product Management</a></li>
-              <li> <a href="#">Marketing</a></li>
-              <li> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
+                       <div class="row">
+                        <div class="flex items-center justify-center mt-4">
+                          <label class="w-100 flex flex-col items-center px-4 py-6 bg-white text-black rounded-lg shadow-lg tracking-wide uppercase border border-black cursor-pointer hover:bg-black hover:text-grey">
+                            <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                              <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                            </svg>
+                            <span class="mt-2 mx-4 text-base leading-normal">Drop your resume</span>
+                            <input (change)="onFileSelected($event)" formControlName="CV" type="file" class="hidden" />
+                          </label>
+                        </div>
 
-          <div class="col-lg-2 col-md-6 col-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li> <a href="#">Web Design</a></li>
-              <li> <a href="#">Web Development</a></li>
-              <li> <a href="#">Product Management</a></li>
-              <li> <a href="#">Marketing</a></li>
-              <li> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
+                        <div *ngIf="uploadInProgress" class="upload-message">File upload in progress. Please wait...</div>
+<div *ngIf="uploadInProgress" class="upload-success">File uploaded successfully!</div>
 
-          <div class="col-lg-2 col-md-6 col-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li> <a href="#">Web Design</a></li>
-              <li> <a href="#">Web Development</a></li>
-              <li> <a href="#">Product Management</a></li>
-              <li> <a href="#">Marketing</a></li>
-              <li> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
+                      </div>
 
+
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="submit" (click)="AddCoachForm()" class="register btn" style="  border-radius: 5px;">Register</button>
+                              <div *ngIf="isLoading" class="loader"></div>
+
+                            </div>
+
+
+                            <div *ngIf="Addetat && msjEtat !== ''" class="alert alert-success" role="alert" style="color: green;">
+                              {{ msjEtat }}
+                            </div>
+                            <div *ngIf="Addetat && msjEtat === ''" class="alert alert-danger" role="alert" style="color: red;">
+                              Error occurred during registration.
+                            </div>
+
+
+
+
+                          </div>
+                        </div>
+                      </div>
+            <li> <a routerLink="/login">Login</a></li>
+          </ul>
         </div>
+
+        <div class="col-lg-2 col-md-6 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li> <a href="#">Web Design</a></li>
+            <li> <a href="#">Web Development</a></li>
+            <li> <a href="#">Product Management</a></li>
+            <li> <a href="#">Marketing</a></li>
+            <li> <a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li> <a href="#">Web Design</a></li>
+            <li> <a href="#">Web Development</a></li>
+            <li> <a href="#">Product Management</a></li>
+            <li> <a href="#">Marketing</a></li>
+            <li> <a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li> <a href="#">Web Design</a></li>
+            <li> <a href="#">Web Development</a></li>
+            <li> <a href="#">Product Management</a></li>
+            <li> <a href="#">Marketing</a></li>
+            <li> <a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
       </div>
     </div>
+  </div>
 
-    <div class="container footer-bottom clearfix row">
-      <div class="copyright col-6">
-        &copy; 2022 The Bridge. All rights reserved.
-      </div>
-      <div class="trainers col-6 d-flex justify-content-center mb-4">
-        <div class="social ">
-          <a href="https://www.facebook.com/MustafaHosny"class="ms-2"><i class="bi bi-twitter"></i></a>
-          <a href="" class="ms-2"><i class="bi bi-facebook"></i></a>
-          <a href="" class="ms-2"><i class="bi bi-instagram"></i></a>
-          <a href="" class="ms-2"><i class="bi bi-linkedin"></i></a>
+  <div class="container footer-bottom clearfix row">
+    <div class="copyright col-6">
+      &copy; 2022 The Bridge. All rights reserved.
+    </div>
+    <div class="trainers col-6 d-flex justify-content-center mb-4">
+      <div class="social ">
+        <a href="https://www.facebook.com/MustafaHosny"class="ms-2"><i class="bi bi-twitter"></i></a>
+        <a href="" class="ms-2"><i class="bi bi-facebook"></i></a>
+        <a href="" class="ms-2"><i class="bi bi-instagram"></i></a>
+        <a href="" class="ms-2"><i class="bi bi-linkedin"></i></a>
 
-        </div>
       </div>
     </div>
-  </footer><!-- End Footer -->
-
+  </div>
+</footer><!-- End Footer -->

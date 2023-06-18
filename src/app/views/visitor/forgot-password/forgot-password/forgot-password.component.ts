@@ -36,8 +36,8 @@ export class ForgotPasswordComponent {
     this.sr.genCode(data).subscribe(
       (res: any) => {
         localStorage.setItem('email', this.emaili.toString());
-        this.sendEmail(this.emaili, result);
-        this.router.navigate(['/SetCode']);
+        
+        this.router.navigate(['/verifyemail']);
       },
       (err: any) => {
         this.etat = true;
@@ -45,9 +45,7 @@ export class ForgotPasswordComponent {
       }
     );
   }
-  sendEmail(emaili: String, result: string) {
-    throw new Error('Method not implemented.');
-  }
+
 
 
 

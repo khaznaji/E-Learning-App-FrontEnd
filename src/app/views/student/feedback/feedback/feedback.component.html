@@ -20,22 +20,21 @@
 
 
     <div class="form-group mb-3">
-      <label for="exampleFormControlInput1">Titre</label>
-      <select  name="group" class="form-select" aria-label="Default select example">
-          <option selected>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+      <label for="exampleFormControlInput1">Training</label>
+      <select [(ngModel)]="formation" name="group" class="form-select" aria-label="Default select example">
+        <option disabled selected>Select Training</option>
+          <option *ngFor="let x of Allformation" value="{{x.nomFormation}}"> {{x.nomFormation}} </option>
+
         </select>
     </div>
     <div class="form-group mb-3">
       <label for="exampleFormControlTextarea1">Description</label>
-      <textarea  name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      <textarea  [(ngModel)]="comment" name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
 
     <div class="text-end">
       <button type="button" id="submit" name="submit" class="btn btn-light" style=" border-radius: 5px;"  routerLink="/admin">Cancel</button>
-      <button type="button" id="submit"     name="submit" class="btn" style="background-color: #AF3065; color: white; border-radius: 5px;">Update</button>
+      <button type="button" id="submit" (click)="AddFeedback()"    name="submit" class="btn" style="background-color: #AF3065; color: white; border-radius: 5px;">Update</button>
       </div>
 
   </form>

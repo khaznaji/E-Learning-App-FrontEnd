@@ -73,6 +73,7 @@ export class UserAuthService {
 
   public clear() {
     localStorage.clear() ;
+    sessionStorage
 
   }
   public isLoggedIn() {
