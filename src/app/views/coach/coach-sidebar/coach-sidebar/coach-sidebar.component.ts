@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
 import { UserAuthService } from 'src/app/MesServices/user-auth.service';
@@ -12,7 +13,7 @@ export class CoachSidebarComponent implements OnInit {
 
   data: any = [];
 username!:string;
-  constructor(private sr:UserService,private Auth:UserAuthService , private route:Router) { }
+  constructor(private sr:UserService,private Auth:UserAuthService , private route:Router,private http: HttpClient) { }
 
 
   getUserByid(id:any){
@@ -27,11 +28,26 @@ username!:string;
     this.Auth.clear()
     this.route.navigate(['/login'])
   }
+  currentUser: any;
+
+  getCurrentCoachDetails(): void {
+    this.http.get<any>('http://localhost:8094/api/formateur/me').subscribe(
+      response => {
+        this.currentUser = response;
+        console.log('Current user:', this.currentUser);
+      },
+      error => {
+        console.error('Error fetching current user details:', error);
+      }
+    );
+  }
 
 
   ngOnInit(): void {
 
     this.getUserByid(localStorage.getItem('id'))
+
+    this.getCurrentCoachDetails();
   }
 
 }

@@ -25,342 +25,54 @@
 
 </div>
       <div class="data_table card1 mt-4 " style="overflow-y: scroll; height:600px;" >
-        <table class="table align-middle mb-0 bg-white  " >
+        <table class="table align-middle mb-0 bg-white  "  >
             <thead class="bg-light ">
               <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Product</th>
+                <th>Type Formation</th>
                 <th>Projects</th>
               </tr>
             </thead>
-            <tbody >
+            <tbody *ngFor="let event of project" >
               <tr >
                 <td>
                   <div class="d-flex align-items-center">
                     <img
-                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                        src="../../../../../assets/profile/{{event.image}}"
                         alt=""
                         style="width: 45px; height: 45px"
                         class="rounded-circle"
                         />
                     <div class="ms-3">
-                      <p class="fw-bold mb-1">John Doe</p>
-                      
+                      <p class="fw-bold mb-1">{{ event.firstName  }} {{ event.lastName  }}</p>
+
                     </div>
                   </div>
                 </td>
                 <td>
-                    <p class="text-muted mb-0">john.doe@gmail.com</p>
+                    <p class="text-muted mb-0">{{ event.username }}</p>
                 </td>
                 <td>
-                    <p class="fw-normal mb-1">Software engineer</p>
+                    <p class="fw-normal mb-1">{{ event.typeFormation }}</p>
                 </td>
-            
+
                 <td>
                     <button
                     type="button"
                     class="btn btn-link btn-rounded btn-sm fw-bold text-muted"
                     data-mdb-ripple-color="dark"
-                    routerLink="project"
+                    routerLink="project" (click)="showDetails(event.id)"
                     >
                     <i class="bi bi-folder2 fa-2xl"></i>
             </button>
                 </td>
               </tr>
               <tr>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img
-                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                        alt=""
-                        style="width: 45px; height: 45px"
-                        class="rounded-circle"
-                        />
-                    <div class="ms-3">
-                      <p class="fw-bold mb-1">John Doe</p>
-                      
-                    </div>
-                  </div>
-                </td>
-                <td>
-                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Software engineer</p>
-                </td>
-            
-                <td>
-                    <button
-                    type="button"
-                    class="btn btn-link btn-rounded btn-sm fw-bold text-muted"
-                    data-mdb-ripple-color="dark"
-                    routerLink="project"
-                    >
-                    <i class="bi bi-folder2 fa-2xl"></i>
-            </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img
-                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                        alt=""
-                        style="width: 45px; height: 45px"
-                        class="rounded-circle"
-                        />
-                    <div class="ms-3">
-                      <p class="fw-bold mb-1">John Doe</p>
-                      
-                    </div>
-                  </div>
-                </td>
-                <td>
-                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Software engineer</p>
-                </td>
-            
-                <td>
-                    <button
-                    type="button"
-                    class="btn btn-link btn-rounded btn-sm fw-bold text-muted"
-                    data-mdb-ripple-color="dark"
-                    routerLink="project"
-                    >
-                    <i class="bi bi-folder2 fa-2xl"></i>
-            </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img
-                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                        alt=""
-                        style="width: 45px; height: 45px"
-                        class="rounded-circle"
-                        />
-                    <div class="ms-3">
-                      <p class="fw-bold mb-1">John Doe</p>
-                      
-                    </div>
-                  </div>
-                </td>
-                <td>
-                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Software engineer</p>
-                </td>
-            
-                <td>
-                    <button
-                    type="button"
-                    class="btn btn-link btn-rounded btn-sm fw-bold text-muted"
-                    data-mdb-ripple-color="dark"
-                    >
-                    <i class="bi bi-folder2 fa-2xl"></i>
-            </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img
-                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                        alt=""
-                        style="width: 45px; height: 45px"
-                        class="rounded-circle"
-                        />
-                    <div class="ms-3">
-                      <p class="fw-bold mb-1">John Doe</p>
-                      
-                    </div>
-                  </div>
-                </td>
-                <td>
-                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Software engineer</p>
-                </td>
-            
-                <td>
-                    <button
-                    type="button"
-                    class="btn btn-link btn-rounded btn-sm fw-bold text-muted"
-                    data-mdb-ripple-color="dark"
-                    >
-                    <i class="bi bi-folder2 fa-2xl"></i>
-            </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img
-                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                        alt=""
-                        style="width: 45px; height: 45px"
-                        class="rounded-circle"
-                        />
-                    <div class="ms-3">
-                      <p class="fw-bold mb-1">John Doe</p>
-                      
-                    </div>
-                  </div>
-                </td>
-                <td>
-                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Software engineer</p>
-                </td>
-            
-                <td>
-                    <button
-                    type="button"
-                    class="btn btn-link btn-rounded btn-sm fw-bold text-muted"
-                    data-mdb-ripple-color="dark"
-                    >
-                    <i class="bi bi-folder2 fa-2xl"></i>
-            </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img
-                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                        alt=""
-                        style="width: 45px; height: 45px"
-                        class="rounded-circle"
-                        />
-                    <div class="ms-3">
-                      <p class="fw-bold mb-1">John Doe</p>
-                      
-                    </div>
-                  </div>
-                </td>
-                <td>
-                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Software engineer</p>
-                </td>
-            
-                <td>
-                    <button
-                    type="button"
-                    class="btn btn-link btn-rounded btn-sm fw-bold text-muted"
-                    data-mdb-ripple-color="dark"
-                    >
-                    <i class="bi bi-folder2 fa-2xl"></i>
-            </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img
-                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                        alt=""
-                        style="width: 45px; height: 45px"
-                        class="rounded-circle"
-                        />
-                    <div class="ms-3">
-                      <p class="fw-bold mb-1">John Doe</p>
-                      
-                    </div>
-                  </div>
-                </td>
-                <td>
-                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Software engineer</p>
-                </td>
-            
-                <td>
-                    <button
-                    type="button"
-                    class="btn btn-link btn-rounded btn-sm fw-bold text-muted"
-                    data-mdb-ripple-color="dark"
-                    >
-                    <i class="bi bi-folder2 fa-2xl"></i>
-            </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img
-                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                        alt=""
-                        style="width: 45px; height: 45px"
-                        class="rounded-circle"
-                        />
-                    <div class="ms-3">
-                      <p class="fw-bold mb-1">John Doe</p>
-                      
-                    </div>
-                  </div>
-                </td>
-                <td>
-                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Software engineer</p>
-                </td>
-            
-                <td>
-                    <button
-                    type="button"
-                    class="btn btn-link btn-rounded btn-sm fw-bold text-muted"
-                    data-mdb-ripple-color="dark"
-                    >
-                    <i class="bi bi-folder2 fa-2xl"></i>
-            </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img
-                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                        alt=""
-                        style="width: 45px; height: 45px"
-                        class="rounded-circle"
-                        />
-                    <div class="ms-3">
-                      <p class="fw-bold mb-1">John Doe</p>
-                      
-                    </div>
-                  </div>
-                </td>
-                <td>
-                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Software engineer</p>
-                </td>
-            
-                <td>
-                    <button
-                    type="button"
-                    class="btn btn-link btn-rounded btn-sm fw-bold text-muted"
-                    data-mdb-ripple-color="dark"
-                    >
-                    <i class="bi bi-folder2 fa-2xl"></i>
-            </button>
-                </td>
-              </tr>
+
 
             </tbody>
           </table>
     </div>
-   
+
   </main>
