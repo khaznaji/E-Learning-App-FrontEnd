@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategorieService } from 'src/app/MesServices/Categorie/categorie.service';
+import { FormationsService } from 'src/app/MesServices/Formations/formations.service';
 
 @Component({
   selector: 'app-admin-trainings',
@@ -7,22 +8,32 @@ import { CategorieService } from 'src/app/MesServices/Categorie/categorie.servic
   styleUrls: ['./admin-trainings.component.css']
 })
 export class AdminTrainingsComponent  implements OnInit{
-  tabCategorie:any=[] 
+  tabCategorie:any=[]
   Categorie="" ;
-  
-    constructor(private cs:CategorieService) { }
+  Formation: any = [];
+  tabFormation : any= [] ;
+  id :any ;
+
+    constructor(private cs:CategorieService,private fs: FormationsService) { }
     getAllCategorie() {
-      console.log(this.tabCategorie);
-      
-      this.cs.getCategories().subscribe(res=>{
-        this.tabCategorie=res ;
+      this.cs.getCategories().subscribe(res => {
+        this.tabCategorie = res;
         console.log(this.tabCategorie);
-        
-      }
-        )
+
+        this.tabCategorie.forEach((category: any) => {
+          this.getFormationByCategorie(category.id, category);
+        });
+      });
     }
 
-  
+    getFormationByCategorie(categoryId: any, category: any) {
+      this.fs.getFormationByCategorie(categoryId).subscribe(res => {
+        category.formations = res;
+        console.log(category.formations);
+      });
+    }
+
+
     ngOnInit(): void {
       this.getAllCategorie()
     }

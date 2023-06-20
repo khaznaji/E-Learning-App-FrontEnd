@@ -1,525 +1,71 @@
-<main  >
-    <div class="d-lg-none d-md-block"><br><br><br></div>
+<main>
+  <div class="d-lg-none d-md-block"><br><br><br></div>
+
+  <div class="row">
+    <div class="col-8">
+      <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <div class="col-4 d-flex align-items-center justify-content-end">
+      <button type="button" class="btn filter p-2 border pe-3 me-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <i class="bi bi-filter-square fa-2xl me-3"></i>Filter
+      </button>
+
+      <button type="button" class="btn p-2 border pe-3 me-3 register" routerLink="/admin/trainingsform">
+        <i class="bi bi-plus fa-2xl me-3"></i>Add New
+      </button>
+    </div>
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal content goes here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
     <div class="row">
-      <div class="col-8">
-  <div class="pagetitle">
-    <h1>Dashboard</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>
-      </ol>
-    </nav>
+      <div class="col-lg-4 col-md-6" *ngFor="let o of tabCategorie">
+        <div class="card shadow-sm mb-4">
+          <div class="row mt-4 mx-2">
+            <p class="nav-profile d-flex align-items-center" href="view profile.html">
+              <span class="fw-bold ps-4">{{ o.nomCate }}</span>
+              <span>
+                <div class="filter">
+                  <button class="icon" href="#" data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;">
+                    <i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start"></li>
+                    <li><button class="dropdown-item" href="#"><span><i class="bi bi-pencil-square"></i> </span>update</button></li>
+                    <li><button class="dropdown-item text-danger" href="#"><span><i class="bi bi-trash3"></i> </span>Delete</button></li>
+                  </ul>
+                </div>
+              </span>
+            </p>
+          </div>
+
+          <div class="card-body my-3 mx-5">
+            <div class="d-flex align-items-center mb-3">
+              <span class="pe-4 text-secondary">Created in 20/02/2022</span>
+            </div>
+            <div class="mb-3 align-items-center d-flex">
+              <span class="pe-4 fw-bold">Training:</span>
+              <span class="badge bg-danger" *ngFor="let x of o.formations" [id]="x.id">{{ x.nomFormation }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-  <div class="col-4 d-flex align-items-center justify-content-end ">
-    
-  
-        <button type="button" class="btn filter p-2 border pe-3 me-3  "  data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-filter-square fa-2xl me-3 "></i>
-            Filter</button>
-            <button type="button" class="btn  p-2 border pe-3 me-3  register " routerLink="/admin/trainingsform"  ><i class="bi bi-plus fa-2xl me-3 "></i>
-              Add New</button>
-   
-  
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title " id="staticBackdropLabel" style="color: #AF3065; font-weight: bold; "> Filter</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form action="">
-                    <div class="row d-flex justify-content-center">  
-                        <div class="col-8 form__group field mt-3">
-                          <select name="Categorie=" [(ngModel)]="Categorie"   id="id_select" autofocus="true" class="form__field">
-                            <option value="1" disabled selected> Categorie </option>
-                            <option  *ngFor="let o of tabCategorie" value="{{o.nomCate}}"> {{o.nomCate}} </option>
-                          </select>
-            
-                        </div>
-            
-                      </div>
-               
-        
-                 
-                   
-        
-                    </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn register">filter</button>
-            
-                </div>
-              </div>
-            </div>
-          </div>
-       
-  
-  
-  </div>
-
-</div><!-- End Page Title -->
-
-
-    <!-- Groups section -->
-<div class="container">
-
-        <div class="row">  
-
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                      <p class="nav-profile d-flex align-items-center " href="view profile.html" >
-                    
-                        <span class="fw-bold  ps-4"> #Fullstackjs</span> <span  >                      
-                          <div class="filter ">
-                          <button class="icon" href="#" data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            <li class="dropdown-header text-start">
-                           
-                            </li>
-          
-
-                            <li><button class="dropdown-item" href="#"><span><i class="bi bi-pencil-square"></i> </span>update</button></li>
-                            <li><button class="dropdown-item text-danger" href="#"><span><i class="bi bi-trash3"></i> </span>Delete</button></li>
-                          </ul>
-                        </div></span>
-                    </p>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-                <div class=" d-flex align-items-center mb-3">
-                  <span class="pe-4  text-secondary">Created in 20/02/2022</span>
-
-                </div>
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                      <p class="nav-profile d-flex align-items-center " href="view profile.html" >
-                    
-                        <span class="fw-bold  ps-4"> #Fullstackjs</span> <span  >                      
-                          <div class="filter ">
-                          <button class="icon" href="#" data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            <li class="dropdown-header text-start">
-                           
-                            </li>
-          
-
-                            <li><button class="dropdown-item" href="#"><span><i class="bi bi-pencil-square"></i> </span>update</button></li>
-                            <li><button class="dropdown-item text-danger" href="#"><span><i class="bi bi-trash3"></i> </span>Delete</button></li>
-                          </ul>
-                        </div></span>
-                    </p>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-                <div class=" d-flex align-items-center mb-3">
-                  <span class="pe-4  text-secondary">Created in 20/02/2022</span>
-
-                </div>
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                      <p class="nav-profile d-flex align-items-center " href="view profile.html" >
-                    
-                        <span class="fw-bold  ps-4"> #Fullstackjs</span> <span  >                      
-                          <div class="filter ">
-                          <button class="icon" href="#" data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            <li class="dropdown-header text-start">
-                           
-                            </li>
-          
-
-                            <li><button class="dropdown-item" href="#"><span><i class="bi bi-pencil-square"></i> </span>update</button></li>
-                            <li><button class="dropdown-item text-danger" href="#"><span><i class="bi bi-trash3"></i> </span>Delete</button></li>
-                          </ul>
-                        </div></span>
-                    </p>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-                <div class=" d-flex align-items-center mb-3">
-                  <span class="pe-4  text-secondary">Created in 20/02/2022</span>
-
-                </div>
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                      <p class="nav-profile d-flex align-items-center " href="view profile.html" >
-                    
-                        <span class="fw-bold  ps-4"> #Fullstackjs</span> <span  >                      
-                          <div class="filter ">
-                          <button class="icon" href="#" data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            <li class="dropdown-header text-start">
-                           
-                            </li>
-          
-
-                            <li><button class="dropdown-item" href="#"><span><i class="bi bi-pencil-square"></i> </span>update</button></li>
-                            <li><button class="dropdown-item text-danger" href="#"><span><i class="bi bi-trash3"></i> </span>Delete</button></li>
-                          </ul>
-                        </div></span>
-                    </p>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-                <div class=" d-flex align-items-center mb-3">
-                  <span class="pe-4  text-secondary">Created in 20/02/2022</span>
-
-                </div>
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                      <p class="nav-profile d-flex align-items-center " href="view profile.html" >
-                    
-                        <span class="fw-bold  ps-4"> #Fullstackjs</span> <span  >                      
-                          <div class="filter ">
-                          <button class="icon" href="#" data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            <li class="dropdown-header text-start">
-                           
-                            </li>
-          
-
-                            <li><button class="dropdown-item" href="#"><span><i class="bi bi-pencil-square"></i> </span>update</button></li>
-                            <li><button class="dropdown-item text-danger" href="#"><span><i class="bi bi-trash3"></i> </span>Delete</button></li>
-                          </ul>
-                        </div></span>
-                    </p>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-                <div class=" d-flex align-items-center mb-3">
-                  <span class="pe-4  text-secondary">Created in 20/02/2022</span>
-
-                </div>
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                      <p class="nav-profile d-flex align-items-center " href="view profile.html" >
-                    
-                        <span class="fw-bold  ps-4"> #Fullstackjs</span> <span  >                      
-                          <div class="filter ">
-                          <button class="icon" href="#" data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            <li class="dropdown-header text-start">
-                           
-                            </li>
-          
-
-                            <li><button class="dropdown-item" href="#"><span><i class="bi bi-pencil-square"></i> </span>update</button></li>
-                            <li><button class="dropdown-item text-danger" href="#"><span><i class="bi bi-trash3"></i> </span>Delete</button></li>
-                          </ul>
-                        </div></span>
-                    </p>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-                <div class=" d-flex align-items-center mb-3">
-                  <span class="pe-4  text-secondary">Created in 20/02/2022</span>
-
-                </div>
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                      <p class="nav-profile d-flex align-items-center " href="view profile.html" >
-                    
-                        <span class="fw-bold  ps-4"> #Fullstackjs</span> <span  >                      
-                          <div class="filter ">
-                          <button class="icon" href="#" data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            <li class="dropdown-header text-start">
-                           
-                            </li>
-          
-
-                            <li><button class="dropdown-item" href="#"><span><i class="bi bi-pencil-square"></i> </span>update</button></li>
-                            <li><button class="dropdown-item text-danger" href="#"><span><i class="bi bi-trash3"></i> </span>Delete</button></li>
-                          </ul>
-                        </div></span>
-                    </p>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-                <div class=" d-flex align-items-center mb-3">
-                  <span class="pe-4  text-secondary">Created in 20/02/2022</span>
-
-                </div>
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                      <p class="nav-profile d-flex align-items-center " href="view profile.html" >
-                    
-                        <span class="fw-bold  ps-4"> #Fullstackjs</span> <span  >                      
-                          <div class="filter ">
-                          <button class="icon" href="#" data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            <li class="dropdown-header text-start">
-                           
-                            </li>
-          
-
-                            <li><button class="dropdown-item" href="#"><span><i class="bi bi-pencil-square"></i> </span>update</button></li>
-                            <li><button class="dropdown-item text-danger" href="#"><span><i class="bi bi-trash3"></i> </span>Delete</button></li>
-                          </ul>
-                        </div></span>
-                    </p>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-                <div class=" d-flex align-items-center mb-3">
-                  <span class="pe-4  text-secondary">Created in 20/02/2022</span>
-
-                </div>
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                      <p class="nav-profile d-flex align-items-center " href="view profile.html" >
-                    
-                        <span class="fw-bold  ps-4"> #Fullstackjs</span> <span  >                      
-                          <div class="filter ">
-                          <button class="icon" href="#" data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            <li class="dropdown-header text-start">
-                           
-                            </li>
-          
-
-                            <li><button class="dropdown-item" href="#"><span><i class="bi bi-pencil-square"></i> </span>update</button></li>
-                            <li><button class="dropdown-item text-danger" href="#"><span><i class="bi bi-trash3"></i> </span>Delete</button></li>
-                          </ul>
-                        </div></span>
-                    </p>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-                <div class=" d-flex align-items-center mb-3">
-                  <span class="pe-4  text-secondary">Created in 20/02/2022</span>
-
-                </div>
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                      <p class="nav-profile d-flex align-items-center " href="view profile.html" >
-                    
-                        <span class="fw-bold  ps-4"> #Fullstackjs</span> <span  >                      
-                          <div class="filter ">
-                          <button class="icon" href="#" data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            <li class="dropdown-header text-start">
-                           
-                            </li>
-          
-
-                            <li><button class="dropdown-item" href="#"><span><i class="bi bi-pencil-square"></i> </span>update</button></li>
-                            <li><button class="dropdown-item text-danger" href="#"><span><i class="bi bi-trash3"></i> </span>Delete</button></li>
-                          </ul>
-                        </div></span>
-                    </p>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-                <div class=" d-flex align-items-center mb-3">
-                  <span class="pe-4  text-secondary">Created in 20/02/2022</span>
-
-                </div>
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                      <p class="nav-profile d-flex align-items-center " href="view profile.html" >
-                    
-                        <span class="fw-bold  ps-4"> #Fullstackjs</span> <span  >                      
-                          <div class="filter ">
-                          <button class="icon" href="#" data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            <li class="dropdown-header text-start">
-                           
-                            </li>
-          
-
-                            <li><button class="dropdown-item" href="#"><span><i class="bi bi-pencil-square"></i> </span>update</button></li>
-                            <li><button class="dropdown-item text-danger" href="#"><span><i class="bi bi-trash3"></i> </span>Delete</button></li>
-                          </ul>
-                        </div></span>
-                    </p>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-                <div class=" d-flex align-items-center mb-3">
-                  <span class="pe-4  text-secondary">Created in 20/02/2022</span>
-
-                </div>
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                      <p class="nav-profile d-flex align-items-center " href="view profile.html" >
-                    
-                        <span class="fw-bold  ps-4"> #Fullstackjs</span> <span  >                      
-                          <div class="filter ">
-                          <button class="icon" href="#" data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            <li class="dropdown-header text-start">
-                           
-                            </li>
-          
-
-                            <li><button class="dropdown-item" href="#"><span><i class="bi bi-pencil-square"></i> </span>update</button></li>
-                            <li><button class="dropdown-item text-danger" href="#"><span><i class="bi bi-trash3"></i> </span>Delete</button></li>
-                          </ul>
-                        </div></span>
-                    </p>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-                <div class=" d-flex align-items-center mb-3">
-                  <span class="pe-4  text-secondary">Created in 20/02/2022</span>
-
-                </div>
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-
-              </div>
-            </div>
-          </div>
-
-
-            </div>
-          </div>
-
-
-  
-    <!-- End Groups section -->
-
-
-</main><!-- End #main -->
+</main>

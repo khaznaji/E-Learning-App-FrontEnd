@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
+import { UserAuthService } from 'src/app/MesServices/user-auth.service';
 
 @Component({
   selector: 'app-coach-sidebar',
@@ -10,7 +12,7 @@ export class CoachSidebarComponent implements OnInit {
 
   data: any = [];
 username!:string;
-  constructor(private sr:UserService) { }
+  constructor(private sr:UserService,private Auth:UserAuthService , private route:Router) { }
 
 
   getUserByid(id:any){
@@ -21,6 +23,11 @@ username!:string;
 
     })
   }
+  logout(){
+    this.Auth.clear()
+    this.route.navigate(['/login'])
+  }
+
 
   ngOnInit(): void {
 
