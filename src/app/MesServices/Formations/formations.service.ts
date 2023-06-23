@@ -22,4 +22,8 @@ export class FormationsService {
   getFormationByNomFormation(nom:any){
     return this.http.get(`${environement.BASE_URL}/formation/getFormationByNomFormation/${nom}`);
   }
+  //delete formation
+  deleteFormation(id:any){
+    return this.http.delete(`${environement.BASE_URL}/formation/deleteFormation/${id}`);
+  }
 }

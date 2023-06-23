@@ -13,11 +13,12 @@ export class CategorieComponent implements OnInit {
   constructor(private cs: CategorieService) { }
 
   deleteCategrie(id:any){
+    if (confirm('Are you sur?')) {
     this.cs.deleteCategorie(id).subscribe((res)=>{
       console.log(res);
       this.getAllCategorie(); // Update the Page after successful deletion
     })
-  }
+  }}
 
   getAllCategorie() {
     this.cs.getCategories().subscribe(res=>{

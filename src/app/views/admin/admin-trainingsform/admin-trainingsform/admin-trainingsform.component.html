@@ -36,27 +36,46 @@
 
           <div class="form-group mb-3">
             <label for="nbExercices">Number of exercices</label>
-            <input name="nbExercices" type="text" formControlName="nbExercices" class="form-control" id="nbExercices" placeholder="">
+            <input name="nbExercices" type="text" formControlName="nbExercices" class="form-control" id="nbExercices"
+              placeholder="">
+              <div *ngIf="trainingForm.get('nbExercices')?.dirty && !isValidNumber(trainingForm.get('nbExercices')?.value)" class="text-danger">
+              Please enter a valid number of exercices.
+            </div>
           </div>
 
           <div class="form-group mb-3">
             <label for="nbProjects">Number of projects</label>
-            <input name="nbProjects" type="text" formControlName="nbProjects" class="form-control" id="nbProjects" placeholder="">
+            <input name="nbProjects" type="text" formControlName="nbProjects" class="form-control" id="nbProjects"
+              placeholder="">
+            <div *ngIf="trainingForm.get('nbProjects')?.dirty && !isValidNumber(trainingForm.get('nbProjects')?.value)" class="text-danger">
+              Please enter a valid number of projects.
+            </div>
           </div>
 
           <div class="form-group mb-3">
             <label for="nbMeetings">Number of meetings</label>
-            <input name="nbMeetings" type="text" formControlName="nbMeetings" class="form-control" id="nbMeetings" placeholder="">
+            <input name="nbMeetings" type="text" formControlName="nbMeetings" class="form-control" id="nbMeetings"
+              placeholder="">
+            <div *ngIf="trainingForm.get('nbMeetings')?.dirty && !isValidNumber(trainingForm.get('nbMeetings')?.value)" class="text-danger">
+              Please enter a valid number of meetings.
+            </div>
           </div>
 
           <div class="form-group mb-3">
             <label for="nbChapters">Number of chapters</label>
-            <input name="nbChapters" type="text" formControlName="nbChapters" class="form-control" id="nbChapters" placeholder="7">
+            <input name="nbChapters" type="text" formControlName="nbChapters" class="form-control" id="nbChapters"
+              placeholder="">
+            <div *ngIf="trainingForm.get('nbChapters')?.dirty && !isValidNumber(trainingForm.get('nbChapters')?.value)" class="text-danger">
+              Please enter a valid number of chapters.
+            </div>
           </div>
 
+
           <div class="text-end">
-            <button type="button" id="cancel" name="cancel" class="btn btn-light" style="border-radius: 5px;">Cancel</button>
-            <button type="submit" (click)="addTraining()" id="submit" name="submit" class="btn" style="background-color: #AF3065; color: white; border-radius: 5px;">Update</button>
+            <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+            <button type="button" id="cancel" name="cancel" class="btn btn-light" style="border-radius: 5px;" routerLink="/admin/trainings">Cancel</button>
+            <button type="submit" (click)="addTraining()" id="submit" name="submit" class="btn" style="background-color: #AF3065; color: white; border-radius: 5px;">Add </button>
           </div>
         </form>
       </div>

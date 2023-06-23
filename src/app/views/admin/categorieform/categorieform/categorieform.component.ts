@@ -9,6 +9,8 @@ import { CategorieService } from 'src/app/MesServices/Categorie/categorie.servic
 export class CategorieformComponent {
   nomCate: string = '';
   showWarning: boolean = false;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(private cat: CategorieService) { }
 
@@ -17,10 +19,19 @@ export class CategorieformComponent {
       let categorie: any = {
         "nomCate": this.nomCate
       };
-      console.log(categorie);
-      this.cat.addCategorie(categorie).subscribe((res) => {
-        console.log(res);
-      });
+
+      this.cat.addCategorie(categorie).subscribe(
+        (res) => {
+          this.successMessage = 'Category added successfully.';
+          this.errorMessage = '';
+          console.log(res);
+        },
+        (error) => {
+          this.successMessage = '';
+          this.errorMessage = 'Error adding the category. Please try again.';
+          console.log(error);
+        }
+      );
     } else {
       this.showWarning = true;
     }

@@ -13,6 +13,8 @@ export class AdminTrainingsformComponent implements OnInit {
   trainingForm: FormGroup;
   tabCategorie: any = [];
   selectedCategorie!: any;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -49,12 +51,27 @@ export class AdminTrainingsformComponent implements OnInit {
       console.log(trainingData);
       trainingData.categorie = Number(trainingData.categorie);
 
-      this.TrainingService.ajoutTraining(trainingData).subscribe((res) => {
-        console.log(res);
-      }
+      this.TrainingService.ajoutTraining(trainingData).subscribe(
+        (data: any) => {
+          this.successMessage = 'Training program added successfully.';
+          this.errorMessage = '';
+          console.log(data);
+          
+        },
+        (error: any) => {
+          this.successMessage = '';
+          this.errorMessage = 'Error adding the training program. Please try again.';
+          console.log(error);
+        }
       );
     } else {
-      // Handle form validation errors
+      this.errorMessage = 'Please fill in all the required fields.';
     }
+  }
+
+  isValidNumber(number: any) {
+    // Regular expression to match numbers
+    const numberRegex = /^\+?\d+$/;
+    return numberRegex.test(number);
   }
 }

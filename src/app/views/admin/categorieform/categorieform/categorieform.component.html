@@ -23,9 +23,12 @@
               <input [(ngModel)]="nomCate" name="nomCate" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
             </div>
 
-            
+
 
             <div class="text-end">
+              <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+              <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+
               <button type="button" id="submit" name="submit" class="btn btn-light" style="border-radius: 5px;" routerLink="/admin/categories">Cancel</button>
               <button type="button" id="submit" (click)="addCategorie()" name="submit" class="btn" style="background-color: #AF3065; color: white; border-radius: 5px;" routerLink="/admin/categories">Add</button>
             </div>

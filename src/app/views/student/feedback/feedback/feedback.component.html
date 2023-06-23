@@ -33,8 +33,11 @@
     </div>
 
     <div class="text-end">
-      <button type="button" id="submit" name="submit" class="btn btn-light" style=" border-radius: 5px;"  routerLink="/admin">Cancel</button>
-      <button type="button" id="submit" (click)="AddFeedback()"    name="submit" class="btn" style="background-color: #AF3065; color: white; border-radius: 5px;">Update</button>
+      <button type="button" id="submit" name="submit" class="btn btn-light" style=" border-radius: 5px;"  routerLink="/student">Cancel</button>
+      <button type="button" id="submit" (click)="AddFeedback()"    name="submit" class="btn" style="background-color: #AF3065; color: white; border-radius: 5px;">Update</button
+        >
+        <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
       </div>
 
   </form>

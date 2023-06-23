@@ -32,10 +32,18 @@ export class AdminTrainingsComponent  implements OnInit{
         console.log(category.formations);
       });
     }
+    deleteFormation(id:any){
+      if (confirm('Are you sur?'))
+      this.fs.deleteFormation(id).subscribe((res)=>{
+        console.log(res);
+        this.getAllCategorie(); // Update the Page after successful deletion
 
+      })
+    }
 
     ngOnInit(): void {
       this.getAllCategorie()
+
     }
 
 }

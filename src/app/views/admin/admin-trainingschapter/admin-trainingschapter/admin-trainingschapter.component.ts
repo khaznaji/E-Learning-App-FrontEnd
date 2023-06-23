@@ -19,6 +19,8 @@ export class AdminTrainingschapterComponent implements OnInit {
   tabFormation : any= [] ;
   Namechapter!: any;
   description!: any;
+  successMessage: string = '';
+  errorMessage: string = '';
 
 
   constructor(private fr: FormationsService, private cs: ChaptersService) {}
@@ -31,17 +33,30 @@ export class AdminTrainingschapterComponent implements OnInit {
   }
 
   addChapters() {
+    if (!this.Namechapter || !this.description || !this.Formation) {
+      this.errorMessage = 'Please fill in all the required fields.';
+      return;
+    }
+
     let chapters: any = {
-      "title": this.Namechapter,
-      "description": this.description,
-      "Formation": Number(this.Formation)
+      title: this.Namechapter,
+      description: this.description,
+      Formation: Number(this.Formation)
     };
 
-
     console.log(chapters);
-    this.cs.ajoutChapters(chapters, Number(this.Formation)).subscribe((res) => {
-      console.log(res);
-    });
+    this.cs.ajoutChapters(chapters, Number(this.Formation)).subscribe(
+      (data: any) => {
+        this.successMessage = 'Hackerspace added successfully.';
+        this.errorMessage = '';
+        console.log(data);
+      },
+      (error: any) => {
+        this.successMessage = '';
+        this.errorMessage = 'Error adding the hackerspace. Please try again.';
+        console.log(error);
+      }
+    );
   }
 
   ngOnInit(): void {
