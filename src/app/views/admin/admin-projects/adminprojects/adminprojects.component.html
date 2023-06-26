@@ -1,0 +1,126 @@
+<main>
+    <div class="d-lg-none d-md-block"><br><br><br></div>
+    <div class="pagetitle">
+      <h1>View profile</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+  
+
+    <button type="button" class="btn p-2 border pe-3 me-3 register" routerLink="/admin/add-projects">
+      <i class="bi bi-plus fa-2xl me-3"></i>Add New
+    </button>
+
+    <div class="data_table card1 mt-4 " style="overflow-y: scroll; height:600px;">
+        <table class="table align-middle mb-0 bg-white  ">
+          <thead class="bg-light ">
+            <tr >
+            <th>#</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>ProjectOwner</th>
+              <th>Price</th>
+              <th>Tech</th>
+
+              <th>Video</th>
+              <th>Images</th>
+    
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr  *ngFor="let project of adminProjects"
+            >
+              <td>
+                <div class="d-flex align-items-center">
+                  <!-- <img src="../../../../../assets/projectOwner/{{ owner.image }}" style="width: 45px; height: 45px"
+                    class="rounded-circle" /> -->
+                  <a routerLink="profile">
+                    <div class="ms-3">
+                      <p class="fw-bold mb-1"></p>
+                      <p class="text-muted mb-0"></p>
+                    </div>
+                  </a>
+                </div>
+              </td>
+              <td>
+                <p class="text-muted mb-0">{{ project.titre }}</p>
+              </td>
+              <td>
+                <p class="fw-normal mb-1">{{ project.description }}</p>
+              </td>
+              <td>
+                  <p  class="fw-normal mb-1">{{ project.name }}</p>
+              </td>
+              <td>
+                  <p  class="fw-normal mb-1">{{ project.price }}</p>
+    </td>
+    <td>
+      <p class="fw-normal mb-1">{{ project.technologies }}</p>
+    </td>
+    <td>
+      <!-- Affichage de la vidéo -->
+      <div *ngIf="project.video">
+        <video controls width="200" height="150">
+          <source src="../../../../../assets/adminProjects/{{ project.video }}" type="video/mp4">
+          Votre navigateur ne supporte pas la lecture de vidéos.
+        </video>
+      </div>
+    
+    <td>
+      <!-- Affichage des images -->
+      <!-- <div>
+        <img [src]="'assets/adminProjects/' + project.image" style="width: 100px; height: 100px" class="img-thumbnail" />
+      </div> -->
+
+<!--       
+      <div *ngIf="adminProjects.length > 0 && adminProjects[0]?.image">
+        <div *ngFor="let image of adminProjects[0].image.split(',')">
+          <img src="../../../../../assets/adminProjects/{{ image.trim() }}" style="width: 100px; height: 100px" class="img-thumbnail" />
+        </div>
+      </div> -->
+      <div *ngIf="project.image">
+        <div *ngFor="let image of project.image.split(',')">
+          <img src="../../../../../assets/adminProjects/{{ image.trim() }}" style="width: 100px; height: 100px" class="img-thumbnail" />
+        </div>
+      </div>
+       <!-- <tr *ngFor="let image of project.image">
+        <td>
+          <img [src]="'../../../../../assets/adminProjects/' + image" style="width: 100px; height: 100px" class="img-thumbnail" />
+        </td>
+      </tr> -->
+    </td>
+                <td>
+                  <div class="d-flex justify-content-between">
+                    <button class="btn btn-info btn-circle" (click)="updateEvent(project.id)" >
+                      <span class="bi bi-pencil-square"></span>
+                    </button>
+                  </div>
+                  <button class="btn btn-danger btn-circle" (click)="deleteEvents(project.id)">
+                    <span class="bi bi-trash"></span>
+                  </button>
+                </td>
+                
+                
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            </tr>
+          </tbody>
+    
+        </table>
+      </div>
+    
+
+  </main><!-- End #main -->
+  

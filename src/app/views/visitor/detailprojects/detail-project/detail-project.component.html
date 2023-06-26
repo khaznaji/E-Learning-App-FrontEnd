@@ -1,0 +1,66 @@
+<div id="carouselMultiItemExample1" class="carousel slide carousel-dark text-center" data-bs-ride="carousel"
+  data-bs-interval="3000">
+  <div class="carousel-inner py-4">
+    
+    <ng-container *ngIf="project.image">
+        <div class="carousel-item" *ngFor="let image of project.image.split(','); let i = index" [class.active]="i === 0">
+          <img [src]="'../../../../../assets/adminProjects/' + image.trim()" class="d-block w-100 img-thumbnail" alt="Slide Image" style="width:200px; height: 500px;">
+        </div>
+      </ng-container>       
+  </div>
+
+  <div class="d-flex justify-content-center mb-4">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselMultiItemExample1"
+      data-bs-slide="prev">
+      <span style="margin-right:100px" class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselMultiItemExample1"
+      data-bs-slide="next">
+      <span style="margin-left:100px" class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+
+<!-- Reste de votre code... -->
+
+<section id="Hackerspace" class="Hackerspace mt-5">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title mb-5 text-center">
+        <h2>{{project.titre}}</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 d-flex align-items-start">
+          <div class="info">
+            <img src="assets/projectOwner/{{project.ownerImage}}" alt="Image du ProjectOwner" width="300px">
+          </div>
+        </div>
+        
+        <div class="col-lg-9">
+                  <b class="m-0">Technologies: </b>{{project.technologies}}   
+          <br>   
+          <br>           <b class="m-0">Name: </b>{{project.name}}
+          <br>   
+          <br>           <b class="m-0">Price:</b> {{project.price}}
+          <br>   
+          <br>       
+    
+          <b class="m-0">Description: </b>{{project.description}}
+        </div>
+      </div>
+      <br>
+      <br>
+      <div *ngIf="project.video" class="d-flex justify-content-center">
+        <video controls>
+          <source src="../../../../../assets/adminProjects/{{ project.video }}" type="video/mp4" width="300px">
+          Votre navigateur ne supporte pas la lecture de vidéos.
+        </video>
+      </div>
+    
+      
+     
+              </div>
+  </section>
+<!-- End Services Section -->

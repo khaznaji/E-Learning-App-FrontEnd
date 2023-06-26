@@ -19,6 +19,8 @@ children:[
   {path:'resetpassword',loadChildren:()=>import('./views/visitor/reset-password/reset-password.module').then(m=>m.ResetPasswordModule)},
   {path:'verifyemail',loadChildren:()=>import('./views/visitor/verify-email/verify-email.module').then(m=>m.VerifyEmailModule)},
   {path:'online',loadChildren:()=>import('./views/visitor/online/online.module').then(m=>m.OnlineModule)},
+  {path:'project',loadChildren:()=>import('./views/visitor/projects/projects.module').then(m=>m.ProjectsModule)},
+  {path:'project-details/:id',loadChildren:()=>import('./views/visitor/detailprojects/detailprojects.module').then(m=>m.DetailprojectsModule)},
 
 ]},
 
@@ -70,6 +72,12 @@ children:[
   {path:'sessionform',loadChildren:()=>import('./views/admin/admin-sessionform/admin-sessionform.module').then(m=>m.AdminSessionformModule)},
   {path:'categorieForm',loadChildren:()=>import('./views/admin/categorieform/categorieform.module').then(m=>m.CategorieformModule)},
   {path:'categories',loadChildren:()=>import('./views/admin/categories/categories.module').then(m=>m.CategoriesModule)},
+  {path:'projectowner',loadChildren:()=>import('./views/admin/admin-projectowner/admin-projectowner.module').then(m=>m.AdminProjectownerModule)},
+  {path:'projects',loadChildren:()=>import('./views/admin/admin-projects/admin-projects.module').then(m=>m.AdminProjectsModule)},
+  {path:'add-projects',loadChildren:()=>import('./views/admin/admin-addprojects/admin-addprojects.module').then(m=>m.AdminAddprojectsModule)},
+  {path:'update-projects/:id',loadChildren:()=>import('./views/admin/admin-updateprojects/admin-updateprojects.module').then(m=>m.AdminUpdateprojectsModule)},
+  {path:'add-projectowner',loadChildren:()=>import('./views/admin/admin-addprojectowner/admin-addprojectowner.module').then(m=>m.AdminAddprojectownerModule)},
+  {path:'update-projectowner/:id',loadChildren:()=>import('./views/admin/admin-updateprojectowner/admin-updateprojectowner.module').then(m=>m.AdminUpdateprojectownerModule)},
 
 
 

@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutsModule } from './layouts/layouts.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminprojectsComponent } from './views/admin/admin-projects/adminprojects/adminprojects.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AdminprojectsComponent,
 
   ],
   imports: [

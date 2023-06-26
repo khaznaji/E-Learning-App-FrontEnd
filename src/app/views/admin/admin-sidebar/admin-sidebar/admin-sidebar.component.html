@@ -93,6 +93,19 @@
            >
            <i class="fa-solid fa-folder fa-fw me-3"></i><span>Feedback</span>
         </a>
+        
+        <a
+        [routerLinkActive]="'active'"   routerLink="projectowner"
+           class="list-group-item list-group-item-action py-3 "
+           >
+           <i class="fa-solid fa-folder fa-fw me-3"></i><span>ProjectOwners</span>
+        </a>
+        <a
+        [routerLinkActive]="'active'"   routerLink="projects"
+           class="list-group-item list-group-item-action py-3 "
+           >
+           <i class="fa-solid fa-folder fa-fw me-3"></i><span>Project</span>
+        </a>
         <!-- Collapse 1 -->
           <a
             (click)="logout()"

@@ -25,7 +25,6 @@ export class StudentProjectsComponent implements OnInit{
       this.project=res;
       console.log(res);
      });
-
   }
   onFileChange(event: any): void {
     const file = event.target.files[0];
