@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -16,15 +16,24 @@ export class StudentProfileComponent implements OnInit {
   }
 
   getCurrentUserDetails(): void {
-    this.http.get<any>('http://localhost:8094/api/user/me').subscribe(
-      response => {
-        this.currentUser = response;
-        console.log('Current user:', this.currentUser);
-      },
-      error => {
-        console.error('Error fetching current user details:', error);
-      }
-    );
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+
+      this.http.get<any>('http://localhost:8094/api/user/me', { headers }).subscribe(
+        response => {
+          this.currentUser = response;
+          console.log('Current user:', this.currentUser);
+        },
+        error => {
+          console.error('Error fetching current user details:', error);
+        }
+      );
+    } else {
+      console.error('Access token not found in localStorage');
+    }
   }
   imageUrl!: string;
 

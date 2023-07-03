@@ -17,7 +17,6 @@ export class AdminProjectownerComponent implements OnInit {
   imagePreview: string | undefined;
   oldImagePreview: string | undefined;
   oldImage: File | null = null;
-
   constructor(private router: Router,private projectOwnerService: ProjectOwnerService) {}
   ngOnInit() {
     this.getAllProjectOwners();
@@ -63,6 +62,7 @@ export class AdminProjectownerComponent implements OnInit {
       });
     }
   }
+ 
   save() {
     if (this.file) {
       const formData = new FormData();

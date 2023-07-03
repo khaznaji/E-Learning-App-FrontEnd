@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { AdminProjects } from 'src/app/Models/AdminProjects';
+import { ProjectClient } from 'src/app/Models/ProjectClient';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminProjectsService {
   private BASE_URL = ' http://localhost:8094/api/AdminProjects/';
-
+  private BASE_URL2 = 'http://localhost:8094/api/ProjectClient/';
   constructor(private http: HttpClient) { }
 
   addProject(projectData: FormData) {
@@ -26,5 +27,20 @@ export class AdminProjectsService {
   }
   deleteFood(id: number): Observable<any> {
     return this.http.delete(`${this.BASE_URL}delete/${id}`, { responseType: 'text' });
+  }
+  addProjectClient(projectClient: ProjectClient, adminProjectId: number): Observable<ProjectClient> {
+    const url = `${this.BASE_URL2}add/${adminProjectId}`;
+    return this.http.post<ProjectClient>(url, projectClient);
+  }
+  getAllC(): Observable<any> {
+    return this.http.get(`${this.BASE_URL2}All`);
+  }
+  getProjectClientsByAdminProjectId(adminProjectId: number): Observable<ProjectClient[]> {
+    const url = `${this.BASE_URL2}adminProjects/${adminProjectId}/projectClients`;
+    return this.http.get<ProjectClient[]>(url);
+  }
+  removeRelation(adminProjectId: number, projectClientId: number): Observable<ProjectClient> {
+    const url = `${this.BASE_URL2}removeRelation/${adminProjectId}/${projectClientId}`;
+    return this.http.delete<ProjectClient>(url);
   }
 }

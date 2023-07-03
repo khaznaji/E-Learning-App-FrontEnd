@@ -76,7 +76,8 @@
               <div class="card my-custom-card" *ngFor="let project of adminProjects">
                 <div *ngIf="project.image">
                     <div>
-                      <img src="../../../../../assets/adminProjects/{{ project.image.split(',')[0].trim() }}"  />
+                      <img [src]="'assets/adminProjects/' + project.titre + '_' + project.id + '/' + project.image.split(',')[0].trim()"   />
+
                     </div>
                   </div>
                                     <div class="card-details">

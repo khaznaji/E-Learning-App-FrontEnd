@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AdminProjectsService } from 'src/app/MesServices/AdminProjects/admin-projects.service';
 import { ProjectOwnerService } from 'src/app/MesServices/ProjectOwner/project-owner.service';
 import { AdminProjects } from 'src/app/Models/AdminProjects';
+import { ProjectClient } from 'src/app/Models/ProjectClient';
 import { ProjectOwner } from 'src/app/Models/ProjectOwner';
 
 @Component({
@@ -14,6 +15,7 @@ export class DetailProjectComponent implements OnInit{
   project: AdminProjects = new AdminProjects();
   selectedCategory!: string; // Assuming categoryId is of type string
   categories: ProjectOwner[] = [];
+  projectClient: ProjectClient = new ProjectClient(); // New instance of ProjectClient
 
   constructor(
     private route: ActivatedRoute,
@@ -41,16 +43,24 @@ export class DetailProjectComponent implements OnInit{
       }
     );
   }
-  ownerImageUrl!: string;
+ showLoginSection: boolean = false;
 
-  // get1(projectId: number): void {
-  //   this.projectService.getById(projectId).subscribe(
-  //     (project: AdminProjects) => {
-  //       this.project = project;
-  //     },
-  //     (error: any) => {
-  //       console.error(error);
-  //     }
-  //   );
-  // }
+
+
+  ownerImageUrl!: string;
+  addProjectClient(): void {
+    const adminProjectId = this.project.id;
+    this.projectService.addProjectClient(this.projectClient, adminProjectId).subscribe(
+      (response: ProjectClient) => {
+        // Ajout réussi, effectuez les actions nécessaires (redirection, message, etc.)
+        console.log('ProjectClient ajouté avec succès', response);
+        // Réinitialisez le formulaire ou les propriétés nécessaires
+        this.projectClient = new ProjectClient();
+      },
+      (error: any) => {
+        // Gestion des erreurs, affichez un message d'erreur ou effectuez les actions nécessaires
+        console.error('Erreur lors de l\'ajout du ProjectClient', error);
+      }
+    );
+  }
   }

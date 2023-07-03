@@ -17,11 +17,13 @@ export class AdminprojectsComponent implements OnInit{
   selectedCategory!: string; // Assuming categoryId is of type string
   categories: ProjectOwner[] = [];
   adminProjects: AdminProjects[] = [];
+  categorie!: ProjectOwner;
 
   constructor(private router: Router,private projectService: AdminProjectsService , private categorieService:ProjectOwnerService) { }
-  
+
   ngOnInit(): void {
  this.get();
+
   }
   get(){   this.categorieService.getAll().subscribe(
     (categories: ProjectOwner[]) => {
@@ -150,8 +152,9 @@ thumbnails: string[] = []; // Tableau pour stocker les URL des miniatures géné
   updateEvent(id: number){
     this.router.navigate(['admin/update-projects', id]);
   }
- 
-
+  clientProject(id: number){
+    this.router.navigate(['admin/projectclients', id]);
+  }
   editProjectOwner(id: number) {
     this.projectService.getById(id).subscribe(
       (response: AdminProjects) => {
@@ -176,6 +179,8 @@ thumbnails: string[] = []; // Tableau pour stocker les URL des miniatures géné
       });
     }
   }
- 
+  getDecodedVideoUrl(videoUrl: string): string {
+    return decodeURI(videoUrl);
+  }
   
 }

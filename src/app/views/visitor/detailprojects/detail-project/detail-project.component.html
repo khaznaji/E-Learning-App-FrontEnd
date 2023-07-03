@@ -4,7 +4,8 @@
     
     <ng-container *ngIf="project.image">
         <div class="carousel-item" *ngFor="let image of project.image.split(','); let i = index" [class.active]="i === 0">
-          <img [src]="'../../../../../assets/adminProjects/' + image.trim()" class="d-block w-100 img-thumbnail" alt="Slide Image" style="width:200px; height: 500px;">
+      
+          <img [src]="'assets/adminProjects/' + project.titre + '_' + project.id + '/' + image.trim()" class="d-block w-100 img-thumbnail" alt="Slide Image" style="width:200px; height: 500px;"  />
         </div>
       </ng-container>       
   </div>
@@ -34,7 +35,8 @@
       <div class="row">
         <div class="col-lg-3 d-flex align-items-start">
           <div class="info">
-            <img src="assets/projectOwner/{{project.ownerImage}}" alt="Image du ProjectOwner" width="300px">
+            <img [src]="'assets/adminProjects/' + project.titre + '_' + project.id + '/' + project.ownerImage" alt="Image du ProjectOwner" width="300px">
+
           </div>
         </div>
         
@@ -48,19 +50,75 @@
           <br>       
     
           <b class="m-0">Description: </b>{{project.description}}
-        </div>
+          <br>
+          <br>
+          <br>
+         
+          
+        </div>    
+   <!-- Modal -->
       </div>
+
+      <!-- Bouton "Order Now" -->
+
+
       <br>
       <br>
       <div *ngIf="project.video" class="d-flex justify-content-center">
         <video controls>
-          <source src="../../../../../assets/adminProjects/{{ project.video }}" type="video/mp4" width="300px">
+          <source [src]="'assets/adminProjects/' + project.titre + '_' + project.id + '/' + project.video.replace('%20', ' ')" type="video/mp4" width="300px">
+
           Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
       </div>
-    
+      <br>
+      <div class="d-flex justify-content-center">
+        <button href="#sectionID" (click)="showLoginSection = true" class="register btn" style="  border-radius: 5px;">Order Now</button>
+      </div>
       
-     
-              </div>
+</div>
+<section id="sectionID" class="login" [hidden]="!showLoginSection" style="margin-top: 130px; margin-bottom: 100px;">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-5 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up"
+        data-aos-delay="200">
+        <h1 class="text-center">Transform Your Vision into Reality</h1>
+        <h5 class="text-center">Order Your Project Today!</h5>
+        <div class=" text-center">
+          <div class="trainers">
+            
+          </div>
+        </div>
+
+        <form  (submit)="addProjectClient()" method="post" role="form"
+          class="php-email-form">
+          <div class="form__group field">
+            <input [(ngModel)]="projectClient.nom" type="input" name="username" id="name" class="form__field" placeholder="email" required />
+            <label for="name" class="form__label">First Name</label>
+          </div>
+          <div class="form__group field">
+            <input [(ngModel)]="projectClient.prenom" type="input" name="username" id="name" class="form__field" placeholder="email" required />
+            <label for="name" class="form__label">Last Name</label>
+          </div>
+          <div class="form__group field">
+            <input [(ngModel)]="projectClient.email" type="input" name="username" id="name" class="form__field" placeholder="email" required />
+            <label for="name" class="form__label">Email</label>
+          </div>   <div class="form__group field">
+            <textarea [(ngModel)]="projectClient.remark" type="input" name="username" id="name" class="form__field" placeholder="email" required ></textarea>
+            <label for="name" class="form__label">Remark</label>
+          </div>
+          <div class="mt-5 text-center"><button class=" register btn col-lg-5 mt-2" type="submit">Submit</button></div>
+         
+        </form>
+
+      </div>
+      <div class="col-lg-5 order-1 order-lg-2 photo" data-aos="zoom-in" data-aos-delay="200">
+        <img src="assets/img/about.png" class="img-fluid animated" alt="">
+      </div>
+    </div>
+  </div>
+
+</section><!-- End Login -->
+
   </section>
 <!-- End Services Section -->

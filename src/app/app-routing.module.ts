@@ -78,6 +78,7 @@ children:[
   {path:'update-projects/:id',loadChildren:()=>import('./views/admin/admin-updateprojects/admin-updateprojects.module').then(m=>m.AdminUpdateprojectsModule)},
   {path:'add-projectowner',loadChildren:()=>import('./views/admin/admin-addprojectowner/admin-addprojectowner.module').then(m=>m.AdminAddprojectownerModule)},
   {path:'update-projectowner/:id',loadChildren:()=>import('./views/admin/admin-updateprojectowner/admin-updateprojectowner.module').then(m=>m.AdminUpdateprojectownerModule)},
+  {path:'projectclients/:id',loadChildren:()=>import('./views/admin/admin-project-client/admin-project-client.module').then(m=>m.AdminProjectClientModule)},
 
 
 

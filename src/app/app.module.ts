@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutsModule } from './layouts/layouts.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminprojectsComponent } from './views/admin/admin-projects/adminprojects/adminprojects.component';
+import { AdminProjectClientComponent } from './views/admin/admin-project-client/admin-project-client.component';
 
 
 
@@ -13,6 +14,7 @@ import { AdminprojectsComponent } from './views/admin/admin-projects/adminprojec
   declarations: [
     AppComponent,
     AdminprojectsComponent,
+    AdminProjectClientComponent,
 
   ],
   imports: [

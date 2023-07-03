@@ -73,7 +73,7 @@ ngOnInit() {
       // Pre-fill the multiple images array
       this.food.image.split(',').forEach(image => {
         // Assuming 'image' is the property in 'AdminProjects' class representing the image URLs
-        this.thumbnails.push('assets/adminProjects/' + image.trim());
+        this.thumbnails.push('assets/adminProjects/' + food.titre + '_' + food.id + '/' + image.trim());
       });
 
       const matchingCategory = this.categories.find(category => category.nom === this.food.name);

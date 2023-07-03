@@ -95,7 +95,8 @@
 </video>
 
 <video id="videoPreview" controls *ngIf="!selectedVideo && food?.video">
-  <source [src]="'assets/adminProjects/' + food.video" type="video/mp4">
+  <source [src]="'assets/adminProjects/' + food.titre + '_' + food.id + '/' + food.video.replace('%20', ' ')" type="video/mp4" width="300px">
+
   Your browser does not support the video tag.
 </video>
 
@@ -112,8 +113,7 @@
         </div>
       </div>
     </div>
-  </div>
-              </div>
+  </div></div>
         
 </div>
 </div>

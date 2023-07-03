@@ -37,7 +37,17 @@ export class UserAuthService {
   }
 
 
+  public getFirstName(): string {
+    return localStorage.getItem("firstName")!;
+  }
 
+  public getLastName(): string {
+    return localStorage.getItem("lastName")!;
+  }
+
+  public getImage(): string {
+    return localStorage.getItem("image")!;
+  }
 
 
   public setRolesSession(roles:any) {
@@ -78,5 +88,17 @@ export class UserAuthService {
   }
   public isLoggedIn() {
     return this.getRoles() && this.getToken() ;
+  }
+  public setUserData(userData: any) {
+    localStorage.setItem("userData", JSON.stringify(userData));
+  }
+
+  public getUserData(): any {
+    const userData = JSON.parse(localStorage.getItem("userData")!);
+    if (userData) {
+      return JSON.parse(userData);
+    } else {
+      return null;
+    }
   }
 }
