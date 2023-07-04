@@ -11,11 +11,11 @@
              loading="lazy"
              />
       </a>
-      <div class="mt-4 border-bottom border-top py-3" *ngIf="currentUser">
+      <div class="mt-4 border-bottom border-top py-3" *ngIf="data">
 
       <div class="nav-profile d-flex align-items-center ms-4 pe-0 text-black "  >
-        <img [src]="'../../../../../assets/profile/' + currentUser.image" alt="Profile" width="50px" height="50px" class="rounded-circle">
-        <span class="ps-2 fw-bold">Welcome Back <p> {{ currentUser.lastName }} {{ currentUser.firstName }} </p> </span> <a class="ps-4"><i class="btn  bi bi-gear" routerLink="profile"> </i></a>
+        <img [src]="'../../../../../assets/profile/' + data.image" alt="Profile" width="50px" height="50px" class="rounded-circle">
+        <span class="ps-2 fw-bold">Welcome Back <p> {{ data.lastName }} {{ data.firstName }} </p> </span> <a class="ps-4"><i class="btn  bi bi-gear" routerLink="profile"> </i></a>
       </div>
       <!-- End Profile Iamge Icon --></div>
       <div class="list-group list-group-flush mx-3 mt-5">
@@ -63,7 +63,7 @@
         <a
         (click)="logout()"
            href="#"
-           class="list-group-item list-group-item-action border-top " style="margin-top: 170px;"
+           class="list-group-item list-group-item-action border-top " style="margin-top: 100px;"
            ><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180 fa-fw me-3"></i><span>LogOut</span></a
           >
 

@@ -5,12 +5,15 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutsModule } from './layouts/layouts.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminChaptersComponent } from './views/admin/admin-chapters/admin-chapters/admin-chapters.component';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AdminChaptersComponent,
 
   ],
   imports: [
@@ -20,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    
 
 
   ],

@@ -13,11 +13,11 @@
     <!-- ======= Profile Section ======= -->
     <div class="container">
         <div class="main-body">
-        
-        
-        
+
+
+
         <div class="row gutters-sm mt-5">
-          <div class="col-md-4">
+          <div class="col-md-4"  *ngIf="data">
           <div class="card mb-3">
             <div class="card-body text-center p-2 my-2">
           <img src="assets/img/profile-img.jpg" alt="Admin" style="border-radius: 20px;" width="200">
@@ -25,7 +25,7 @@
             overflow: hidden; background-color: #AF3065; color: #ffffff;">
             <span><i class="bi bi-camera me-3"></i></span> Add New
             <input type="file" name="file" style="  position: absolute;
-          
+
             opacity: 0;
             right: 0;
             top: 0;"
@@ -43,8 +43,8 @@
 
         <div class="col-sm-4">
         <h5 class="mb-1">Full Name</h5>
-    
-       <h6 class="text-secondary">Kenneth Valdez</h6>
+
+       <h6 class="text-secondary">{{ data.lastName }} {{ data.firstName }}</h6>
       </div>
       <div class="col-sm-4">
         <h5 class="mb-1">Email</h5>
@@ -57,26 +57,26 @@
 
         </div>
 
-   
+
         <div class="row">
-    
-      
+
+
          <div class="col-sm-4">
           <h5 class="mb-1">Phone</h5>
-          <h6 class="text-secondary">216 22 222 222</h6>
+          <h6 class="text-secondary">{{ data.numeroTel }}</h6>
           </div>
         </div>
-     
+
         <div class="row">
    <br><br><br><br>
         </div>
         </div>
         </div>
-    
+
         </div>
 
 <div class=" row  bg-white shadow d-flex justify-content-center">
-  
+
         <div class="col-6 ">
         <div class="col-10">
             <div class="form__group mt-3">
@@ -124,9 +124,9 @@
         </div>
     </div>
 </div>
- 
-       
+
+
         </div>
         </div>
-       
+
   </main><!-- End #main -->

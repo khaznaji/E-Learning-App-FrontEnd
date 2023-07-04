@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from 'src/app/MesServices/UserService/user-service.service';
 
 @Component({
   selector: 'app-admin-profile',
@@ -8,16 +9,36 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AdminProfileComponent  implements OnInit {
   currentUser: any;
+  data: any = [];
+  username!:string;
+  country!:string;
+  numeroTel!:string
+  email!:string;
+  photo!:any
+  image!:any
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private  sr : UserService ) { }
 
 
 
 
   ngOnInit(): void {
     this.getCurrentUserDetails();
+    this.getUserByid(localStorage.getItem('id'))
   }
+  getUserByid(id:any){
+    this.sr.getUserById(id).subscribe(res=>{
+      this.data=res
+      console.log(this.data);
+      this.username=this.data.firstName+" "+this.data.lastName
+      this.country =this.data.Country
+      this.numeroTel=this.data.numeroTel
+      this.email=this.data.username
+      this.photo = this.data.image;
 
+
+    })
+  }
   getCurrentUserDetails(): void {
     this.http.get<any>('http://localhost:8094/api/user/me').subscribe(
       response => {

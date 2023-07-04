@@ -21,4 +21,8 @@ findHackerspaceByregion(region:string){
 getAllHackerspaces(){
   return this.http.get(`${environement.BASE_URL}/Hackerspaces/allHackerspaces`);
 }
+deleteHackerspace(id:any){
+  return this.http.delete(`${environement.BASE_URL}/Hackerspaces/deleteHackerspaces/${id}`);
+}
+
 }

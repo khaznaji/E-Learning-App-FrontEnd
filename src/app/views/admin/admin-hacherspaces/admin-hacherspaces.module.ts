@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminHacherspacesRoutingModule } from './admin-hacherspaces-routing.module';
 import { AdminHackerspacesComponent } from './admin-hackerspaces/admin-hackerspaces.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,7 @@ import { AdminHackerspacesComponent } from './admin-hackerspaces/admin-hackerspa
   ],
   imports: [
     CommonModule,
-    AdminHacherspacesRoutingModule
+    AdminHacherspacesRoutingModule,FormsModule
   ]
 })
 export class AdminHacherspacesModule { }
