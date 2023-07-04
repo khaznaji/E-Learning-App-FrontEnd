@@ -21,5 +21,11 @@ deleteCategorie(id:any){
   return this.http.delete(`${environement.BASE_URL}/categorie/deleteCategories/${id}`);
 }
 
+//filtre categorie by nomCate
+searchCategorieByNomCate(nomCate: string) {
+  return this.http.get(`${environement.BASE_URL}/categorie/categories/search/${nomCate}`);
+}
+
+
 
 }

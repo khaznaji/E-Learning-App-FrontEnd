@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategorieService } from 'src/app/MesServices/Categorie/categorie.service';
 
 @Component({
@@ -11,8 +12,9 @@ export class CategorieformComponent {
   showWarning: boolean = false;
   successMessage: string = '';
   errorMessage: string = '';
+  showSuccessModal: boolean = false;
 
-  constructor(private cat: CategorieService) { }
+  constructor(private cat: CategorieService, private   router : Router ) { }
 
   addCategorie() {
     if (this.nomCate.trim() !== '') {
@@ -24,6 +26,7 @@ export class CategorieformComponent {
         (res) => {
           this.successMessage = 'Category added successfully.';
           this.errorMessage = '';
+          this.showSuccessModal = true;
           console.log(res);
         },
         (error) => {
@@ -36,4 +39,9 @@ export class CategorieformComponent {
       this.showWarning = true;
     }
   }
+  handleOKClick() {
+    this.showSuccessModal = false;
+    this.router.navigate(['/admin/categories']);
+  }
+
 }

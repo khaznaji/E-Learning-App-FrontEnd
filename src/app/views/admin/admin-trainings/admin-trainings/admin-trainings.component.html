@@ -24,19 +24,47 @@
       </button>
     </div>
 
+
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <!-- Modal content goes here -->
+          <div class="modal-header">
+            <h5 class="modal-title " id="staticBackdropLabel" style="color: #AF3065; font-weight: bold; "> Filter</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  ></button>
+          </div>
+          <div class="modal-body">
+            <form action="">
+              <div class="row d-flex justify-content-center">
+                  <div class="col-8 form__group field mt-3">
+                    <label class="mb-3  form__label">Categorie</label>
+                    <select name="Categorie=" [(ngModel)]="Categorie"  id="id_select" autofocus="true" class="form__field">
+                      <option value="1" disabled selected> Categorie </option>
+                      <option  *ngFor="let o of tabCategorie2" value="{{o.id}}"> {{o.nomCate}} </option>
+                    </select>
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button  type="submit"  class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="searchCategorieByid()" class="btn register"  >Filter</button>
+          </div>
+
         </div>
       </div>
     </div>
-  </div>
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-md-6" *ngFor="let category of tabCategorie">
-        <div class="card shadow-sm mb-4" *ngFor="let formation of category.formations">
+      <div class="col-lg-4 col-md-6" *ngFor="let category of getFilteredCategories()">
+        <div class="card shadow-sm mb-4" *ngFor="let formation of category?.formations">
           <div class="row mt-4 mx-2">
             <p class="nav-profile d-flex align-items-center" href="view profile.html">
               <span class="fw-bold ps-4">{{ formation.nomFormation }}</span>
@@ -57,12 +85,12 @@
 
           <div class="card-body my-3 mx-5">
             <div class="d-flex align-items-center mb-3">
-              <span class="pe-4 text-secondary">Created in 20/02/2022</span>
+              <span class="pe-4 text-secondary">Created on : {{ formation.createdAt | date }}</span>
             </div>
             <div class="mt-auto">
               <span class="fw-bold">Category: </span>
               <span class="badge bg-primary">{{ category.nomCate }}</span>
-              
+
             </div>
           </div>
         </div>

@@ -17,10 +17,14 @@
 
 
       <div class="row gutters-sm mt-5">
-        <div class="col-md-4" *ngIf="currentUser">
+        <div class="col-md-4" *ngIf="data">
         <div class="card mb-3">
           <div class="card-body text-center p-2 my-2">
-        <img [src]="'../../../../../assets/profile/' + currentUser.image"  alt="Admin" style="border-radius: 20px;" width="175">
+            <img [src]="'../../../../../assets/profile/' + data.image" alt="Admin" style="border-radius: 20px;" width="175">
+
+
+
+
         <div class="mt-2 mx-5"><div class="file  btn-lg fs-6 fw-bold" style="position: relative;
           overflow: hidden; background-color: #AF3065; color: #ffffff;">
           <span><i class="bi bi-camera me-3"></i></span> Add New
@@ -44,15 +48,15 @@
       <div class="col-sm-4">
       <h5 class="mb-1">Full Name</h5>
 
-     <h6 class="text-secondary">{{ currentUser.lastName }} {{ currentUser.firstName }}</h6>
+     <h6 class="text-secondary">{{ data.lastName }} {{ data.firstName }}</h6>
     </div>
     <div class="col-sm-4">
       <h5 class="mb-1">Email</h5>
-      <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1c7a756c5c766977716974327d70">{{ currentUser.username }}</a>
+      <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1c7a756c5c766977716974327d70">{{ data.username }}</a>
     </div>
     <div class="col-sm-4">
       <h5 class="mb-1">Country</h5>
-      <h6 class="text-secondary">{{ currentUser.country }}</h6>
+      <h6 class="text-secondary">{{ data.country }}</h6>
     </div>
 
       </div>
@@ -66,7 +70,7 @@
        </div>
        <div class="col-sm-4">
         <h5 class="mb-1">Phone</h5>
-        <h6 class="text-secondary">{{ currentUser.numeroTel }}</h6>
+        <h6 class="text-secondary">{{ data.numeroTel }}</h6>
         </div>
       </div>
 

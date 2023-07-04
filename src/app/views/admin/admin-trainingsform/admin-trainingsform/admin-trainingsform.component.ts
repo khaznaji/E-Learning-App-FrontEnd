@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CategorieService } from 'src/app/MesServices/Categorie/categorie.service';
-import { FormationsService } from 'src/app/MesServices/Formations/formations.service';
 import { TrainingService } from 'src/app/MesServices/Training/training.service';
 
 @Component({
@@ -15,12 +15,13 @@ export class AdminTrainingsformComponent implements OnInit {
   selectedCategorie!: any;
   successMessage: string = '';
   errorMessage: string = '';
+  showSuccessModal: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private cs: CategorieService,
-    private FormationService: FormationsService,
-    private TrainingService: TrainingService
+    private trainingService: TrainingService,
+    private   router : Router ,
   ) {
     this.trainingForm = this.fb.group({
       categorie: ['', Validators.required],
@@ -51,12 +52,12 @@ export class AdminTrainingsformComponent implements OnInit {
       console.log(trainingData);
       trainingData.categorie = Number(trainingData.categorie);
 
-      this.TrainingService.ajoutTraining(trainingData).subscribe(
+      this.trainingService.ajoutTraining(trainingData).subscribe(
         (data: any) => {
           this.successMessage = 'Training program added successfully.';
           this.errorMessage = '';
+          this.showSuccessModal = true;
           console.log(data);
-          
         },
         (error: any) => {
           this.successMessage = '';
@@ -68,6 +69,11 @@ export class AdminTrainingsformComponent implements OnInit {
       this.errorMessage = 'Please fill in all the required fields.';
     }
   }
+  handleOKClick() {
+    this.showSuccessModal = false;
+    this.router.navigate(['/admin/trainings']);
+  }
+
 
   isValidNumber(number: any) {
     // Regular expression to match numbers

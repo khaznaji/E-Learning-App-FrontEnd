@@ -73,11 +73,11 @@
                                      <div class="form__group field col-md-6 ">
                                        <input  name="PhoneNumber" formControlName="fPhoneNumber" type="input" class="form__field" placeholder="Subject" name="name" id="name" required>
                                        <label for="name" class="form__label mb-4">Phone number</label>
-                                       <div *ngIf="AddCoach.controls['fPhoneNumber'].invalid && (AddCoach.controls['fPhoneNumber'].dirty||AddCoach.controls['fPhoneNumber'].touched)">
-                                        <div *ngIf="AddCoach.controls['fPhoneNumber'].errors&&AddCoach.controls['fPhoneNumber'].errors['required']">
-                                          <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> PhoneNumber is required</span>
-                                    </div>
-                                  </div>
+
+                                       <div *ngIf="AddCoach.get('fPhoneNumber')?.dirty && !isValidNumber(AddCoach.get('fPhoneNumber')?.value)" class="text-danger">
+                                          <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> Please enter a valid number</span>
+
+                                        </div>
                                      </div>
                                 </div>
 
@@ -143,8 +143,17 @@
                           </label>
                         </div>
 
-                        <div *ngIf="uploadInProgress" class="upload-message">File upload in progress. Please wait...</div>
-<div *ngIf="uploadInProgress" class="upload-success">File uploaded successfully!</div>
+                        <input (change)="onFileSelected($event)" formControlName="CV" type="file" class="hidden" />
+
+                        <ng-container *ngIf="uploadInProgress">
+                          <!-- Show upload in progress indicator -->
+                        </ng-container>
+                        <ng-container *ngIf="showSuccessMessage">
+                          <!-- Show success message -->
+                          <div class="alert alert-success mt">File uploaded successfully!</div>
+                        </ng-container>
+
+
 
                       </div>
 
@@ -159,12 +168,7 @@
                             </div>
 
 
-                            <div *ngIf="Addetat && msjEtat !== ''" class="alert alert-success" role="alert" style="color: green;">
-                              {{ msjEtat }}
-                            </div>
-                            <div *ngIf="Addetat && msjEtat === ''" class="alert alert-danger" role="alert" style="color: red;">
-                              Error occurred during registration.
-                            </div>
+
 
 
 

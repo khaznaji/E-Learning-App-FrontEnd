@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HackerspacesService } from 'src/app/MesServices/Hackerspaces/hackerspaces.service';
 
 @Component({
@@ -12,11 +13,15 @@ export class AdminHackerspaceformComponent implements OnInit {
   imagepath = '';
   successMessage: string = '';
   errorMessage: string = '';
-  router: any;
+
+  showSuccessModal: boolean = false;
+
 
   constructor(
     private formBuilder: FormBuilder,
-    private hackerspaceservice: HackerspacesService
+    private hackerspaceservice: HackerspacesService,
+    private router: Router
+
   ) {}
 
   ngOnInit(): void {
@@ -65,6 +70,7 @@ export class AdminHackerspaceformComponent implements OnInit {
         (data: any) => {
           this.successMessage = 'Hackerspace added successfully.';
           this.errorMessage = '';
+          this.showSuccessModal = true;
           console.log(data);
         },
         (error: any) => {
@@ -99,4 +105,9 @@ export class AdminHackerspaceformComponent implements OnInit {
       this.HackerForm.get('Photo')!.setValue(this.imagepath);
     }
   }
+  handleOKClick() {
+    this.showSuccessModal = false;
+    this.router.navigate(['/admin/hackerspace']);
+  }
+
 }

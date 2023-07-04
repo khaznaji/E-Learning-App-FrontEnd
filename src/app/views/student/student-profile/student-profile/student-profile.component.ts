@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/MesServices/UserService/user-service.service';
 
 @Component({
   selector: 'app-student-profile',
@@ -8,11 +9,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentProfileComponent implements OnInit {
   currentUser: any;
+  data: any = [];
+  username!:string;
+  country!:string;
+  numeroTel!:string
+  email!:string;
+  photo!:any
+  image!:any
 
-  constructor(private http: HttpClient) { }
+
+
+
+
+  constructor(private http: HttpClient ,private  sr : UserService ) { }
 
   ngOnInit(): void {
     this.getCurrentUserDetails();
+    this.getUserByid(localStorage.getItem('id'))
+  }
+  getUserByid(id:any){
+    this.sr.getUserById(id).subscribe(res=>{
+      this.data=res
+      console.log(this.data);
+      this.username=this.data.firstName+" "+this.data.lastName
+      this.country =this.data.Country
+      this.numeroTel=this.data.numeroTel
+      this.email=this.data.username
+      this.photo = this.data.image;
+
+
+    })
   }
 
   getCurrentUserDetails(): void {
@@ -36,15 +62,15 @@ export class StudentProfileComponent implements OnInit {
     const formData: FormData = new FormData();
     formData.append('file', file);
 
-    this.http.post<any>('http://localhost:8094/api/user/addImage', formData).subscribe(
+    // Append the folder name to the endpoint URL
+    this.http.post<any>('http://localhost:8094/api/user/addImage/profile', formData).subscribe(
       (response) => {
-        // Le téléchargement a réussi, response contient les données de la réponse du serveur
+        // The upload was successful, response contains the server's response data
         this.imageUrl = response.image;
-        this.getCurrentUserDetails(); // Recharge les données de l'utilisateur
-
+        this.getCurrentUserDetails(); // Refresh user data
       },
       (error) => {
-        // Le téléchargement a échoué, affichez une erreur ou effectuez un traitement supplémentaire
+        // The upload failed, handle the error
         console.error(error);
       }
     );

@@ -47,13 +47,13 @@ export class AdminTrainingschapterComponent implements OnInit {
     console.log(chapters);
     this.cs.ajoutChapters(chapters, Number(this.Formation)).subscribe(
       (data: any) => {
-        this.successMessage = 'Hackerspace added successfully.';
+        this.successMessage = 'Chapter added successfully.';
         this.errorMessage = '';
         console.log(data);
       },
       (error: any) => {
         this.successMessage = '';
-        this.errorMessage = 'Error adding the hackerspace. Please try again.';
+        this.errorMessage = 'Error adding the chapter. Please try again.';
         console.log(error);
       }
     );
