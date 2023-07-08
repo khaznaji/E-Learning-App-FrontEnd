@@ -92,4 +92,10 @@ getUserById(id:any){
 updateImage(id:any,formData:any){
   return this.http.patch(`${environement.BASE_URL}/user/updateUserImageById/${id}`,formData);
 }
+
+updateUserImage(userId: any, file:any ) {
+
+  return this.http.post(`${environement.BASE_URL}/user/imagechange/${userId}`, file);
+}
+
 }

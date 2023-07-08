@@ -16,6 +16,8 @@ export class FormSectionComponent implements OnInit {
   msjEtat: string = "";
   Allformation: any = [];
   isLoading: boolean = false;
+  showSuccessIcon: boolean = false;
+  uploadInProgress: boolean = false;
 
   constructor(
     private FormationsService: FormationsService,
@@ -42,10 +44,13 @@ export class FormSectionComponent implements OnInit {
     formData.append('roles', this.Role);
 
     this.isLoading = true;
+    this.uploadInProgress = true;
     this.UserService.ajoutStudent(formData).subscribe(
       (data: any) => {
         console.log(data);
         this.Addetat = true;
+        this.showSuccessIcon = true;
+        this.uploadInProgress = false;
 
         this.isLoading = false;
         Swal.fire({
@@ -53,11 +58,12 @@ export class FormSectionComponent implements OnInit {
           icon: 'success',
           title: 'Thank you for your registration. We will contact you as soon as possible.',
           showConfirmButton: true,
-         
+
         });
       },
       (error) => {
         console.log(error);
+        this.showSuccessIcon = false;
         this.Addetat = true;
         this.isLoading = false;
         Swal.fire({
@@ -95,9 +101,16 @@ export class FormSectionComponent implements OnInit {
       fusername: ['', [Validators.required, Validators.email]],
       fFirstName: ['', [Validators.required]],
       fLastName: ['', [Validators.required]],
-      fPhoneNumber: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern('[0-9]*')]],
+      fPhoneNumber: ['', [Validators.required, ]],
       fFormation: ['Select Training', [Validators.required]],
       fCountry: ['Select Country', [Validators.required]],
     });
   }
+  isValidNumber(number: any) {
+  // Regular expression to match numbers
+  const numberRegex = /^\+?\d+$/;
+  return numberRegex.test(number);
+}
+
+
 }

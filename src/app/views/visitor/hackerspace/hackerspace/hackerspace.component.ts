@@ -31,7 +31,8 @@ adresse!:string;
     this.hackerspaceService.findHackerspaceByregion(nom).subscribe(res => {
       this.hackTab = res;
       this.region = this.hackTab.region;
-      this.location = this.hackTab.location;
+      this.location = this.sanitizer.bypassSecurityTrustResourceUrl(this.hackTab.location);
+
       this.email = this.hackTab.email;
       this.phone = this.hackTab.phone;
       this.description = this.hackTab.description;

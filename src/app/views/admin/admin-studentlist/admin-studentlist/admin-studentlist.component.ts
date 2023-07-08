@@ -21,27 +21,27 @@ export class AdminStudentlistComponent implements OnInit{
   this.sr.getFormationByTypeFormationAndStatus(this.Formation,this.status).subscribe(res=>{
     this.tabStudent=res
     console.log(this.tabStudent);
-    
+
   })
 }
   getAllFormation() {
     this.fr.getFormations().subscribe(res=>{
       this.tabFormation=res
       console.log(this.tabFormation);
-      
+
     }
       )
   }
   getallStudent() {
-    this.sr.getAllUsers().subscribe(res=>{       
+    this.sr.getAllUsers().subscribe(res=>{
       this.taballusers=res;
       console.log(this.taballusers);
-      
+
       // Filter the array to get only users with role "ETUDIANT"
       this.tabStudent = this.taballusers.filter((user: { roles: any[]; }) => {
         return user.roles.some(role => role.name === 'ETUDIANT');
       });
-      
+
       console.log(this.tabStudent);
     })
   }
