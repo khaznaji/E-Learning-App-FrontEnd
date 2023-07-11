@@ -3,8 +3,11 @@ import { AdminProjects } from "./AdminProjects";
 export class ProjectClient {
     id!: number;
     nom!: string;
-    prenom!: string;
+    numtel!: number;
     remark!: string;
     email!: string;
+    date!: Date;
+    status!: boolean;
+
     adminProjects!: AdminProjects[];
   }

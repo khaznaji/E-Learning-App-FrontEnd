@@ -15,9 +15,15 @@
     <button type="button" class="btn p-2 border pe-3 me-3 register" routerLink="/admin/add-projectowner">
       <i class="bi bi-plus fa-2xl me-3"></i>Add New
     </button>
-  
-    
+    <br>
+    <br>
+    <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" [(ngModel)]="selectedStatus" (change)="onStatusChange()">
+      <option value="" selected>All</option>
+      <option value="true">Approved</option>
+      <option value="false">Not Approved</option>
+    </select>
     <div class="data_table card1 mt-4 " style="overflow-y: scroll; height:600px;">
+      
         <table class="table align-middle mb-0 bg-white  ">
           <thead class="bg-light ">
             <tr >
@@ -26,8 +32,9 @@
               <th>First Name</th>
               <th>Email</th>
               <th>Phone</th>
-              <th></th>
-    
+              <th>Linkedin</th>
+              <th>Github</th>
+
             </tr>
           </thead>
           <tbody>
@@ -62,7 +69,25 @@
                 <div >
                   <p  class="fw-normal mb-1">{{ owner.numtel }}</p>
                 </div>
-    
+                <td>
+                  <div >
+                    <p  class="fw-normal mb-1">{{ owner.linkedin ? owner.linkedin : '_'  }}</p>
+                  </div>
+                </td> <td>
+                  <div >
+                    <p class="fw-normal mb-1">{{ owner.github ? owner.github : '_' }}</p>
+                  </div>
+                </td>
+                <td>      {{ owner.status  ? 'Approved' : 'Not Approved' }}    </td>
+
+                <td>
+
+                  <div class="form-check form-switch">
+                      <input *ngIf="!owner.status" [disabled]="isUpdating" (click)="updateComplaintAndSendEmail(owner)"   (click)="onCheckboxClick($event)"class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                    </div>
+              </td>
+      
                 <td>
                   <div class="d-flex justify-content-between">
                     <button class="btn btn-danger btn-circle" (click)="deleteEvents(owner.id)">
@@ -86,6 +111,9 @@
     
     
             </tr>
+            <!-- <tr *ngIf="owner.length === 0">
+              <td colspan="5" class="text-center">No client projects found</td>
+            </tr> -->
           </tbody>
     
         </table>

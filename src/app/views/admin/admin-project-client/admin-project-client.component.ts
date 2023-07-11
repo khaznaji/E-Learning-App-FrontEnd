@@ -33,6 +33,7 @@ export class AdminProjectClientComponent implements OnInit{
   //     }
   //   );
   // }
+
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
     if (id) {

@@ -45,10 +45,19 @@ export class DetailProjectComponent implements OnInit{
   }
  showLoginSection: boolean = false;
 
+ isSubmitted = false;
+ showPError: boolean = false;
+ showLError: boolean = false;
 
-
+ showEmailError: boolean = false;
+ showNomError: boolean = false;
+ formSubmitted: boolean = false;
+ showUpdateLink: boolean = false;
   ownerImageUrl!: string;
   addProjectClient(): void {
+    this.formSubmitted = true; // Set form submission flag to true
+    if (this.projectClient.email && this.projectClient.nom) {
+
     const adminProjectId = this.project.id;
     this.projectService.addProjectClient(this.projectClient, adminProjectId).subscribe(
       (response: ProjectClient) => {
@@ -56,11 +65,15 @@ export class DetailProjectComponent implements OnInit{
         console.log('ProjectClient ajouté avec succès', response);
         // Réinitialisez le formulaire ou les propriétés nécessaires
         this.projectClient = new ProjectClient();
+      
+         this.isSubmitted = true;
+
       },
       (error: any) => {
         // Gestion des erreurs, affichez un message d'erreur ou effectuez les actions nécessaires
         console.error('Erreur lors de l\'ajout du ProjectClient', error);
       }
     );
-  }
+  } }
+  
   }

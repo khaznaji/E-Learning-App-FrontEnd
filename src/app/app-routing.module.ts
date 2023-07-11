@@ -21,6 +21,7 @@ children:[
   {path:'online',loadChildren:()=>import('./views/visitor/online/online.module').then(m=>m.OnlineModule)},
   {path:'project',loadChildren:()=>import('./views/visitor/projects/projects.module').then(m=>m.ProjectsModule)},
   {path:'project-details/:id',loadChildren:()=>import('./views/visitor/detailprojects/detailprojects.module').then(m=>m.DetailprojectsModule)},
+  {path:'specificProject',loadChildren:()=>import('./views/visitor/specificproject/specificproject.module').then(m=>m.SpecificprojectModule)},
 
 ]},
 
@@ -80,7 +81,10 @@ children:[
   {path:'update-projectowner/:id',loadChildren:()=>import('./views/admin/admin-updateprojectowner/admin-updateprojectowner.module').then(m=>m.AdminUpdateprojectownerModule)},
   {path:'projectclients/:id',loadChildren:()=>import('./views/admin/admin-project-client/admin-project-client.module').then(m=>m.AdminProjectClientModule)},
 
+  {path:'projectclients',loadChildren:()=>import('./views/admin/admin-allprojectclients/admin-allprojectclients/admin-allprojectclients.module').then(m=>m.AdminAllprojectclientsModule)},
 
+  {path:'specificproject',loadChildren:()=>import('./views/admin/specificproject/specificproject.module').then(m=>m.SpecificprojectModule)},
+  {path:'specificproject/:id',loadChildren:()=>import('./views/admin/specificproject-details/specificproject-details.module').then(m=>m.SpecificprojectDetailsModule)},
 
 
 ]},

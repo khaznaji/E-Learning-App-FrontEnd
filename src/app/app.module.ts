@@ -7,6 +7,8 @@ import { LayoutsModule } from './layouts/layouts.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminprojectsComponent } from './views/admin/admin-projects/adminprojects/adminprojects.component';
 import { AdminProjectClientComponent } from './views/admin/admin-project-client/admin-project-client.component';
+import { AdminAllprojectclientsComponent } from './views/admin/admin-allprojectclients/admin-allprojectclients.component';
+import { SpecificprojectDetailsComponent } from './views/admin/specificproject-details/specificproject-details.component';
 
 
 
@@ -15,6 +17,8 @@ import { AdminProjectClientComponent } from './views/admin/admin-project-client/
     AppComponent,
     AdminprojectsComponent,
     AdminProjectClientComponent,
+    AdminAllprojectclientsComponent,
+    SpecificprojectDetailsComponent,
 
   ],
   imports: [

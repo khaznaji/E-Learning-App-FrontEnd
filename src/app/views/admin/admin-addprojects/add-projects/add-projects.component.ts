@@ -17,11 +17,13 @@ export class AddProjectsComponent  implements OnInit{
   project: AdminProjects = new AdminProjects();
   selectedCategory!: string; // Assuming categoryId is of type string
   categories: ProjectOwner[] = [];
+  
   adminProjects: AdminProjects[] = [];
   price!: number;
   projectForm: FormGroup;
   selectedFile!: File;
   selectedFiles!: File;
+  status: boolean = true;
 
   constructor(private formBuilder: FormBuilder,private router: Router,private projectService: AdminProjectsService , private categorieService:ProjectOwnerService)
    {   this.projectForm = this.formBuilder.group({
@@ -30,7 +32,9 @@ export class AddProjectsComponent  implements OnInit{
   
   ngOnInit(): void {
  this.get();
+this.categorieService.getAllByS();
   }
+
   displaySelectedImages(event: any) {
     const files = event.target.files;
     this.thumbnails = [];
@@ -72,6 +76,7 @@ export class AddProjectsComponent  implements OnInit{
       reader.readAsDataURL(files[i]);
     }
   }
+  
   selectedVideoUrl: string = '';
 selectedThumbnail: string = '';
 

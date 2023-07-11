@@ -106,12 +106,18 @@
            >
            <i class="fa-solid fa-folder fa-fw me-3"></i><span>Project</span>
         </a>
-        <!-- <a
+        <a
         [routerLinkActive]="'active'"   routerLink="projectclients"
            class="list-group-item list-group-item-action py-3 "
            >
            <i class="fa-solid fa-folder fa-fw me-3"></i><span>Project Clients</span>
-        </a> -->
+        </a>
+        <a
+        [routerLinkActive]="'active'"   routerLink="specificproject"
+           class="list-group-item list-group-item-action py-3 "
+           >
+           <i class="fa-solid fa-folder fa-fw me-3"></i><span>Specific Project</span>
+        </a>
         <!-- Collapse 1 -->
           <a
             (click)="logout()"

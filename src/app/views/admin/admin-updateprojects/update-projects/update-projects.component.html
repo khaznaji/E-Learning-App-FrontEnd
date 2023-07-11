@@ -65,8 +65,10 @@
               <div class="form-group mb-3">
                 <label for="nbProjects">ProjectOwner</label>
                 <select class="form-control" id="categorie" [(ngModel)]="selectedCategory" name="categorie" required>
-                  <option *ngFor="let categorie of categories" [value]="categorie.id">{{ categorie.nom }} </option>
-                </select>      
+                  <ng-container *ngFor="let categorie of categories">
+                    <option [value]="categorie.id" *ngIf="categorie.status === true">{{ categorie.nom }}</option>
+                  </ng-container>
+                </select>    
                 <div class="alert alert-danger" *ngIf="foodForm.controls['categorie'].touched && foodForm.controls['categorie'].invalid">
                   <div *ngIf="foodForm.controls['categorie'].errors">ProjectOwner required!</div>
                 </div>

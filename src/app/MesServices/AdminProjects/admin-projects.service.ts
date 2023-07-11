@@ -43,4 +43,19 @@ export class AdminProjectsService {
     const url = `${this.BASE_URL2}removeRelation/${adminProjectId}/${projectClientId}`;
     return this.http.delete<ProjectClient>(url);
   }
+  updateComplaint(id: number, status: boolean) {
+    return this.http.put(`${this.BASE_URL2}updateStatus/${id}?status=${status}`, null);
+  }
+  getComplaintsByStatus(status: boolean): Observable<ProjectClient[]> {
+    return this.http.get<ProjectClient[]>(`${this.BASE_URL2}getStatus/${status}`);
+  }
+  getClaimsSortedByDate(order: string): Observable<ProjectClient[]> {
+    return this.http.get<ProjectClient[]>(`${this.BASE_URL2}getSortedByDate/${order}`);
+  }
+  getProjectClients(projectAdminId: number): Observable<ProjectClient[]> {
+    const url = `${this.BASE_URL2}project-admins/${projectAdminId}/project-clients`;
+    return this.http.get<ProjectClient[]>(url);
+  }
+ 
+
 }

@@ -1,7 +1,10 @@
 import { Component , OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FormationsService } from 'src/app/MesServices/Formations/formations.service';
+import { ProjectOwnerService } from 'src/app/MesServices/ProjectOwner/project-owner.service';
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
+import { ProjectOwner } from 'src/app/Models/ProjectOwner';
 
 
 @Component({
@@ -26,7 +29,8 @@ isLoading: boolean = false;
 constructor(
 private  UserService: UserService,
 private FormationsService: FormationsService,
-  private formBuilder: FormBuilder,
+  private formBuilder: FormBuilder,private projectOwnerService: ProjectOwnerService
+  ,private router: Router 
 ) {
 }
 AddCoachForm() {
@@ -62,6 +66,7 @@ AddCoachForm() {
       this.Addetat = true;
       this.uploadInProgress = false; // Set upload in progress to false on error as well
       this.isLoading = false;
+
     }
   );
 }
@@ -114,6 +119,50 @@ this.AddCoach = this.formBuilder.group({
   photo: [''],
   fileName: ''
 });
+}
+//// contributor 
+file: File | null = null;
+project: ProjectOwner = new ProjectOwner();
+imagePreview: string | undefined;
+formSubmitted: boolean = false;
+
+save() {
+  if (this.file) {
+    const formData = new FormData();
+    formData.append('file', this.file);
+    formData.append('nom', this.project.nom);
+    formData.append('prenom', this.project.prenom);
+    formData.append('numtel', this.project.numtel.toString());
+    formData.append('email', this.project.email);
+    formData.append('github', this.project.github);
+    formData.append('linkedin', this.project.linkedin);
+
+    this.projectOwnerService.createContributors(formData).subscribe(
+      (data) => {
+        console.log(data);
+        this.imagePreview = undefined;
+
+        this.project = new ProjectOwner();
+        this.file = null;
+        this.formSubmitted = true;
+
+
+      },
+      (error) => console.log(error)
+    );
+  }
+}
+onFileChange(event: Event) {
+  const inputElement = event.target as HTMLInputElement;
+  if (inputElement.files && inputElement.files.length > 0) {
+    this.file = inputElement.files[0];
+    // Générer l'aperçu de l'image
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.imagePreview = e.target?.result as string;
+    };
+    reader.readAsDataURL(this.file);
+  } 
 }
 
 }

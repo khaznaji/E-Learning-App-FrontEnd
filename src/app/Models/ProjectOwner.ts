@@ -5,5 +5,9 @@ export class ProjectOwner {
     image!: string;
     email!: string;
     numtel!: number;
+    status!:boolean; 
+    github!:string; 
+    linkedin!:string;
+
   }
   

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { ProjectOwnerService } from 'src/app/MesServices/ProjectOwner/project-owner.service';
 import { ProjectOwner } from 'src/app/Models/ProjectOwner';
@@ -114,7 +114,24 @@ export class AdminProjectownerComponent implements OnInit {
       }
     );
   }
-  
+  selectedStatus: string = '';
+  complaints: ProjectOwner[] = [];
+  adminProjectId: ProjectOwner[] = [];
+
+  onStatusChange() {
+    if (this.selectedStatus === '') {
+this.getAllProjectOwners();    } else {
+      const status = this.selectedStatus === 'true';
+      this.projectOwnerService.getComplaintsByStatus(status).subscribe(
+        (complaints) => {
+          this.projectOwners = complaints;
+        },
+        (error) => {
+          console.error('Error filtering complaints by status', error);
+        }
+      );
+    }
+  }
   
       onSubmitr() {
         if (this.file) {
@@ -144,5 +161,31 @@ export class AdminProjectownerComponent implements OnInit {
       updateEvent(id: number){
         this.router.navigate(['admin/update-projectowner', id]);
       }  
+      @Input() claims!: ProjectOwner;
+
+      updateComplaintAndSendEmail(complaint: ProjectOwner) {
+        this.isUpdating = true;
+        this.projectOwnerService.updateComplaint(complaint.id, true).subscribe(
+          () => {
+            console.log('Complaint updated successfully');
+            complaint.status = true;
+            this.isUpdating = false;
+            this.getAllProjectOwners();
+    
+          },
+          (error) => {
+            console.error('Error updating complaint', error);
+            this.isUpdating = false;
+          }
+        );
+      }
+      isUpdating = false;
+      
+      onCheckboxClick(event: Event) {
+        const target = event.target as HTMLInputElement;
+        const label = target.nextElementSibling as HTMLLabelElement;
+    
+        label.textContent = target.checked ? '' : '';
+      }
     }
 

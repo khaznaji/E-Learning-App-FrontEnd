@@ -25,5 +25,16 @@ export class ProjectOwnerService {
   getById(id: number): Observable<any> {
     return this.http.get(`${this.BASE_URL}catId/${id}`);
   }
-
+  createContributors(formData: FormData): Observable<ProjectOwner> {
+    return this.http.post<ProjectOwner>(`${this.BASE_URL}addContributor`, formData);
+  } 
+  updateComplaint(id: number, status: boolean) {
+    return this.http.put(`${this.BASE_URL}updateStatus/${id}?status=${status}`, null);
+  }
+  getAllByS(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}AllByS`);
+  }
+  getComplaintsByStatus(status: boolean): Observable<ProjectOwner[]> {
+    return this.http.get<ProjectOwner[]>(`${this.BASE_URL}getStatus/${status}`);
+  }
 }
