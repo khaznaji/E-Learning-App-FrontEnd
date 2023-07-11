@@ -261,6 +261,94 @@
                           </div>
                         </div>
                       </div>          
+                      <li>              <a data-bs-toggle="modal" data-bs-target="#staticBackopse" >Are you a Company?</a> </li>
+
+                      <!-- Modal -->
+                     <div class="modal fade" id="staticBackopse" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title ms-5" id="staticBackdropLabel" style="color: #AF3065; font-weight: bold;"> Register to Become a Company</h5>
+
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <h6 class="text-center" style="color: red;">NB: The asterisk (*) denotes a mandatory field</h6>
+
+                              <form (ngSubmit)="saveCompany()" #foodForm="ngForm" *ngIf="!formSubmitteds">
+                                <div class="row gutters-sm mt-5">
+                                  <div class="col-md-4">
+                                    <!-- Card content -->
+                                  </div>
+                                  <div class="form__group field col-md-12 mb-4">
+                                    <label for="nom" class="form__label"> Name<span class="required">*</span></label>
+                                    <input class="form__field" type="text" id="nom" [(ngModel)]="projects.nom" name="nom" required #thisTitle="ngModel">
+                                    <div class="alert alert-danger" *ngIf="thisTitle.touched && thisTitle.invalid">
+                                      <div *ngIf="thisTitle?.errors?.['required']">Name is required!</div>
+                                    </div>
+                                  </div>
+                                  
+                                  
+                                        <div class="form__group field col-md-12 mb-4">                                            <label for="prenom" class="form__label">First Name<span class="required">*</span></label>
+                                          <input class="form__field" type="text" id="prenom" [(ngModel)]="projects.adresse" name="prenom" required #prenom="ngModel">
+                                          <div class="alert alert-danger" *ngIf="prenom.touched && prenom.invalid">
+                                            <div *ngIf="prenom?.errors?.['required']">Adresse is required!</div>
+                                          </div>
+                                        </div>
+                                        <div class="form__group field col-md-12 mb-4">                                            <label for="numtel" class="form__label">Phone Number<span class="required">*</span></label>
+                                          <input class="form__field" type="number" id="prenom" [(ngModel)]="projects.numtel" name="numtel" required pattern="[0-9]{8}" #thisDessc="ngModel">
+                                          <div class="alert alert-danger" *ngIf="thisDessc.touched && thisDessc.invalid && !formSubmitted">
+                                            <div *ngIf="thisDessc?.errors?.['required']">Phone Number is required!</div>
+                                            <div *ngIf="thisDessc?.errors?.['pattern']">Phone Number must contain exactly 8 digits!</div>
+                                          </div> 
+                                        </div>
+                                        <div class="form__group field col-md-12 mb-4">                                            <label for="nbProjects" class="form__label">Email<span class="required">*</span></label>
+                                          <input class="form__field" type="text" id="email" [(ngModel)]="projects.email" name="email" required #thisPriwce="ngModel" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" >
+                                          <div class="alert alert-danger" *ngIf="thisPriwce.touched && thisPriwce.invalid && !formSubmitted">
+                                            <div *ngIf="thisPriwce?.errors?.['required']">Email is required!</div>
+                                            <div *ngIf="thisPriwce?.errors?.['pattern']">Invalid email format! The email must contain '@' and '.'.</div>
+                                          </div> 
+                                        </div>
+                                        <div class="form__group field col-md-12 mb-4">                                            
+                                          <label for="nbProjects" class="form__label">Description</label>
+                                          <textarea class="form__field" type="text" id="email" [(ngModel)]="projects.description" name="description" required #description="ngModel"></textarea>
+                                          <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+                                            <div *ngIf="description?.errors?.['required']">Description is required!</div>
+                                          </div>                  </div>
+                              
+                                        <div class="form__group field col-md-12 mb-4">                                            <label for="nbMeetings" class="form__label">Image<span class="required">*</span></label>
+                                          <br>
+                                          <input type="file" (change)="onFileChange($event)" class="form-control" id="file" name="file" accept="image/*" required>
+                                        </div>
+                                        <div *ngIf="imagePreview" class="d-flex justify-content-center align-items-center">
+                                          <img [src]="imagePreview" alt="Preview" style="max-width: 200px; max-height: 200px;">
+                                        </div>
+                                        
+                                      </div>
+                                    
+                                      <div class="modal-footer">
+                                        <button type="submit" [disabled]="!foodForm.form.valid" class="btn" style="background-color: #AF3065; color: white; border-radius: 5px;">Register</button>
+                                      </div>
+                                  
+                                <div class="row mt-5">
+                                </div>
+                              </form>
+                              <div *ngIf="formSubmitteds">
+                                <h2>Thank you for registering!</h2>
+                              </div>  
+                            </div>
+                            
+
+                         <!-- ======= <div *ngIf="Addetat && msjEtat !== ''" class="alert alert-success" role="alert" style="color: green;">   {{ msjEtat }}
+                            </div> ======= -->
+
+
+
+
+
+                          </div>
+                        </div>
+                      </div>          
                       
                     </ul>
         </div>

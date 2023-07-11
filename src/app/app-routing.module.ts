@@ -22,6 +22,7 @@ children:[
   {path:'project',loadChildren:()=>import('./views/visitor/projects/projects.module').then(m=>m.ProjectsModule)},
   {path:'project-details/:id',loadChildren:()=>import('./views/visitor/detailprojects/detailprojects.module').then(m=>m.DetailprojectsModule)},
   {path:'specificProject',loadChildren:()=>import('./views/visitor/specificproject/specificproject.module').then(m=>m.SpecificprojectModule)},
+  {path:'company',loadChildren:()=>import('./views/visitor/company/company.module').then(m=>m.CompanyModule)},
 
 ]},
 
@@ -85,6 +86,8 @@ children:[
 
   {path:'specificproject',loadChildren:()=>import('./views/admin/specificproject/specificproject.module').then(m=>m.SpecificprojectModule)},
   {path:'specificproject/:id',loadChildren:()=>import('./views/admin/specificproject-details/specificproject-details.module').then(m=>m.SpecificprojectDetailsModule)},
+  {path:'company',loadChildren:()=>import('./views/admin/company/company.module').then(m=>m.CompanyModule)},
+  {path:'add-company',loadChildren:()=>import('./views/admin/add-company/add-company.module').then(m=>m.AddCompanyModule)},
 
 
 ]},

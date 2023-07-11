@@ -1,9 +1,11 @@
 import { Component , OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CompanyService } from 'src/app/MesServices/Company/company.service';
 import { FormationsService } from 'src/app/MesServices/Formations/formations.service';
 import { ProjectOwnerService } from 'src/app/MesServices/ProjectOwner/project-owner.service';
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
+import { Company } from 'src/app/Models/Company';
 import { ProjectOwner } from 'src/app/Models/ProjectOwner';
 
 
@@ -30,7 +32,7 @@ constructor(
 private  UserService: UserService,
 private FormationsService: FormationsService,
   private formBuilder: FormBuilder,private projectOwnerService: ProjectOwnerService
-  ,private router: Router 
+  ,private router: Router , private sp:CompanyService
 ) {
 }
 AddCoachForm() {
@@ -125,6 +127,7 @@ file: File | null = null;
 project: ProjectOwner = new ProjectOwner();
 imagePreview: string | undefined;
 formSubmitted: boolean = false;
+formSubmitteds: boolean = false;
 
 save() {
   if (this.file) {
@@ -164,5 +167,30 @@ onFileChange(event: Event) {
     reader.readAsDataURL(this.file);
   } 
 }
+projects: Company = new Company();
 
+saveCompany() {
+  if (this.file) {
+    const formData = new FormData();
+    formData.append('file', this.file);
+    formData.append('nom', this.projects.nom);
+    formData.append('adresse', this.projects.adresse);
+    formData.append('numtel', this.projects.numtel.toString());
+    formData.append('email', this.projects.email);
+    formData.append('description', this.projects.description);
+
+    this.sp.createC(formData).subscribe(
+      (data) => {
+        console.log(data);
+        this.imagePreview = undefined;
+
+        this.projects = new Company();
+        this.file = null;
+        this.formSubmitteds = true;
+
+      },
+      (error) => console.log(error)
+    );
+  }
+}
 }
