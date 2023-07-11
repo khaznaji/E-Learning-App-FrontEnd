@@ -6,16 +6,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutsModule } from './layouts/layouts.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminChaptersComponent } from './views/admin/admin-chapters/admin-chapters/admin-chapters.component';
-
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AdminChaptersComponent,
-
-  ],
+  declarations: [AppComponent, AdminChaptersComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,11 +19,11 @@ import { AdminChaptersComponent } from './views/admin/admin-chapters/admin-chapt
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    
-
-
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatSnackBarModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
