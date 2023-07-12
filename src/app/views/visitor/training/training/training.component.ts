@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , ParamMap } from '@angular/router';
 import { FeedbackService } from 'src/app/MesServices/Feedback/feedback.service';
 import { FormationsService } from 'src/app/MesServices/Formations/formations.service';
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-training',
@@ -65,11 +67,12 @@ getFormationBynomFormation(){
       this.tabFeedback = data;
     })
    }
- ngOnInit(): void {
-  this.parameterValue = this.route.snapshot.paramMap.get('formation');
-this.getFormationBynomFormation();
-this.getFeedbackByFormation();
-this.getAllFeedbacks();
-
- }
+   ngOnInit(): void {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.parameterValue = params.get('formation');
+      this.getFormationBynomFormation();
+      this.getFeedbackByFormation();
+      this.getAllFeedbacks();
+    });
+  }
 }
