@@ -34,6 +34,89 @@
       </button>
     </div>
   </div>
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5
+            class="modal-title"
+            id="staticBackdropLabel"
+            style="color: #af3065; font-weight: bold"
+          >
+            Filter
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <div class="row d-flex justify-content-center">
+              <div class="col-8 form__group field mt-3">
+                <label class="mb-3 form__label">Status</label>
+                <select
+                  name="status"
+                  [(ngModel)]="status"
+                  id="id_select"
+                  autofocus="true"
+                  class="form__field"
+                >
+                  <option value="Status" disabled selected>Status</option>
+                  <option value="1">Paid</option>
+                  <option value="0">Unpaid</option>
+                  <option value="2">Panding</option>
+                  <option value="3">Canceled</option>
+                </select>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-8 form__group field mt-5 mb-3">
+                <label class="mb-3 form__label">Training</label>
+                <select
+                  name="Formation"
+                  [(ngModel)]="Formation"
+                  id="id_select"
+                  autofocus="true"
+                  class="form__field"
+                >
+                  <option value="1" disabled selected>Training</option>
+                  <option
+                    *ngFor="let o of tabFormation"
+                    value="{{ o.nomFormation }}"
+                  >
+                    {{ o.nomFormation }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="getfilts()"
+            class="btn register"
+          >
+            filter
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <ng-template #addUserDialog>
     <h2
       mat-dialog-title
@@ -114,6 +197,7 @@
       </button>
     </mat-dialog-actions>
   </ng-template>
+
   <ng-template #confirmationDialog>
     <div class="confirmation-dialog">
       <h2 mat-dialog-title>Confirmation</h2>

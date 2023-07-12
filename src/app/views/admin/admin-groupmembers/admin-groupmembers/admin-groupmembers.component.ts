@@ -5,6 +5,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormationsService } from 'src/app/MesServices/Formations/formations.service';
 import { GroupService } from 'src/app/MesServices/Groups/group.service';
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
 import { Students } from 'src/app/Models/Students';
@@ -23,18 +24,24 @@ export class AdminGroupmembersComponent {
   usernameFilter: string = '';
   studentDetails: any[] = [];
   userIdRemove!: number;
+  taballusers: any = [];
+  tabStudent: any = [];
+  tabFormation: any = [];
+  Formation = '';
+  status = '';
   @ViewChild('addUserDialog') addUserDialog!: TemplateRef<any>;
   addUserDialogRef!: MatDialogRef<any> | undefined;
   @ViewChild('confirmationDialog') confirmationDialog!: TemplateRef<any>;
   confirmationDialogRef: MatDialogRef<any> | undefined;
-  taballusers: any = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { groupId: number },
     private groupService: GroupService,
     private snackBar: MatSnackBar,
     private userService: UserService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private sr: UserService,
+    private fr: FormationsService
   ) {}
   openAddUserDialog(groupId: number): void {
     this.group.id = groupId;
@@ -48,6 +55,21 @@ export class AdminGroupmembersComponent {
     const groupId = this.data.groupId;
     this.fetchGroupMembers();
     this.getAllStudents();
+    this.getAllFormation();
+  }
+  getAllFormation() {
+    this.fr.getFormations().subscribe((res) => {
+      this.tabFormation = res;
+      console.log(this.tabFormation);
+    });
+  }
+  getfilts() {
+    this.sr
+      .getFormationByTypeFormationAndStatus(this.Formation, this.status)
+      .subscribe((res) => {
+        this.tabStudent = res;
+        console.log(this.tabStudent);
+      });
   }
   getStudentFullname(userId: number): string {
     const student = this.studentDetails.find(
