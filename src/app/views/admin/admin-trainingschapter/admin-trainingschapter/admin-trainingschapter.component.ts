@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ChaptersService } from 'src/app/MesServices/Chapters/chapters.service';
 import { FormationsService } from 'src/app/MesServices/Formations/formations.service';
 
@@ -22,8 +23,10 @@ export class AdminTrainingschapterComponent implements OnInit {
   successMessage: string = '';
   errorMessage: string = '';
 
+  showSuccessModal: boolean = false;
 
-  constructor(private fr: FormationsService, private cs: ChaptersService) {}
+
+  constructor(private fr: FormationsService, private cs: ChaptersService, private   router : Router) {}
 
   getAllFormation() {
     this.fr.getFormations().subscribe((res) => {
@@ -47,8 +50,9 @@ export class AdminTrainingschapterComponent implements OnInit {
     console.log(chapters);
     this.cs.ajoutChapters(chapters, Number(this.Formation)).subscribe(
       (data: any) => {
-        this.successMessage = 'Chapter added successfully.';
+        this.successMessage = 'Chapter added successfully.'  ;
         this.errorMessage = '';
+        this.showSuccessModal = true;
         console.log(data);
       },
       (error: any) => {
@@ -57,6 +61,10 @@ export class AdminTrainingschapterComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  handleOKClick() {
+    this.showSuccessModal = false;
+    this.router.navigate(['/admin/chapters/list']);
   }
 
   ngOnInit(): void {

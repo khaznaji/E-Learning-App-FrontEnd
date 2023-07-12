@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -12,11 +12,17 @@ export class ForgotPasswordComponent {
   emaili: string;
   etat: boolean;
   msj: string;
+  uploadInProgress: boolean = false;
+  showSuccessIcon: boolean = false;
+  showSuccessMessage = false;
+  isLoading: boolean = false;
+  Addetat!: boolean ;
 
   constructor(private sr: UserService, private router: Router) {
     this.emaili = '';
     this.etat = false;
     this.msj = '';
+
   }
 
   save() {
@@ -36,18 +42,27 @@ export class ForgotPasswordComponent {
     this.sr.genCode(data).subscribe(
       (res: any) => {
         localStorage.setItem('email', this.emaili.toString());
-        
+
         this.router.navigate(['/verifyemail']);
       },
-      (err: any) => {
-        this.etat = true;
-        this.msj = 'Email not found';
+      (error: any) => {
+        console.log(error);
+        this.showSuccessIcon = false;
+        this.Addetat = true;
+        this.uploadInProgress = false; // Set upload in progress to false on error as well
+        this.isLoading = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Email not found    ',
+        });
       }
     );
   }
-
-
-
-
+  isValidEmail(email:any) {
+    // Regular expression to match email addresses
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+    }
 
 }

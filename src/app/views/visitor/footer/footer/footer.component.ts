@@ -74,17 +74,23 @@ AddCoachForm() {
       console.log(error);
       this.showSuccessIcon = false;
       this.Addetat = true;
-      this.uploadInProgress = false; // Set upload in progress to false on error as well
+      this.uploadInProgress = false;
       this.isLoading = false;
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-       })
 
-    },
-
-
+      if (error.status === 400 && error.error?.message === 'Error: Email is already taken!') {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'The email is already taken.',
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        });
+      }
+    }
   );
 }
 
@@ -105,12 +111,28 @@ onFileSelected(event: any) {
     const file = event.target.files[0];
     this.AddCoach.get('CV')!.setValue(file);
     this.uploadInProgress = true; // Set upload in progress to true when file selection starts
+    setTimeout(() => {
+      this.uploadInProgress = false;
+      this.showSuccessMessage = true;
+    }, 1000);
   } else {
     this.AddCoach.get('CV')!.setValue(this.imagepath);
     this.uploadInProgress = false; // Set upload in progress to false when no file is selected
   }
+
 }
 
+/*
+onFileSelected(event: any) {
+  this.uploadInProgress = true;
+
+  // Simulating file upload with a delay of 2 seconds
+  setTimeout(() => {
+    this.uploadInProgress = false;
+    this.showSuccessMessage = true;
+  }, 1000);
+}
+*/
 
 
 
