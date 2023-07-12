@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-hackerspace',
   templateUrl: './hackerspace.component.html',
-  styleUrls: ['./hackerspace.component.css']
+  styleUrls: ['./hackerspace.component.css'],
 })
 export class HackerspaceComponent implements OnInit {
   hackTab: any = [];
@@ -20,7 +20,7 @@ export class HackerspaceComponent implements OnInit {
   description: any;
   photo!: any;
 
-  path: string = "assets/Documents/";
+  path: string = 'assets/Documents/';
   adresse!: string;
 
   constructor(
@@ -45,13 +45,15 @@ export class HackerspaceComponent implements OnInit {
       .subscribe((res: any) => {
         this.hackTab = res;
         this.region = this.hackTab.region;
-        this.location = this.sanitizer.bypassSecurityTrustResourceUrl(this.hackTab.location);
+        this.location = this.sanitizer.bypassSecurityTrustResourceUrl(
+          this.hackTab.location
+        );
         this.email = this.hackTab.email;
         this.phone = this.hackTab.phone;
         this.description = this.hackTab.description;
         this.photo = this.path + this.hackTab.photo;
         this.adresse = this.hackTab.adresse;
-        console.log("enaa ::", this.photo);
+        console.log('enaa ::', this.photo);
         this.displayImage();
       });
   }
