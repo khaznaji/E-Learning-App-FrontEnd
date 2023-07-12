@@ -14,8 +14,17 @@ export class ChaptersService {
   ajoutChapters(Chapters: any,id:Number): Observable<any> {
     return this.http.post(`${environement.BASE_URL}/chapters/addChapters/`+id, Chapters);
   }
+
   //get chapters by nomformation
   getChaptersByNomFormation(nom:any){
     return this.http.get(`${environement.BASE_URL}/chapters/getChaptersByNomFormation/${nom}`);
   }
+  getChapters(): Observable<any> {
+    return this.http.get(`${environement.BASE_URL}/chapters/allChapters`);
+  }
+  deleteChapters(id:any){
+    return this.http.delete(`${environement.BASE_URL}/chapters/deleteChapters/${id}`);
+  }
+
+
 }

@@ -23,6 +23,21 @@ export class AdminStudentlistComponent implements OnInit {
         console.log(this.tabStudent);
       });
   }
+  taballusers: any = [];
+  tabStudent: any = [];
+  tabFormation: any = [];
+  Formation = '';
+  status = '';
+  constructor(private sr: UserService, private fr: FormationsService) {}
+
+  getfilts() {
+    this.sr
+      .getFormationByTypeFormationAndStatus(this.Formation, this.status)
+      .subscribe((res) => {
+        this.tabStudent = res;
+        console.log(this.tabStudent);
+      });
+  }
   getAllFormation() {
     this.fr.getFormations().subscribe((res) => {
       this.tabFormation = res;
