@@ -39,19 +39,22 @@
               </div>
 
               <div class="col-lg-7  mt-lg-0 d-flex align-items-stretch">
-                <iframe class="shadow" src="{{location}} | safe" width="700" height="400"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ></iframe>
+                <iframe class="shadow" [src]="location" width="700" height="400" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
 
               </div>
 
             </div>
             <div class="section-title mt-5 p-5 text-center">
-              <h2>Une vue magnifique sur le lac</h2>
+              <h2>Une vue magnifique </h2>
               <h5>
-                Premier hackerspace de THE BRIDGE, nos locaux à Tunis offrent une vue splendide sur le lac. L’espace est composé d’un espace d’accueil, d’une “coding area”, de box de réunion et d’un espace ouvert pour plus d’interaction.</h5>
+                {{description}}
+                </h5>
             </div>
             <div class="row">
               <img [src]="photo | safe: 'url'"
-              class="img-fluid mb-4" style="border-radius: 20px;" alt="">
+              class="img-fluid mb-4" style="border-radius: 20px;" alt="" style="height: 700px !important;">
             </div>
                     </div>
         </section>

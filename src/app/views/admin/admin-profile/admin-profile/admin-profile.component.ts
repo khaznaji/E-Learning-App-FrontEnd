@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-profile',
@@ -16,8 +18,19 @@ export class AdminProfileComponent  implements OnInit {
   email!:string;
   photo!:any
   image!:any
-
-  constructor(private http: HttpClient,private  sr : UserService ) { }
+UpdaImage!:FormGroup
+  uploadInProgress!: boolean;
+  showSuccessMessage!: boolean;
+  isLoading!: boolean;
+  UserService: any;
+  Addetat!: boolean;
+  showSuccessIcon!: boolean;
+  msjEtat!: string;
+  constructor(private http: HttpClient,private  sr : UserService, private sf:FormBuilder ) {
+    this.UpdaImage = this.sf.group({
+      Photo: ''
+    })
+   }
 
 
 
@@ -56,23 +69,40 @@ export class AdminProfileComponent  implements OnInit {
 
 
   onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    const formData: FormData = new FormData();
-    formData.append('file', file);
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.UpdaImage.get('Photo')!.setValue(file);
+      console.log(this.UpdaImage.get('Photo')!.value);
+    } else {
+      this.UpdaImage.get('Photo')!.setValue(this.imagepath);
+    }
+  }
 
-    this.http.post<any>('http://localhost:8094/api/user/addImage', formData).subscribe(
-      (response) => {
-        // Le téléchargement a réussi, response contient les données de la réponse du serveur
-        this.imageUrl = response.image;
-        this.getCurrentUserDetails(); // Recharge les données de l'utilisateur
+  imagepath(imagepath: any) {
+    throw new Error('Method not implemented.');
+  }
 
-      },
-      (error) => {
-        // Le téléchargement a échoué, affichez une erreur ou effectuez un traitement supplémentaire
-        console.error(error);
-      }
+
+  AddCoachForm() {
+    const formData = new FormData();
+    const photoFile = this.UpdaImage.get('Photo')?.value;
+    if (photoFile instanceof File) {
+      formData.append('file', photoFile, photoFile.name);
+    }
+
+
+    this.isLoading = true;
+    this.uploadInProgress = true;
+
+    this.sr.updateUserImage(localStorage.getItem("id"),formData).subscribe(
+     res=>{
+      console.log(res);
+     }
+
+
     );
   }
+
 
 
 }
