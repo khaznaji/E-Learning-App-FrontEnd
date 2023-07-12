@@ -6,7 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-hackerspace',
   templateUrl: './hackerspace.component.html',
-  styleUrls: ['./hackerspace.component.css']
+  styleUrls: ['./hackerspace.component.css'],
 })
 export class HackerspaceComponent implements OnInit {
   hackTab: any = [];
@@ -18,28 +18,26 @@ export class HackerspaceComponent implements OnInit {
   description: any;
   photo!: any;
 
-  path: string = "assets/Documents/";
-adresse!:string;
+  path: string = 'assets/Documents/';
+  adresse!: string;
   constructor(
     private hackerspaceService: HackerspacesService,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer
   ) {}
 
-
   getALlByregion(nom: any) {
-    this.hackerspaceService.findHackerspaceByregion(nom).subscribe(res => {
+    this.hackerspaceService.findHackerspaceByregion(nom).subscribe((res) => {
       this.hackTab = res;
       this.region = this.hackTab.region;
       this.location = this.hackTab.location;
       this.email = this.hackTab.email;
       this.phone = this.hackTab.phone;
       this.description = this.hackTab.description;
-      this.photo = this.path+this.hackTab.photo;
+      this.photo = this.path + this.hackTab.photo;
       this.adresse = this.hackTab.adresse;
-      console.log("enaa ::", this.photo);
+      console.log('enaa ::', this.photo);
       this.displayImage();
-
     });
   }
 
@@ -51,6 +49,4 @@ adresse!:string;
     // Access this.photo here after it has been assigned
     console.log(this.photo);
   }
-
-
 }
