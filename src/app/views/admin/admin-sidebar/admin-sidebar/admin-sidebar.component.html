@@ -3,7 +3,6 @@
     <!-- Sidebar -->
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
       <div class="position-sticky" style="max-height: calc(100vh - 56px); overflow-y: auto;">
-       
         <a class="navbar-brand ms-5  d-lg-block d-none" href="#">
           <img
                src="assets/img/logo1.png"
@@ -13,17 +12,12 @@
                />
         </a>
         <div class="mt-4 border-bottom border-top py-3">
-
         <div class="nav-profile d-flex align-items-center ms-4 pe-0 text-black "   >
           <img src="assets/img/profile-img.jpg" alt="Profile" width="50px" height="50px" class="rounded-circle">
           <span class="ps-2 fw-bold">Welcome Back <br>{{username}}</span> <a class="ps-4" routerLink="profile"><i class="btn  bi bi-gear" ></i></a>
         </div>
         <!-- End Profile Iamge Icon --></div>
         <div class="list-group list-group-flush mx-3 mt-5">
-
-
-
-
           <a
              [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}"  routerLink="/admin"
              class="list-group-item list-group-item-action py-3 "
@@ -39,7 +33,6 @@
           href="#collapseExample1"
           aria-expanded="true"
           aria-controls="collapseExample1"
-
         >
         <i class="fa-solid fa-repeat me-3"></i><span class="me-5">Update</span><i class="fa-solid fa-sort-down ms-5 mb-2"></i>
         </a>
@@ -47,14 +40,11 @@
         <ul id="collapseExample1" class="collapse  list-group list-group-flush">
           <li class="list-group-item ">
             <a routerLink="categories" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Update Categories</a>
-
           </li>
           <li class="list-group-item ">
-
             <a routerLink="trainings" [routerLinkActive]="'active'" class="list-group-item list-group-item-action ">Update trainings</a>
           </li>
           <li class="list-group-item ">
-
             <a routerLink="chapters" [routerLinkActive]="'active'" class="list-group-item list-group-item-action ">Update Chapters</a>
           </li>
           <li class="list-group-item ">
@@ -62,18 +52,13 @@
           </li>
           <li class="list-group-item ">
             <a routerLink="sessionform" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Add sessions</a>
-
           </li>
-
-
         </ul>
-          <a
-              [routerLinkActive]="'active'"   routerLink="groups"
+          <a [routerLinkActive]="'active'"   routerLink="groups"
              class="list-group-item list-group-item-action py-3  "
              >
              <i class="fa-solid fa-user-group me-3"></i><span>Groups</span>
           </a>
-
           <a
           [routerLinkActive]="'active'"   routerLink="coachlist"
           class="list-group-item list-group-item-action py-3 "
@@ -84,10 +69,7 @@
              class="list-group-item list-group-item-action py-3 "
              ><i class="fa-solid fa-user-graduate me-3"></i><span>Students</span></a
             >
-
-
         <!-- Collapsed content -->
-
         <a
         [routerLinkActive]="'active'"   routerLink="feedback"
            class="list-group-item list-group-item-action py-3 "
@@ -101,7 +83,6 @@
           href="#collapseExample2"
           aria-expanded="true"
           aria-controls="collapseExample1"
-
         >
         <i class="fa-solid fa-folder fa-fw me-3"></i><span class="me-5">  Projects</span><i class="fa-solid fa-sort-down ms-5 mb-2"></i>
         </a>
@@ -109,22 +90,16 @@
         <ul id="collapseExample2" class="collapse  list-group list-group-flush">
           <li class="list-group-item ">
             <a routerLink="projectowner" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Project Owners</a>
-
           </li>
           <li class="list-group-item ">
-
             <a routerLink="projects" [routerLinkActive]="'active'" class="list-group-item list-group-item-action ">Projects</a>
           </li>
           <li class="list-group-item ">
-
             <a  routerLink="projectclients" [routerLinkActive]="'active'" class="list-group-item list-group-item-action ">Project Clients</a>
           </li>
           <li class="list-group-item ">
             <a routerLink="specificproject" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Specific project</a>
           </li>
-         
-
-
         </ul>
         <a
           class="list-group-item list-group-item-action py-2 "
@@ -133,7 +108,6 @@
           href="#collapseExample7"
           aria-expanded="true"
           aria-controls="collapseExample2"
-
         >
         <i class="fa-solid fa-folder fa-fw me-3"></i><span class="me-5"> Jobs</span><i class="fa-solid fa-sort-down ms-5 mb-2"></i>
         </a>
@@ -141,9 +115,18 @@
         <ul id="collapseExample7" class="collapse  list-group list-group-flush">
           <li class="list-group-item ">
             <a routerLink="company" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Company</a>
-
           </li>
-          
+          <li class="list-group-item ">
+            <a routerLink="list-offer" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Offers</a>
+          </li>
+          <li class="list-group-item ">
+            <a routerLink="all-specific-offer" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Specific Offers</a>
+          </li>
+          <li class="list-group-item ">
+            <a routerLink="candidacy" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Candidacy 
+              
+            </a>
+          </li>
           </ul>
         
         <!-- Collapse 1 -->

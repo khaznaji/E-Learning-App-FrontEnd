@@ -85,4 +85,6 @@ export class SpecificprojectComponent implements OnInit {
     clientProject(id: number){
       this.router.navigate(['admin/specificproject', id]);
     }
+    selectedType: string = ''; // Declare the selectedType property
+    
 }

@@ -13,7 +13,6 @@ export class AdminSidebarComponent  implements OnInit {
   username!:string;
     constructor(private sr:UserService,private Auth:UserAuthService, private route:Router) { }
 
-
     getUserByid(id:any){
       this.sr.getUserById(id).subscribe(res=>{
         this.data=res

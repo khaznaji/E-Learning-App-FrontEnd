@@ -10,6 +10,8 @@ import { AdminProjectClientComponent } from './views/admin/admin-project-client/
 import { AdminAllprojectclientsComponent } from './views/admin/admin-allprojectclients/admin-allprojectclients.component';
 import { SpecificprojectDetailsComponent } from './views/admin/specificproject-details/specificproject-details.component';
 import { CompanyComponent } from './views/visitor/company/company.component';
+import { DetailOffersComponent } from './views/visitor/detail-offers/detail-offers.component';
+import { UpdateOffersComponent } from './views/admin/update-offers/update-offers.component';
 
 
 
@@ -21,6 +23,7 @@ import { CompanyComponent } from './views/visitor/company/company.component';
     AdminAllprojectclientsComponent,
     SpecificprojectDetailsComponent,
     CompanyComponent,
+    DetailOffersComponent
 
   ],
   imports: [

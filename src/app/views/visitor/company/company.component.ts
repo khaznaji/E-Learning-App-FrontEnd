@@ -15,7 +15,7 @@ export class CompanyComponent implements OnInit{
   adminProjects: Company[] = [];
 
 constructor(private sp:CompanyService){}
- get(){this.sp.getAll().subscribe(
+ get(){this.sp.getAllByS().subscribe(
     (adminProjects: Company[]) => {
       this.adminProjects = adminProjects;
     },

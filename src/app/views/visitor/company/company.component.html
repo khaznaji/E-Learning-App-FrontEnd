@@ -8,7 +8,7 @@
   
   }
   .my-custom-card {
-    height: 400px; /* Définissez la hauteur souhaitée pour la carte */
+    height: 300px; /* Définissez la hauteur souhaitée pour la carte */
     /* Autres styles personnalisés pour la carte */
   }
   
@@ -65,13 +65,10 @@
             <div class="container" data-aos="fade-up">
               <div class="section-title mb-5 text-center">
                 <!-- <h2>{{region}} Hackerspace</h2> -->
-                <h2>Nos Projets</h2>
+                <h2>Comapnies</h2>
   
-                <h5>Venez jetez un coup d'oeil sur nos projets!</h5>
                 <hr>
-                <button type="button" class="btn p-2 border pe-3 me-3 register" routerLink="/specificProject">
-                  <i class="bi bi-plus fa-2xl me-3"></i>Order A Specific Project
-                </button>
+             
                
             
               </div>
@@ -81,21 +78,19 @@
                 <div class="card my-custom-card" *ngFor="let project of adminProjects">
                   <div *ngIf="project.image">
                       <div>
-                        <img [src]="'assets/Company/' + project.image"   />
+                        <img [src]="'assets/' + project.image"   />
   
                       </div>
                     </div>
                                       <div class="card-details">
+                                        <br>
                 <h3>{{ project.nom }}</h3>
-                      <p>Adresse : {{ project.adresse }}</p>
+                      <!-- <p>Adresse : {{ project.adresse }}</p>
                       <p>Phone number: {{ project.numtel }}</p>
 
-                      <div class="text" *ngIf="project.description.length > 40">
-                        {{ project.description.substring(0, 40) }}...
-                      </div>
-                      <div class="text" *ngIf="project.description.length <= 40">
+                      <div class="text" >
                         {{ project.description }}
-                      </div>
+                      </div> -->
                                         </div>
                     <br>
   <!-- <button (click)="showEventDetails(project.id)" >Voir en Details</button> -->

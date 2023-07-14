@@ -22,6 +22,9 @@ export class CompanyService {
   deleteFood(id: number): Observable<any> {
     return this.http.delete(`${this.BASE_URL}delete/${id}`, { responseType: 'text' });
   }
+  getClaimsSortedByDate(order: string): Observable<Company[]> {
+    return this.http.get<Company[]>(`${this.BASE_URL}getSortedByDate/${order}`);
+  }
   createC(formData: FormData): Observable<Company> {
     return this.http.post<Company>(`${this.BASE_URL}addC`, formData);
   } 
@@ -30,5 +33,12 @@ export class CompanyService {
   }
   getComplaintsByStatus(status: boolean): Observable<Company[]> {
     return this.http.get<Company[]>(`${this.BASE_URL}getStatus/${status}`);
+  }
+  getAllByS(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}AllByS`);
+  }
+  updateProject(projectId: number, projectData: FormData): Observable<Company> {
+    const url = `${this.BASE_URL}update/${projectId}`;
+    return this.http.put<Company>(url, projectData);
   }
 }

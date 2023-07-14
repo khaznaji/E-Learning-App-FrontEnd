@@ -23,6 +23,10 @@ children:[
   {path:'project-details/:id',loadChildren:()=>import('./views/visitor/detailprojects/detailprojects.module').then(m=>m.DetailprojectsModule)},
   {path:'specificProject',loadChildren:()=>import('./views/visitor/specificproject/specificproject.module').then(m=>m.SpecificprojectModule)},
   {path:'company',loadChildren:()=>import('./views/visitor/company/company.module').then(m=>m.CompanyModule)},
+  {path:'offers',loadChildren:()=>import('./views/visitor/list-offers/list-offers.module').then(m=>m.ListOffersModule)},
+  {path:'offers-details/:id',loadChildren:()=>import('./views/visitor/detail-offers/detail-offers.module').then(m=>m.DetailOffersModule)},
+  {path:'specific-offer',loadChildren:()=>import('./views/visitor/specific-offer/specific-offer.module').then(m=>m.SpecificOfferModule)},
+  {path:'add-candidacy',loadChildren:()=>import('./views/visitor/add-candidacy/add-candidacy.module').then(m=>m.AddCandidacyModule)},
 
 ]},
 
@@ -89,6 +93,15 @@ children:[
   {path:'company',loadChildren:()=>import('./views/admin/company/company.module').then(m=>m.CompanyModule)},
   {path:'add-company',loadChildren:()=>import('./views/admin/add-company/add-company.module').then(m=>m.AddCompanyModule)},
 
+  {path:'add-offer',loadChildren:()=>import('./views/admin/offers/offers.module').then(m=>m.OffersModule)},
+  {path:'list-offer',loadChildren:()=>import('./views/admin/list-offers/list-offers.module').then(m=>m.ListOffersModule)},
+  {path:'update-offer/:id',loadChildren:()=>import('./views/admin/update-offers/update-offers.module').then(m=>m.UpdateOffersModule)},
+  {path:'update-company/:id',loadChildren:()=>import('./views/admin/update-company/update-company.module').then(m=>m.UpdateCompanyModule)},
+  {path:'all-specific-offer',loadChildren:()=>import('./views/admin/all-specific-offer/all-specific-offer.module').then(m=>m.AllSpecificOfferModule)},
+  {path:'detail-specific-offer/:id',loadChildren:()=>import('./views/admin/details-specific-offer/details-specific-offer.module').then(m=>m.DetailsSpecificOfferModule)},
+  {path:'candidacy',loadChildren:()=>import('./views/admin/candidacy/candidacy.module').then(m=>m.CandidacyModule)},
+  {path:'detail-candidacy/:id',loadChildren:()=>import('./views/admin/detail-candidacy/detail-candidacy.module').then(m=>m.DetailCandidacyModule)},
+  {path:'detail-offer/:id',loadChildren:()=>import('./views/admin/detail-offer/detail-offer.module').then(m=>m.DetailOfferModule)},
 
 ]},
 
