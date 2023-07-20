@@ -38,22 +38,18 @@
           <div class="price">
             <b class="m-0">Phone Number: </b> {{ project.numtel  ? project.numtel : '_'  }}
           </div>
-          
+
           <div class="name">
             <b class="m-0">Email: </b>    
             <a *ngIf="project.email" [href]="'mailto:' + project.email" (click)="copyEmail(project.email)" style="color: blue;">{{ project.email }}</a>
             <span *ngIf="!project.email">_</span>          
           </div> 
+          <div class="price">
+            <b class="m-0">Lettre de motivation: </b> {{ project.lettre  ? project.lettre : '_'  }}
+          </div>
           <div class="col-lg-9 col-md-12">
   
-          <div class="name">
-            <b class="m-0">Experience: </b> {{project.experience}}
-          </div>
-          <div class="name">
-            <b class="m-0">Education: </b> {{ project.education ? project.education : '_'   }}
-          </div> <div class="name">
-            <b class="m-0">Job Type: </b> {{ project.type ? project.type : '_'   }}
-          </div>  
+        
         
   </div>
           <!-- Modal -->

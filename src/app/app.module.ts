@@ -12,6 +12,7 @@ import { SpecificprojectDetailsComponent } from './views/admin/specificproject-d
 import { CompanyComponent } from './views/visitor/company/company.component';
 import { DetailOffersComponent } from './views/visitor/detail-offers/detail-offers.component';
 import { UpdateOffersComponent } from './views/admin/update-offers/update-offers.component';
+import { OfferclientDetailComponent } from './views/admin/offerclient-detail/offerclient-detail.component';
 
 
 
@@ -23,7 +24,7 @@ import { UpdateOffersComponent } from './views/admin/update-offers/update-offers
     AdminAllprojectclientsComponent,
     SpecificprojectDetailsComponent,
     CompanyComponent,
-    DetailOffersComponent
+    DetailOffersComponent,
 
   ],
   imports: [

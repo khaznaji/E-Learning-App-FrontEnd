@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { OfferClient } from 'src/app/Models/OfferClient';
 import { Offers } from 'src/app/Models/Offers';
 
 @Injectable({
@@ -8,10 +9,14 @@ import { Offers } from 'src/app/Models/Offers';
 })
 export class OffersService {
   private BASE_URL = ' http://localhost:8094/api/Offers/';
+  private BASE_URL2 = ' http://localhost:8094/api/OfferClient/';
 
   constructor(private http: HttpClient) { }
   addOffer(projectData: FormData) {
     return this.http.post(`${this.BASE_URL}add`, projectData);
+  }
+  getById2(id: number): Observable<any> {
+    return this.http.get(`${this.BASE_URL2}catId/${id}`);
   }
   getAll(): Observable<any> {
     return this.http.get(`${this.BASE_URL}All`);
@@ -32,5 +37,13 @@ export class OffersService {
   getOffersByType(type: string): Observable<Offers[]> {
     const url = `${this.BASE_URL}AllType?type=${type}`;
     return this.http.get<Offers[]>(url);
+  }
+  addProjectClient(projectData: FormData, adminProjectId: number): Observable<OfferClient> {
+    const url = `${this.BASE_URL2}add/${adminProjectId}`;
+    return this.http.post<OfferClient>(url, projectData);
+  }
+  getProjectClientsByAdminProjectId(adminProjectId: number): Observable<OfferClient[]> {
+    const url = `${this.BASE_URL2}adminProjects/${adminProjectId}/projectClients`;
+    return this.http.get<OfferClient[]>(url);
   }
 }

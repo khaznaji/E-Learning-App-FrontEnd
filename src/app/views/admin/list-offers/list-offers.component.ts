@@ -104,5 +104,8 @@ export class ListOffersComponent implements OnInit {
   clientProject(id: number){
     this.router.navigate(['admin/detail-offer', id]);
   }
+  clientProjects(id: number){
+    this.router.navigate(['admin/offerclient', id]);
+  }
   
 }

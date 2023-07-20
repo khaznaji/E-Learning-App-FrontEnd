@@ -56,6 +56,8 @@ export class AdminProjectsService {
     const url = `${this.BASE_URL2}project-admins/${projectAdminId}/project-clients`;
     return this.http.get<ProjectClient[]>(url);
   }
- 
+  getById2(id: number): Observable<any> {
+    return this.http.get(`${this.BASE_URL2}catId/${id}`);
+  }
 
 }

@@ -14,25 +14,7 @@ export class AdminProjectClientComponent implements OnInit{
   projectClients: ProjectClient[] = [];
   adminProjectId: ProjectClient[] = [];
   constructor(   private route: ActivatedRoute,private projectService: AdminProjectsService , private categorieService:ProjectOwnerService) { }
-  // ngOnInit(): void {
-  //   // this.getAllProjectClients();
-  //   const id = this.route.snapshot.params['id'];
-  //   this.projectService.getProjectClientsByAdminProjectId(id).subscribe(event => {
-  //     this.adminProjectId = event;
-  //   });
-  // }
 
-  
-  // getAllProjectClients(): void {
-  //   this.projectService.getAllC().subscribe(
-  //     (projectClients: ProjectClient[]) => {
-  //       this.projectClients = projectClients;
-  //     },
-  //     (error: any) => {
-  //       console.error(error);
-  //     }
-  //   );
-  // }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];

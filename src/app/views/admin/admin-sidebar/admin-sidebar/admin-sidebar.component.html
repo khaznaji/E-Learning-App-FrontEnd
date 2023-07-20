@@ -127,8 +127,14 @@
               
             </a>
           </li>
-          </ul>
         
+          </ul>
+          <a
+          [routerLinkActive]="'active'"   routerLink="certificate"
+             class="list-group-item list-group-item-action py-3 "
+             >
+             <i class="fa-solid fa-folder fa-fw me-3"></i><span>Certificate</span>
+          </a>
         <!-- Collapse 1 -->
           <a
             (click)="logout()"
@@ -171,6 +177,7 @@
                loading="lazy"
                />
         </a>
+
 
         <!-- Right links -->
 

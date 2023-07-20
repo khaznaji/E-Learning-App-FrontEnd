@@ -102,6 +102,9 @@ children:[
   {path:'candidacy',loadChildren:()=>import('./views/admin/candidacy/candidacy.module').then(m=>m.CandidacyModule)},
   {path:'detail-candidacy/:id',loadChildren:()=>import('./views/admin/detail-candidacy/detail-candidacy.module').then(m=>m.DetailCandidacyModule)},
   {path:'detail-offer/:id',loadChildren:()=>import('./views/admin/detail-offer/detail-offer.module').then(m=>m.DetailOfferModule)},
+  {path:'certificate',loadChildren:()=>import('./views/admin/generate-certif/generate-certif.module').then(m=>m.GenerateCertifModule)},
+  {path:'offerclient/:id',loadChildren:()=>import('./views/admin/offerclient/offerclient.module').then(m=>m.OfferclientModule)},
+  {path:'offerclient-detail/:id',loadChildren:()=>import('./views/admin/offerclient-detail/offerclient-detail.module').then(m=>m.OfferclientDetailModule)},
 
 ]},
 
