@@ -28,12 +28,14 @@ export class StudentSidebarComponent  implements OnInit{
       this.route.navigate(['/login'])
     }
     currentUser: any;
+    photo!:any
 
     getCurrentUserDetails(): void {
       this.http.get<any>('http://localhost:8094/api/user/me').subscribe(
         response => {
           this.currentUser = response;
           console.log('Current user:', this.currentUser);
+          this.photo.currentUser.image
         },
         error => {
           console.error('Error fetching current user details:', error);

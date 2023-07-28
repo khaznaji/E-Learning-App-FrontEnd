@@ -3,15 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { AdminGroupsRoutingModule } from './admin-groups-routing.module';
 import { AdminGroupsComponent } from './admin-groups/admin-groups.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AdminGroupsComponent
-  ],
+  declarations: [AdminGroupsComponent],
   imports: [
     CommonModule,
-    AdminGroupsRoutingModule
-  ]
+    AdminGroupsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
-export class AdminGroupsModule { }
+export class AdminGroupsModule {}

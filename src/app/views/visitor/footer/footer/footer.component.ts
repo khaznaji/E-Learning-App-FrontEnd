@@ -7,6 +7,7 @@ import { ProjectOwnerService } from 'src/app/MesServices/ProjectOwner/project-ow
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
 import { Company } from 'src/app/Models/Company';
 import { ProjectOwner } from 'src/app/Models/ProjectOwner';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -19,10 +20,12 @@ export class FooterComponent implements OnInit {
 
   Role = "COACH"
 Addetat!: boolean ;
-
+uploadSuccess: boolean = false;
 imagepath = ""
 msjEtat: string = "";
 uploadInProgress: boolean = false;
+showSuccessIcon: boolean = false;
+showSuccessMessage = false;
 
 
 
@@ -52,6 +55,7 @@ AddCoachForm() {
   formData.append('roles', this.Role);
 
 
+
   this.isLoading = true;
   this.uploadInProgress = true;
 
@@ -59,27 +63,47 @@ AddCoachForm() {
     (data: any) => {
       console.log(data);
       this.Addetat = true;
+      this.showSuccessIcon = true;
       this.msjEtat = "Ajout avec succès";
       this.uploadInProgress = false; // Set upload in progress to false when upload is complete
       this.isLoading = false;
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Thank you for your registration. We will contact you as soon as possible.',
+        showConfirmButton: true,
+
+      });
+
     },
     (error) => {
       console.log(error);
+      this.showSuccessIcon = false;
       this.Addetat = true;
-      this.uploadInProgress = false; // Set upload in progress to false on error as well
+      this.uploadInProgress = false;
       this.isLoading = false;
 
+
+      if (error.status === 400 && error.error?.message === 'Error: Email is already taken!') {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'The email is already taken.',
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        });
+      }
     }
   );
 }
 
 
 // Function to check if an email address is valid
-isValidEmail(email:any) {
-// Regular expression to match email addresses
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-return emailRegex.test(email);
-}
+
 getALLFormations() {
 this.FormationsService.getFormations().subscribe(
   (data) => {
@@ -94,11 +118,28 @@ onFileSelected(event: any) {
     const file = event.target.files[0];
     this.AddCoach.get('CV')!.setValue(file);
     this.uploadInProgress = true; // Set upload in progress to true when file selection starts
+    setTimeout(() => {
+      this.uploadInProgress = false;
+      this.showSuccessMessage = true;
+    }, 1000);
   } else {
     this.AddCoach.get('CV')!.setValue(this.imagepath);
     this.uploadInProgress = false; // Set upload in progress to false when no file is selected
   }
+
 }
+
+/*
+onFileSelected(event: any) {
+  this.uploadInProgress = true;
+
+  // Simulating file upload with a delay of 2 seconds
+  setTimeout(() => {
+    this.uploadInProgress = false;
+    this.showSuccessMessage = true;
+  }, 1000);
+}
+*/
 
 
 
@@ -120,6 +161,7 @@ this.AddCoach = this.formBuilder.group({
   fSkills: ['',[Validators.required]],
   photo: [''],
   fileName: ''
+
 });
 }
 //// contributor 
@@ -128,6 +170,16 @@ project: ProjectOwner = new ProjectOwner();
 imagePreview: string | undefined;
 formSubmitted: boolean = false;
 formSubmitteds: boolean = false;
+isValidNumber(number: any) {
+  // Regular expression to match numbers
+  const numberRegex = /^\+?\d+$/;
+  return numberRegex.test(number);
+}
+isValidEmail(email:any) {
+  // Regular expression to match email addresses
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+  }
 
 save() {
   if (this.file) {

@@ -14,6 +14,9 @@ import { DetailOffersComponent } from './views/visitor/detail-offers/detail-offe
 import { UpdateOffersComponent } from './views/admin/update-offers/update-offers.component';
 import { OfferclientDetailComponent } from './views/admin/offerclient-detail/offerclient-detail.component';
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -21,12 +24,11 @@ import { OfferclientDetailComponent } from './views/admin/offerclient-detail/off
     AppComponent,
     AdminprojectsComponent,
     AdminProjectClientComponent,
-    AdminAllprojectclientsComponent,
     SpecificprojectDetailsComponent,
     CompanyComponent,
-    DetailOffersComponent,
 
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,10 +36,11 @@ import { OfferclientDetailComponent } from './views/admin/offerclient-detail/off
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-
-
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatSnackBarModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

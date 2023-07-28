@@ -58,11 +58,15 @@
               <input name="PhoneNumber" formControlName="fPhoneNumber" type="text" class="form__field" placeholder="Subject"
                 name="Phone" id="Phone">
               <label for="Phone" class="form__label">Phone Number</label>
-              <div *ngIf="AddStudent.controls['fPhoneNumber'].invalid && (AddStudent.controls['fPhoneNumber'].dirty||AddStudent.controls['fPhoneNumber'].touched)">
-                <div *ngIf="AddStudent.controls['fPhoneNumber'].errors&&AddStudent.controls['fPhoneNumber'].errors['required']">
-                  <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i>  PhoneNumber is required</span>
-                </div>
-                </div>
+
+              <div *ngIf="AddStudent.get('fPhoneNumber')?.dirty && !isValidNumber(AddStudent.get('fPhoneNumber')?.value)" class="text-danger">
+                <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-3" ></i> Please enter a valid number</span>
+
+              </div>
+
+
+
+
             </div>
           </div>
           <div class="row">
@@ -93,12 +97,6 @@
               </select>
             </div>
           </div>
-           <div *ngIf="Addetat && msjEtat !== ''" class="alert alert-success" role="alert" style="color: green;">
-            {{ msjEtat }}
-          </div>
-          <div *ngIf="Addetat && msjEtat === ''" class="alert alert-danger" role="alert" style="color: red;">
-            Error occurred during registration.
-          </div>
 
 
 
@@ -107,9 +105,13 @@
           <div class="text-end mt-5 m-3">
             <button type="submit" (click)="AddStudentForm()" class="btn get-started" [disabled]="isLoading">
               <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              <span *ngIf="!isLoading">Register</span>
+              <span >Register</span>
             </button>
           </div>
+
+
+
+
         </form>
       </div>
     </div>

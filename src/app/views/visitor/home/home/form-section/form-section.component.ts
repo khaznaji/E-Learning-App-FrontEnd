@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormationsService } from 'src/app/MesServices/Formations/formations.service';
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
-
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-section',
@@ -11,33 +10,29 @@ import { UserService } from 'src/app/MesServices/UserService/user-service.servic
   styleUrls: ['./form-section.component.css']
 })
 export class FormSectionComponent implements OnInit {
-
-AddStudent!: FormGroup;
-
-  Role = "ETUDIANT"
-
-  Addetat!: boolean ;
+  AddStudent!: FormGroup;
+  Role = "ETUDIANT";
+  Addetat!: boolean;
   msjEtat: string = "";
   Allformation: any = [];
   isLoading: boolean = false;
+  showSuccessIcon: boolean = false;
+  uploadInProgress: boolean = false;
+
   constructor(
-    private FormationsService:FormationsService ,
+    private FormationsService: FormationsService,
     private UserService: UserService,
     private formBuilder: FormBuilder,
   ) {
     this.Addetat = false;
     this.msjEtat = '';
-
   }
 
-
-//hedhy tebaa required ?
-
   AddStudentForm() {
-    if(this.AddStudent.invalid){
+    if (this.AddStudent.invalid) {
       return;
     }
-    //ken maamlnesh fazet lappend kifeh bsh naatiw paasword l ponenumber
+
     const formData = new FormData();
     formData.append('username', this.AddStudent.get('fusername')?.value);
     formData.append('firstName', this.AddStudent.get('fFirstName')?.value);
@@ -47,38 +42,44 @@ AddStudent!: FormGroup;
     formData.append('typeFormation', this.AddStudent.get('fFormation')?.value);
     formData.append('country', this.AddStudent.get('fCountry')?.value);
     formData.append('roles', this.Role);
+
     this.isLoading = true;
+    this.uploadInProgress = true;
     this.UserService.ajoutStudent(formData).subscribe(
       (data: any) => {
         console.log(data);
         this.Addetat = true;
-        this.msjEtat = "Ajout avec succès";
+        this.showSuccessIcon = true;
+        this.uploadInProgress = false;
+
         this.isLoading = false;
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Thank you for your registration. We will contact you as soon as possible.',
+          showConfirmButton: true,
+
+        });
       },
       (error) => {
         console.log(error);
+        this.showSuccessIcon = false;
         this.Addetat = true;
-
         this.isLoading = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: '<a href="">Why do I have this issue?</a>'
+        });
       }
-
-
-    )
-
+    );
   }
 
-
-
-  // Function to check if an email address is valid
-  isValidEmail(email:any) {
-    // Regular expression to match email addresses
+  isValidEmail(email: any) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
-
-
-
-
 
   getALLFormations() {
     this.FormationsService.getFormations().subscribe(
@@ -86,24 +87,30 @@ AddStudent!: FormGroup;
         this.Allformation = data;
         console.log(this.Allformation);
       }
-    )
+    );
   }
 
-  get f() { return this.AddStudent.controls; }
+  get f() {
+    return this.AddStudent.controls;
+  }
 
   ngOnInit(): void {
     this.getALLFormations();
 
     this.AddStudent = this.formBuilder.group({
-      fusername: ['',[Validators.required, Validators.email]],
+      fusername: ['', [Validators.required, Validators.email]],
       fFirstName: ['', [Validators.required]],
-      fLastName: ['',[ Validators.required]],
-      fPhoneNumber: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern('[0-9]*')]],
-      fFormation: ['Select Training',[Validators.required]],
+      fLastName: ['', [Validators.required]],
+      fPhoneNumber: ['', [Validators.required, ]],
+      fFormation: ['Select Training', [Validators.required]],
       fCountry: ['Select Country', [Validators.required]],
     });
-
   }
+  isValidNumber(number: any) {
+  // Regular expression to match numbers
+  const numberRegex = /^\+?\d+$/;
+  return numberRegex.test(number);
+}
 
 
 }

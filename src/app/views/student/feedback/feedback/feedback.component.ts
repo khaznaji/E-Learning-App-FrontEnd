@@ -12,6 +12,8 @@ import { UserAuthService } from 'src/app/MesServices/user-auth.service';
 export class FeedbackComponent implements OnInit {
 
   Allformation: any = [];
+  successMessage: string = '';
+  errorMessage: string = '';
 formation: any;
 UserConnected: any=[];
 comment: any;
@@ -29,13 +31,20 @@ idUser!:any;
         user: this.UserConnected
       };
       this.fb.ajoutFeedback(feedback).subscribe(
-        (data) => {
+        (data: any) => {
+          this.successMessage = 'Training program added successfully.';
+          this.errorMessage = '';
           console.log(data);
-          alert("Feedback ajouté avec succès");
-        });
-    }
-    else{
-      alert("Veuillez remplir tous les champs");
+
+        },
+        (error: any) => {
+          this.successMessage = '';
+          this.errorMessage = 'Error adding the training program. Please try again.';
+          console.log(error);
+        }
+      );
+    } else {
+      this.errorMessage = 'Please fill in all the required fields.';
     }
   }
 
