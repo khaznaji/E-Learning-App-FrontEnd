@@ -1,0 +1,17 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { OnlineRoutingModule } from './online-routing.module';
+import { OnlineComponent } from './online/online.component';
+
+
+@NgModule({
+  declarations: [
+    OnlineComponent
+  ],
+  imports: [
+    CommonModule,
+    OnlineRoutingModule
+  ]
+})
+export class OnlineModule { }

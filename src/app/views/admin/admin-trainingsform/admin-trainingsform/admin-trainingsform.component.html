@@ -1,0 +1,112 @@
+<main class="gx-5 pt-3">
+  <div class="d-lg-none d-md-block"><br><br><br></div>
+  <div class="pagetitle">
+    <h1>Trainings</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">trainings</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <div class="container d-flex justify-content-center">
+    <div class="card shadow-sm h-100 col-md-6">
+      <div class="card-body">
+        <h1 class="text-center fw-bold mb-3" style="color: #AF3065;">Add Training Program</h1>
+
+        <form [formGroup]="trainingForm">
+          <div class="form-group mb-3">
+            <label for="categorie">Categorie</label>
+            <select name="categorie" formControlName="categorie" class="form-select" id="categorie" aria-label="Default select example">
+              <option value="" disabled>Select a category</option>
+              <option *ngFor="let category of tabCategorie" [value]="category.id">{{ category.nomCate }}</option>
+            </select>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="name">Name of the training</label>
+            <input name="name" type="text" formControlName="nomFormation" class="form-control" id="name" placeholder="Web...">
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="description">Description</label>
+            <textarea name="description" formControlName="description" class="form-control" id="description" rows="3"></textarea>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="nbExercices">Number of exercises</label>
+            <input name="nbExercices" type="text" formControlName="nbExercices" class="form-control" id="nbExercices" placeholder="">
+            <div *ngIf="trainingForm.get('nbExercices')?.dirty && !isValidNumber(trainingForm.get('nbExercices')?.value)" class="text-danger">
+              Please enter a valid number of exercises.
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="nbProjects">Number of projects</label>
+            <input name="nbProjects" type="text" formControlName="nbProjects" class="form-control" id="nbProjects" placeholder="">
+            <div *ngIf="trainingForm.get('nbProjects')?.dirty && !isValidNumber(trainingForm.get('nbProjects')?.value)" class="text-danger">
+              Please enter a valid number of projects.
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="nbMeetings">Number of meetings</label>
+            <input name="nbMeetings" type="text" formControlName="nbMeetings" class="form-control" id="nbMeetings" placeholder="">
+            <div *ngIf="trainingForm.get('nbMeetings')?.dirty && !isValidNumber(trainingForm.get('nbMeetings')?.value)" class="text-danger">
+              Please enter a valid number of meetings.
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="nbChapters">Number of chapters</label>
+            <input name="nbChapters" type="text" formControlName="nbChapters" class="form-control" id="nbChapters" placeholder="">
+            <div *ngIf="trainingForm.get('nbChapters')?.dirty && !isValidNumber(trainingForm.get('nbChapters')?.value)" class="text-danger">
+              Please enter a valid number of chapters.
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="workspaces">Number of workspaces</label>
+            <input name="workspaces" type="text" formControlName="workspaces" class="form-control" id="workspaces" placeholder="">
+            <div *ngIf="trainingForm.get('workspaces')?.dirty && !isValidNumber(trainingForm.get('workspaces')?.value)" class="text-danger">
+              Please enter a valid number of workspaces.
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="posibility">Possibility</label>
+            <select name="posibility" formControlName="posibility" id="posibility" class="form-select">
+              <option disabled selected>Select Possibility</option>
+              <option value="Possibility of online education">Possibility of online education</option>
+              <option value="No Possibility of online education">No Possibility of online education</option>
+            </select>
+            </div>
+
+          <div class="text-end">
+            <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'d-block': showSuccessModal}">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Success</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="showSuccessModal = false">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>{{ successMessage }}</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="handleOKClick()">OK</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+            <button type="button" id="cancel" name="cancel" class="btn btn-light" style="border-radius: 5px;" routerLink="/admin/trainings">Cancel</button>
+            <button type="submit" (click)="addTraining()" id="submit" name="submit" class="btn" style="background-color: #AF3065; color: white; border-radius: 5px;">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main><!-- End #main -->
