@@ -1,0 +1,107 @@
+<header>
+
+  <!-- Sidebar -->
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+      <a class="navbar-brand ms-5  d-lg-block d-none" href="#">
+        <img
+             src="assets/img/logo1.png"
+             height="30"
+             alt=""
+             loading="lazy"
+             />
+      </a>
+      <div class="mt-4 border-bottom border-top py-3" *ngIf="data">
+
+
+      <div class="nav-profile d-flex align-items-center ms-4 pe-0 text-black " routerLink="/coach/profile" >
+        <img [src]="'../../../../../assets/profile/' + data.image" alt="Profile" width="50px" height="50px" class="rounded-circle">
+        <span class="ps-2 fw-bold">Welcome Back <p> {{ data.lastName }} {{ data.firstName }} </p> </span> <a class="ps-4"><i class="btn  bi bi-gear" routerLink="profile"> </i></a>
+      </div>
+      <!-- End Profile Iamge Icon --></div>
+      <div class="list-group list-group-flush mx-3 mt-5">
+
+
+
+
+        <a
+           [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}"  routerLink="/coach"
+           class="list-group-item list-group-item-action py-3 "
+           aria-current="true"
+           >
+          <i class="fa-solid fa-house fa-fw me-3"></i
+            ><span>Home</span>
+        </a>
+        <a
+            [routerLinkActive]="'active'"   routerLink="/coach/calendar"
+           class="list-group-item list-group-item-action py-3  "
+           >
+           <i class="fa-solid fa-calendar fa-fw me-3"></i><span>Calendar</span>
+        </a>
+
+        <a
+        [routerLinkActive]="'active'"   routerLink="/coach/chat"
+        class="list-group-item list-group-item-action py-3 "
+           ><i class="fa-solid fa-message fa-fw me-3"></i><span>Messages</span></a
+          >
+        <a
+        [routerLinkActive]="'active'"   routerLink="/coach/groups"
+           class="list-group-item list-group-item-action py-3 "
+           ><i class="fa-solid fa-play fa-fw me-3"></i><span>Groups</span></a
+          >
+
+        <a
+        (click)="logout()"
+           href="#"
+           class="list-group-item list-group-item-action border-top " style="margin-top: 220px;"
+           ><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180 fa-fw me-3"></i><span>LogOut</span></a
+          >
+
+      </div>
+    </div>
+
+  </nav>
+  <!-- Sidebar -->
+
+  <!-- Navbar -->
+  <nav
+       id="main-navbar"
+       class="navbar navbar-expand-lg navbar-light bg-white fixed-top d-block d-lg-none"
+       >
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+              class="navbar-toggler"
+              type="button"
+              data-mdb-toggle="collapse"
+              data-mdb-target="#sidebarMenu"
+              aria-controls="sidebarMenu"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              >
+              <img src="assets/img/menu.png" class="w-10" alt="">
+      </button>
+
+      <!-- Brand -->
+      <a class="navbar-brand ms-5 mt-2" href="#">
+        <img
+             src="assets/img/logo1.png"
+             height="30"
+             alt=""
+             loading="lazy"
+             />
+      </a>
+
+      <!-- Right links -->
+
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+
+<!--Main layout-->

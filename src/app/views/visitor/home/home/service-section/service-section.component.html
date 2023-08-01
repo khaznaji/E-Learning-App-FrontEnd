@@ -1,0 +1,49 @@
+<!-- ======= Services Section ======= -->
+<section id="services" class="services section-bg">
+  <div class="" data-aos="fade-up">
+    <div class="section-title">
+      <h2>Our Services</h2>
+      <h1>Fostering a playful & engaging learning environment</h1>
+    </div>
+
+    <div id="carouselMultiItemExample1" class="carousel slide carousel-dark text-center" data-mdb-ride="carousel">
+      <!-- Controls -->
+      <div class="d-flex justify-content-center mb-4">
+        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselMultiItemExample1"
+    data-mdb-slide="prev">
+    <span  style="margin-right:100px" class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-mdb-target="#carouselMultiItemExample1"
+    data-mdb-slide="next">
+    <span  style="margin-left:100px" class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+      </div>
+
+      <!-- Inner -->
+      <div class="carousel-inner py-4">
+        <!-- Single item -->
+        <div *ngFor="let chunk of tabFormationChunks; let i = index" class="carousel-item" [class.active]="i === 0">
+          <div class="container">
+            <div class="   row justify-content-between">
+              <div *ngFor="let x of chunk" class=" card col-lg-4 d-flex align-items-center justify-content-start" data-aos="zoom-in" data-aos-delay="100">
+                <div class="icon-box">
+                  <div class=" icon"><i class="bi bi-code-slash"></i></div>
+                  <h4><a href="">{{ x.nomFormation }}</a></h4>
+                  <p>{{x.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center mb-4">
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Services Section -->
+

@@ -1,0 +1,54 @@
+<header id="header" class="fixed-top " >
+    <div class="">
+<nav class="navbar navbar-expand-lg  ">
+    <div class="container-fluid">
+        <a routerLink="" class="navbar-brand"><img src="assets/img/logo1.png" class="img-fluid" alt=""></a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span > <img src="assets/img/menu.png" class="w-10" alt=""></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between flex-row-reverse" id="navbarCollapse">
+            <ul class="navbar-nav">
+              <li ><a class="nav-link" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}" routerLink="">Home</a></li>
+
+
+
+
+
+
+              <li class="nav-item dropdown">
+                <a href="#" data-bs-auto-close="outside" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Training</a>
+                <ul class="dropdown-menu">
+                  <li *ngFor="let o of tabCategorie">
+                    <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" (click)="getFormationByCategorie(o.id)">{{o.nomCate}}</a>
+                    <ul class="dropdown-menu">
+                      <li *ngFor="let x of tabFormation" [id]="x.id">
+                        <a routerLink="training/{{x.nomFormation}}" class="dropdown-item">{{x.nomFormation}}</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+
+
+                </li>
+                <li class="nav-item dropdown ">
+                  <a href="#"  data-bs-auto-close="outside" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">Hackerspace</a>
+                  <ul class="dropdown-menu">
+<li *ngFor="let i of tabHackerSpace">
+                   <a href="#" routerLink="./hackerspace/{{i.region}}"class="dropdown-item  " data-bs-toggle="dropdown" >{{i.region}}</a>
+
+                  </li>
+
+              </ul>
+              </li>
+                <li><a class="nav-link"  [routerLinkActive]="'active'" routerLink="online" >Online</a></li>
+                <li><a class="nav-link" [routerLinkActive]="'active'" routerLink="contact">Contact</a></li>
+                <li class="ms-5"><a class="btn get-started" href="#inscription">Get Started</a></li>
+            </ul>
+
+
+
+        </div>
+    </div>
+  </nav>
+</div>
+</header>

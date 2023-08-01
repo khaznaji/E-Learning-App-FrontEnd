@@ -1,0 +1,129 @@
+<main id="main" class="main">
+  <div class="d-lg-none d-md-block"><br><br><br></div>
+  <div class="pagetitle">
+    <h1>View profile</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">Dashboard</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <!-- ======= Profile Section ======= -->
+  <div class="container">
+      <div class="main-body">
+
+
+
+      <div class="row gutters-sm mt-5">
+        <div class="col-md-4" *ngIf="data">
+        <div class="card mb-3">
+          <div class="card-body text-center p-2 my-2">
+            <img [src]="'../../../../../assets/profile/' + data.image" alt="Admin" style="border-radius: 20px;" width="175">
+
+
+
+
+        <div class="mt-2 mx-5"><div class="file  btn-lg fs-6 fw-bold" style="position: relative;
+          overflow: hidden; background-color: #AF3065; color: #ffffff;">
+          <span><i class="bi bi-camera me-3"></i></span> Add New
+          <input type="file" name="file" (change)="onFileSelected($event)"  style="  position: absolute;
+
+          opacity: 0;
+          right: 0;
+          top: 0;"
+          />
+      </div></div>
+      </div>
+
+    </div>
+    </div>
+    <div class="col-md-8" >
+      <div class="card mb-3">
+      <div class="card-body">
+
+      <div class="row mb-3">
+
+      <div class="col-sm-4">
+      <h5 class="mb-1">Full Name</h5>
+
+     <h6 class="text-secondary">{{ data.lastName }} {{ data.firstName }}</h6>
+    </div>
+    <div class="col-sm-4">
+      <h5 class="mb-1">Email</h5>
+      <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1c7a756c5c766977716974327d70">{{ data.username }}</a>
+    </div>
+    <div class="col-sm-4">
+      <h5 class="mb-1">Country</h5>
+      <h6 class="text-secondary">{{ data.country }}</h6>
+    </div>
+
+      </div>
+
+
+      <div class="row">
+
+      <div class="col-sm-4">
+        <h5 class="mb-1">About</h5>
+        <h6 class="text-secondary">I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</h6>
+       </div>
+       <div class="col-sm-4">
+        <h5 class="mb-1">Phone</h5>
+        <h6 class="text-secondary">{{ data.numeroTel }}</h6>
+        </div>
+      </div>
+
+      <div class="row">
+      <div class="col-sm-12 text-end">
+
+              <a href="#" class="instagram social-links" ><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="linkedin social-links"><i class="bx bxl-linkedin"></i></a>
+
+      <a class="btn px-4 " style="background-color: #AF3065; color: white;" target="__blank" routerLink="Edit">Edit</a>
+      </div>
+      </div>
+      </div>
+      </div>
+
+      </div>
+
+
+
+      <div class="row gutters-sm mt-5">
+        <div class="col-sm-6 mb-3 ">
+        <div class="card h-100" >
+        <div class="card-body text-center">
+        <h4 class="d-flex mb-4 fw-bold">Skills</h4>
+        <h5>Web Design</h5>
+        <hr>
+        <h5>Backend API</h5>
+        <hr>
+        <h5>Mobile Template</h5>
+        <hr>
+        <h5>One Page</h5>
+
+        </div>
+        </div>
+        </div>
+        <div class="col-sm-6 mb-3 ">
+          <div class="card h-100">
+          <div class="card-body text-center">
+          <h4 class="d-flex mb-4 fw-bold">Groups</h4>
+          <h5>Angular</h5>
+          <hr>
+          <h5>Backend API</h5>
+          <hr>
+          <h5>Spring boot</h5>
+          <hr>
+          <h5>Node js</h5>
+
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+
+</main><!-- End #main -->
