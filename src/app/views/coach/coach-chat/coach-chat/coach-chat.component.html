@@ -45,7 +45,7 @@
                         {{ group.lastMessage?.timestamp | date : "short" }}
                       </p>
                       <span class="badge bg-dark float-end">{{
-                        group.unreadCount
+                        unreadCounts[group.id] || 0
                       }}</span>
                     </div>
                   </a>

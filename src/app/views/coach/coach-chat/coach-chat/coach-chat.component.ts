@@ -32,6 +32,7 @@ export class CoachChatComponent {
   userFirstName$!: Observable<string>;
   newMessage: string = '';
   private jwtToken: string;
+  unreadCounts: { [groupId: number]: number } = {};
   message: any;
   isMessageLoaded = false;
   @ViewChild('chatContainer') chatContainer!: ElementRef;
@@ -62,6 +63,7 @@ export class CoachChatComponent {
                   .getUnreadMessageCount(group.id, formateurid)
                   .subscribe((unreadCount) => {
                     group.unreadCount = unreadCount;
+                    this.unreadCounts[group.id] = unreadCount;
                   });
               });
           });
@@ -96,6 +98,15 @@ export class CoachChatComponent {
           this.scrollToBottom();
         }, 0);
       });
+
+      if (this.unreadCounts[group.id] > 0) {
+        this.unreadCounts[group.id] = 0;
+        group.unreadCount = 0;
+        this.chatService.resetUnreadMessageCount(
+          group.id,
+          this.userAuthService.getId()
+        );
+      }
     }
   }
 
@@ -108,6 +119,14 @@ export class CoachChatComponent {
         formateurid
       );
       this.newMessage = '';
+    }
+    if (this.selectedGroup && this.unreadCounts[this.selectedGroup.id] > 0) {
+      this.unreadCounts[this.selectedGroup.id] = 0;
+      this.selectedGroup.unreadCount = 0;
+      this.chatService.resetUnreadMessageCount(
+        this.selectedGroup.id,
+        this.userAuthService.getId()
+      );
     }
   }
 }
