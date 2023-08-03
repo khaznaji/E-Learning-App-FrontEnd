@@ -1,92 +1,102 @@
 :root {
-    scroll-behavior: smooth;
-  }
-  
+  scroll-behavior: smooth;
+}
+
+main {
+  font-family: "Open Sans", sans-serif;
+  background: #f5f7f9;
+  color: #444444;
+}
+
+@media (min-width: 991.98px) {
   main {
-    font-family: "Open Sans", sans-serif;
-    background: #f5f7f9;
-    color: #444444;
+    padding-left: 320px;
+    padding-top: 20px;
   }
-  
-  @media (min-width: 991.98px) {
-    main {
-      padding-left: 320px;
-      padding-top: 20px;
-     
-    }
-  }
-  a {
-    color: #01130b;
-    text-decoration: none;
-  
-  }
-  
-  a:hover {
-    color: #AF3065;
-    text-decoration: none;
-  }
-  a:active{
-    color: #AF3065; 
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Nunito", sans-serif;
-  }
-  
-  /*--------------------------------------------------------------
+}
+a {
+  color: #01130b;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #af3065;
+  text-decoration: none;
+}
+a:active {
+  color: #af3065;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Nunito", sans-serif;
+}
+
+/*--------------------------------------------------------------
   # Main
   --------------------------------------------------------------*/
+#main {
+  padding: 20px 30px;
+  transition: all 0.3s;
+}
+
+@media (max-width: 1199px) {
   #main {
-  
-    padding: 20px 30px;
-    transition: all 0.3s;
+    padding: 20px;
   }
-  
-  @media (max-width: 1199px) {
-    #main {
-      padding: 20px;
-    }
-  }
-button{
-    border: none; background-color: #AF3065; color: #ffffff; border-radius: 5px;}
-    button:hover{
-        background-color: #d8208e; 
-        color: #ffffff;
-    }
-    button{
-        padding: 9px;
-        padding-left: 15px;
-        padding-right: 15px;
-        background-color: #AF3065; 
-        color: #ffffff;
-    }
-      /* Breadcrumbs */
-  .breadcrumb {
-    font-size: 14px;
-    font-family: "Nunito", sans-serif;
-    color: #899bbd;
-    font-weight: 600;
-  }
-  
-  .breadcrumb a {
-    color: #899bbd;
-    transition: 0.3s;
-  }
-  
-  .breadcrumb a:hover {
-    color: #51678f;
-  }
-  
-  .breadcrumb .breadcrumb-item::before {
-    color: #899bbd;
-  }
-  
-  .breadcrumb .active {
-    color: #51678f;
-    font-weight: 600;
-  }
+}
+button {
+  border: none;
+  background-color: #af3065;
+  color: #ffffff;
+  border-radius: 5px;
+}
+button:hover {
+  background-color: #d8208e;
+  color: #ffffff;
+}
+button {
+  padding: 9px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #af3065;
+  color: #ffffff;
+}
+/* Breadcrumbs */
+.breadcrumb {
+  font-size: 14px;
+  font-family: "Nunito", sans-serif;
+  color: #899bbd;
+  font-weight: 600;
+}
+
+.breadcrumb a {
+  color: #899bbd;
+  transition: 0.3s;
+}
+
+.breadcrumb a:hover {
+  color: #51678f;
+}
+
+.breadcrumb .breadcrumb-item::before {
+  color: #899bbd;
+}
+
+.breadcrumb .active {
+  color: #51678f;
+  font-weight: 600;
+}
+/*.card {
+  overflow: visible;
+}
+.card {
+  width: 90%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}*/

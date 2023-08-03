@@ -14,4 +14,6 @@ export class Groups {
   etudiants?: {
     id: number;
   }[];
+  lastMessage?: any;
+  unreadCount?: number;
 }

@@ -71,4 +71,12 @@ export class GroupService {
     const url = `${environement.BASE_URL}/groups/${groupId}/etudiants/${etudiantId}`;
     return this.http.delete<string>(url);
   }
+  getGroupsByUserId(userId: number): Observable<Groups[]> {
+    const url = `${environement.BASE_URL}/groups/by-user/${userId}`;
+    return this.http.get<Groups[]>(url);
+  }
+  getGroupsByFormateurId(formateurId: number): Observable<Groups[]> {
+    const url = `${environement.BASE_URL}/groups/by-formateur/${formateurId}`;
+    return this.http.get<Groups[]>(url);
+  }
 }
