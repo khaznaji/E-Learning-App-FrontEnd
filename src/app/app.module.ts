@@ -22,6 +22,7 @@ import { environement } from 'src/environement/environement.dev';
     FormsModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environement.firebase),
+    //AngularFireAuthModule,
     MatDialogModule,
     MatSnackBarModule,
   ],
