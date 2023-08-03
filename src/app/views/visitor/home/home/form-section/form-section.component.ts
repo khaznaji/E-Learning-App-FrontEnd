@@ -7,13 +7,13 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-form-section',
   templateUrl: './form-section.component.html',
-  styleUrls: ['./form-section.component.css']
+  styleUrls: ['./form-section.component.css'],
 })
 export class FormSectionComponent implements OnInit {
   AddStudent!: FormGroup;
-  Role = "ETUDIANT";
+  Role = 'ETUDIANT';
   Addetat!: boolean;
-  msjEtat: string = "";
+  msjEtat: string = '';
   Allformation: any = [];
   isLoading: boolean = false;
   showSuccessIcon: boolean = false;
@@ -22,17 +22,13 @@ export class FormSectionComponent implements OnInit {
   constructor(
     private FormationsService: FormationsService,
     private UserService: UserService,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) {
     this.Addetat = false;
     this.msjEtat = '';
   }
 
   AddStudentForm() {
-    if (this.AddStudent.invalid) {
-      return;
-    }
-
     const formData = new FormData();
     formData.append('username', this.AddStudent.get('fusername')?.value);
     formData.append('firstName', this.AddStudent.get('fFirstName')?.value);
@@ -42,6 +38,7 @@ export class FormSectionComponent implements OnInit {
     formData.append('typeFormation', this.AddStudent.get('fFormation')?.value);
     formData.append('country', this.AddStudent.get('fCountry')?.value);
     formData.append('roles', this.Role);
+    formData.append('about', this.AddStudent.get('fabout')?.value);
 
     this.isLoading = true;
     this.uploadInProgress = true;
@@ -56,22 +53,35 @@ export class FormSectionComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Thank you for your registration. We will contact you as soon as possible.',
+          title:
+            'Thank you for your registration. We will contact you as soon as possible.',
           showConfirmButton: true,
-
         });
       },
       (error) => {
         console.log(error);
+
         this.showSuccessIcon = false;
         this.Addetat = true;
+        this.uploadInProgress = false;
         this.isLoading = false;
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: '<a href="">Why do I have this issue?</a>'
-        });
+
+        if (
+          error.status === 400 &&
+          error.error?.message === 'Error: email is already taken!'
+        ) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'The email is already taken.',
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          });
+        }
       }
     );
   }
@@ -82,12 +92,10 @@ export class FormSectionComponent implements OnInit {
   }
 
   getALLFormations() {
-    this.FormationsService.getFormations().subscribe(
-      (data) => {
-        this.Allformation = data;
-        console.log(this.Allformation);
-      }
-    );
+    this.FormationsService.getFormations().subscribe((data) => {
+      this.Allformation = data;
+      console.log(this.Allformation);
+    });
   }
 
   get f() {
@@ -101,16 +109,15 @@ export class FormSectionComponent implements OnInit {
       fusername: ['', [Validators.required, Validators.email]],
       fFirstName: ['', [Validators.required]],
       fLastName: ['', [Validators.required]],
-      fPhoneNumber: ['', [Validators.required, ]],
+      fPhoneNumber: ['', [Validators.required]],
       fFormation: ['Select Training', [Validators.required]],
       fCountry: ['Select Country', [Validators.required]],
+      fabout: ['', [Validators.required]],
     });
   }
   isValidNumber(number: any) {
-  // Regular expression to match numbers
-  const numberRegex = /^\+?\d+$/;
-  return numberRegex.test(number);
-}
-
-
+    // Regular expression to match numbers
+    const numberRegex = /^\+?\d{8,}$/;
+    return numberRegex.test(number);
+  }
 }

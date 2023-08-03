@@ -3,11 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminStudentprofileComponent } from './admin-studentprofile/admin-studentprofile.component';
 
 const routes: Routes = [
-  {path:'profile',component:AdminStudentprofileComponent}
+  { path: 'profile/:id', component: AdminStudentprofileComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminStudentprofileRoutingModule { }
+export class AdminStudentprofileRoutingModule {}
