@@ -319,25 +319,27 @@
             </div>
             <div class="trainer-profile d-flex align-items-center mb-3">
               <span class="pe-4 fw-bold">Members:</span>
-
-              <img
-                src="assets/img/profile-img.jpg"
-                width="40px"
-                height="40px"
-                class="rounded-circle"
-              />
-              <img
-                src="assets/img/profile-img.jpg"
-                width="40px"
-                height="40px"
-                class="rounded-circle"
-              />
-              <img
-                src="assets/img/profile-img.jpg"
-                width="40px"
-                height="40px"
-                class="rounded-circle"
-              />
+              <ng-container *ngIf="allGroups.length > 0; else noMembers">
+                <ng-container
+                  *ngFor="
+                    let studentImage of getStudentImages(group.id);
+                    let i = index
+                  "
+                >
+                  <img
+                    *ngIf="i < 3"
+                    [src]="'assets/Documents/' + studentImage"
+                    width="40px"
+                    height="40px"
+                    class="rounded-circle"
+                  />
+                </ng-container>
+              </ng-container>
+              <ng-template #noMembers>
+                <div class="trainer-profile d-flex align-items-center mb-3">
+                  <span class="pe-4 fw-bold">No members in this group.</span>
+                </div>
+              </ng-template>
             </div>
           </div>
         </div>

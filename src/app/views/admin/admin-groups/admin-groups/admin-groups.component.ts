@@ -105,4 +105,18 @@ export class AdminGroupsComponent implements OnInit {
       console.log('groups', this.allGroups);
     });
   }
+  getStudentImages(groupId: number): string[] {
+    const group = this.allGroups.find((g) => g.id === groupId);
+    if (!group || !group.etudiants) {
+      return [];
+    }
+
+    const studentImages: string[] = [];
+
+    for (const student of group.etudiants.slice(0, 3)) {
+      studentImages.push(student.image);
+    }
+
+    return studentImages;
+  }
 }

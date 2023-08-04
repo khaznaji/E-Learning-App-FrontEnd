@@ -25,6 +25,7 @@ export class AdminGroupmembersComponent {
   studentDetails: any[] = [];
   userIdRemove!: number;
   taballusers: any = [];
+  allGroups: any[] = [];
   tabStudent: any = [];
   tabFormation: any = [];
   Formation = '';
@@ -75,7 +76,8 @@ export class AdminGroupmembersComponent {
     const student = this.studentDetails.find(
       (student) => student.id === userId
     );
-    return student ? `${student.user.firstName} ${student.user.lastName}` : '';
+    console.log(student.firstName);
+    return student ? `${student.firstName} ${student.lastName}` : '';
   }
   fetchGroupMembers(): void {
     console.log(this.data.groupId);
@@ -103,12 +105,15 @@ export class AdminGroupmembersComponent {
       }
     );
   }
+  getAllGroups(): void {
+    this.groupService.getAllGroups().subscribe((groups) => {
+      this.allGroups = groups;
+    });
+  }
   getAllStudents() {
     this.userService.getAllUsers().subscribe((res) => {
       this.taballusers = res;
       console.log(this.taballusers);
-
-      // Filter the array to get only users with role "ETUDIANT" and enabled = 1
       this.students = this.taballusers.filter(
         (user: { roles: any[]; enabled: number }) => {
           return (
@@ -121,16 +126,7 @@ export class AdminGroupmembersComponent {
       console.log(this.students);
     });
   }
-  /*getAllStudents(): void {
-    this.userService.getAllUsers().subscribe(
-      (students) => {
-        this.students = students;
-      },
-      (error) => {
-        console.error('Error retrieving students:', error);
-      }
-    );
-  }*/
+
   get filteredStudents() {
     if (this.usernameFilter.trim() === '') {
       return this.students.filter(
@@ -168,7 +164,6 @@ export class AdminGroupmembersComponent {
     this.groupService.addEtudiantToGroup(groupId, userId).subscribe(
       (response) => {
         if (typeof response === 'string') {
-          // Handle success message
           console.log(response);
           this.snackBar.open(response, 'Close', {
             duration: 3000,
@@ -176,9 +171,7 @@ export class AdminGroupmembersComponent {
             verticalPosition: 'bottom',
           });
           group.etudiants?.push({ id: userId });
-          this.fetchGroupMembers();
         } else {
-          // Handle other response data if needed
         }
       },
       (error) => {
