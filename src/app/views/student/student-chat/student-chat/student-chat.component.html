@@ -73,12 +73,27 @@
                         *ngIf="message.senderId !== userAuthService.getId()"
                         class="d-flex"
                       >
-                        <img
-                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                          alt="avatar"
-                          class="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
-                          width="60"
-                        />
+                        <div
+                          *ngIf="
+                            message.userPhoto$ | async as userPhoto;
+                            else noPhoto
+                          "
+                        >
+                          <img
+                            src="assets/Documents/{{ userPhoto }}"
+                            alt="avatar"
+                            class="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
+                            width="60"
+                          />
+                        </div>
+                        <ng-template #noPhoto>
+                          <img
+                            src="path-to-default-photo"
+                            alt="Default User Photo"
+                            width="50"
+                            height="50"
+                          />
+                        </ng-template>
                         <div
                           class="card"
                           style="
@@ -144,12 +159,27 @@
                             [innerHTML]="sanitize(message.message)"
                           ></pre>-->
                         </div>
-                        <img
-                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
-                          alt="avatar"
-                          class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong"
-                          width="60"
-                        />
+                        <div
+                          *ngIf="
+                            message.userPhoto$ | async as userPhoto;
+                            else noPhoto
+                          "
+                        >
+                          <img
+                            src="assets/Documents/{{ userPhoto }}"
+                            alt="avatar"
+                            class="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
+                            width="60"
+                          />
+                        </div>
+                        <ng-template #noPhoto>
+                          <img
+                            src="path-to-default-photo"
+                            alt="Default User Photo"
+                            width="50"
+                            height="50"
+                          />
+                        </ng-template>
                       </div>
                     </li>
                   </ul>

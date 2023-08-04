@@ -16,13 +16,14 @@ export class StudentChatComponent {
   selectedGroup: Groups | null = null;
   chatMessages: any[] = [];
   userFirstName$!: Observable<string>;
+  userPhoto$!: Observable<string>;
   newMessage: string = '';
   private jwtToken: string;
   message: any;
   isMessageLoaded = false;
   @ViewChild('chatContainer') chatContainer!: ElementRef;
   constructor(
-    private chatService: ChatService, // Use the ChatService
+    private chatService: ChatService,
     private groupsService: GroupService,
     public userAuthService: UserAuthService,
     private userService: UserService
@@ -75,6 +76,9 @@ export class StudentChatComponent {
           senderFirstName$: this.userService
             .getUserById(message.senderId)
             .pipe(map((user: any) => user.firstName)),
+          userPhoto$: this.userService
+            .getUserById(message.senderId)
+            .pipe(map((user: any) => user.image)),
         }));
         setTimeout(() => {
           this.scrollToBottom();
