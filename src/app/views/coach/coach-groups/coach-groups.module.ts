@@ -5,9 +5,11 @@ import { CoachGroupsRoutingModule } from './coach-groups-routing.module';
 import { CoachGroupsComponent } from './coach-groups/coach-groups.component';
 
 
+
 @NgModule({
   declarations: [
-    CoachGroupsComponent
+    CoachGroupsComponent,
+  
   ],
   imports: [
     CommonModule,
