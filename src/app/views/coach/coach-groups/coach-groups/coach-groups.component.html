@@ -1,389 +1,103 @@
-<main class="gx-5" >
-    <div class="d-lg-none d-md-block"><br><br><br></div>
-    <div class="pagetitle ms-3 pt-3">
-      <h1>Groups</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Groups</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
+<main class="gx-5">
+  <div class="d-lg-none d-md-block"><br /><br /><br /></div>
+  <div class="pagetitle ms-3 pt-3">
+    <h1>Groups</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">Groups</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- End Page Title -->
 
+  <!-- Groups section -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6" *ngFor="let group of groups">
+        <div class="card shadow-sm mb-4">
+          <div class="row mt-4 mx-2">
+            <div class="nav-profile d-flex align-items-center">
+              <span class="fw-bold ps-4">#{{ group.groupName }}</span>
+              <span>
+                <div class="filter">
+                  <button
+                    class="icon"
+                    data-bs-toggle="dropdown"
+                    style="border: none; background-color: #ffffff00"
+                  >
+                    <i
+                      class="bi bi-three-dots-vertical"
+                      style="margin-left: 150px"
+                    ></i>
+                  </button>
+                  <ul
+                    class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+                  >
+                    <li class="dropdown-header text-start"></li>
 
-    <!-- Groups section -->
-<div class="container">
-
-        <div class="row">  
-
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                      <div class="nav-profile d-flex align-items-center "  >
-                    
-                        <span class="fw-bold  ps-4"> Group Aaaaaaa</span> <span>                      
-                          <div class="filter ">
-                          <button class="icon"  data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                            <li class="dropdown-header text-start">
-                           
-                            </li>
-          
-                            <li><button class="dropdown-item " routerLink="/coach/groups/table"><span><i class="fa-regular fa-eye me-3"></i> </span> Insight</button></li>
-                            <li><button class="dropdown-item mb-3" routerLink="/coach/groups/records"><span><i class="fa-regular fa-circle-play me-4"></i> </span>Records</button></li>
-                          </ul>
-                        </div></span>
-                      </div>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-              
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-                  <div class="trainer-profile d-flex align-items-center mb-3">
-                    <span class="pe-4  fw-bold">Members:</span>
-                    
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-
-                  </div>
-              </div>
+                    <li>
+                      <button
+                        class="dropdown-item"
+                        routerLink="/coach/groups/table"
+                      >
+                        <span><i class="fa-regular fa-eye me-3"></i> </span>
+                        Insight
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        class="dropdown-item mb-3"
+                        routerLink="/coach/groups/records"
+                      >
+                        <span
+                          ><i class="fa-regular fa-circle-play me-4"></i> </span
+                        >Records
+                      </button>
+                    </li>
+                  </ul>
+                </div></span
+              >
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                <div class="nav-profile d-flex align-items-center "  >
-                    
-                  <span class="fw-bold  ps-4"> Group Aaaaaaa</span> <span>                      
-                    <div class="filter ">
-                    <button class="icon"  data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                      <li class="dropdown-header text-start">
-                     
-                      </li>
-    
-                      <li><button class="dropdown-item " routerLink="/coach/groups/table"><span><i class="fa-regular fa-eye me-3"></i> </span> Insight</button></li>
-                      <li><button class="dropdown-item mb-3" routerLink="/coach/groups/records"><span><i class="fa-regular fa-circle-play me-4"></i> </span>Records</button></li>
-                    </ul>
-                  </div></span>
+          <div class="card-body my-3 mx-5">
+            <div class="mb-3 align-items-center d-flex">
+              <span class="pe-4 fw-bold">Training:</span>
+              <span class="badge bg-danger">{{
+                group.formation.nomFormation
+              }}</span>
+            </div>
+            <div class="trainer-profile d-flex align-items-center mb-3">
+              <span class="pe-4 fw-bold">Members:</span>
+              <ng-container *ngIf="groups.length > 0; else noMembers">
+                <ng-container
+                  *ngFor="
+                    let studentImage of getStudentImages(group.id);
+                    let i = index
+                  "
+                >
+                  <img
+                    *ngIf="i < 3"
+                    [src]="'assets/Documents/' + studentImage"
+                    width="40px"
+                    height="40px"
+                    class="rounded-circle"
+                  />
+                </ng-container>
+              </ng-container>
+              <ng-template #noMembers>
+                <div class="trainer-profile d-flex align-items-center mb-3">
+                  <span class="pe-4 fw-bold">No members in this group.</span>
                 </div>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-              
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-                  <div class="trainer-profile d-flex align-items-center mb-3">
-                    <span class="pe-4  fw-bold">Members:</span>
-                    
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-
-                  </div>
-              </div>
+              </ng-template>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                <div class="nav-profile d-flex align-items-center "  >
-                    
-                  <span class="fw-bold  ps-4"> Group Aaaaaaa</span> <span>                      
-                    <div class="filter ">
-                    <button class="icon"  data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                      <li class="dropdown-header text-start">
-                     
-                      </li>
-    
-                      <li><button class="dropdown-item " routerLink="/coach/groups/table"><span><i class="fa-regular fa-eye me-3"></i> </span> Insight</button></li>
-                      <li><button class="dropdown-item mb-3" routerLink="/coach/groups/records"><span><i class="fa-regular fa-circle-play me-4"></i> </span>Records</button></li>
-                    </ul>
-                  </div></span>
-                </div>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-              
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-                  <div class="trainer-profile d-flex align-items-center mb-3">
-                    <span class="pe-4  fw-bold">Members:</span>
-                    
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-
-                  </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                <div class="nav-profile d-flex align-items-center "  >
-                    
-                  <span class="fw-bold  ps-4"> Group Aaaaaaa</span> <span>                      
-                    <div class="filter ">
-                    <button class="icon"  data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                      <li class="dropdown-header text-start">
-                     
-                      </li>
-    
-                      <li><button class="dropdown-item " routerLink="/coach/groups/table"><span><i class="fa-regular fa-eye me-3"></i> </span> Insight</button></li>
-                      <li><button class="dropdown-item mb-3" routerLink="/coach/groups/records"><span><i class="fa-regular fa-circle-play me-4"></i> </span>Records</button></li>
-                    </ul>
-                  </div></span>
-                </div>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-            
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-                  <div class="trainer-profile d-flex align-items-center mb-3">
-                    <span class="pe-4  fw-bold">Members:</span>
-                    
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-
-                  </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                <div class="nav-profile d-flex align-items-center "  >
-                    
-                  <span class="fw-bold  ps-4"> Group Aaaaaaa</span> <span>                      
-                    <div class="filter ">
-                    <button class="icon"  data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                      <li class="dropdown-header text-start">
-                     
-                      </li>
-    
-                      <li><button class="dropdown-item " routerLink="/coach/groups/table"><span><i class="fa-regular fa-eye me-3"></i> </span> Insight</button></li>
-                      <li><button class="dropdown-item mb-3" routerLink="/coach/groups/records"><span><i class="fa-regular fa-circle-play me-4"></i> </span>Records</button></li>
-                    </ul>
-                  </div></span>
-                </div>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-              
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-                  <div class="trainer-profile d-flex align-items-center mb-3">
-                    <span class="pe-4  fw-bold">Members:</span>
-                    
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-
-                  </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                <div class="nav-profile d-flex align-items-center "  >
-                    
-                  <span class="fw-bold  ps-4"> Group Aaaaaaa</span> <span>                      
-                    <div class="filter ">
-                    <button class="icon"  data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                      <li class="dropdown-header text-start">
-                     
-                      </li>
-    
-                      <li><button class="dropdown-item " routerLink="/coach/groups/table"><span><i class="fa-regular fa-eye me-3"></i> </span> Insight</button></li>
-                      <li><button class="dropdown-item mb-3" routerLink="/coach/groups/records"><span><i class="fa-regular fa-circle-play me-4"></i> </span>Records</button></li>
-                    </ul>
-                  </div></span>
-                </div>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-              
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-                  <div class="trainer-profile d-flex align-items-center mb-3">
-                    <span class="pe-4  fw-bold">Members:</span>
-                    
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-
-                  </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                <div class="nav-profile d-flex align-items-center "  >
-                    
-                  <span class="fw-bold  ps-4"> Group Aaaaaaa</span> <span>                      
-                    <div class="filter ">
-                    <button class="icon"  data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                      <li class="dropdown-header text-start">
-                     
-                      </li>
-    
-                      <li><button class="dropdown-item " routerLink="/coach/groups/table"><span><i class="fa-regular fa-eye me-3"></i> </span> Insight</button></li>
-                      <li><button class="dropdown-item mb-3" routerLink="/coach/groups/records"><span><i class="fa-regular fa-circle-play me-4"></i> </span>Records</button></li>
-                    </ul>
-                  </div></span>
-                </div>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-               
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-                  <div class="trainer-profile d-flex align-items-center mb-3">
-                    <span class="pe-4  fw-bold">Members:</span>
-                    
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-
-                  </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                <div class="nav-profile d-flex align-items-center "  >
-                    
-                  <span class="fw-bold  ps-4"> Group Aaaaaaa</span> <span>                      
-                    <div class="filter ">
-                    <button class="icon"  data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                      <li class="dropdown-header text-start">
-                     
-                      </li>
-    
-                      <li><button class="dropdown-item " routerLink="/coach/groups/table"><span><i class="fa-regular fa-eye me-3"></i> </span> Insight</button></li>
-                      <li><button class="dropdown-item mb-3" routerLink="/coach/groups/records"><span><i class="fa-regular fa-circle-play me-4"></i> </span>Records</button></li>
-                    </ul>
-                  </div></span>
-                </div>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-              
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-                  <div class="trainer-profile d-flex align-items-center mb-3">
-                    <span class="pe-4  fw-bold">Members:</span>
-                    
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-
-                  </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 ">
-            <div class="card shadow-sm mb-4">
-              <div class="row mt-4 mx-2">
-                
-                <div class="nav-profile d-flex align-items-center "  >
-                    
-                  <span class="fw-bold  ps-4"> Group Aaaaaaa</span> <span>                      
-                    <div class="filter ">
-                    <button class="icon"  data-bs-toggle="dropdown" style="border: none; background-color: #ffffff00;"><i class="bi bi-three-dots-vertical" style="margin-left:150px;"></i></button>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
-                      <li class="dropdown-header text-start">
-                     
-                      </li>
-    
-                      <li><button class="dropdown-item " routerLink="/coach/groups/table"><span><i class="fa-regular fa-eye me-3"></i> </span> Insight</button></li>
-                      <li><button class="dropdown-item mb-3" routerLink="/coach/groups/records"><span><i class="fa-regular fa-circle-play me-4"></i> </span>Records</button></li>
-                    </ul>
-                  </div></span>
-                </div>
-                    
-                    </div>
-              
-              <div class="card-body my-3 mx-5">
-            
-                  <div class="mb-3 align-items-center d-flex">
-                    <span class="pe-4  fw-bold">Training:</span>
-                    <span class="badge bg-danger ">Web developpment</span>
-                  </div>
-                  <div class="trainer-profile d-flex align-items-center mb-3">
-                    <span class="pe-4  fw-bold">Members:</span>
-                    
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-                    <img src="assets/img/profile-img.jpg" width="40px" height="40px" class="rounded-circle">
-
-                  </div>
-              </div>
-            </div>
-          </div>
-
-
-            </div>
-          </div>
-
-
-  
-    <!-- End Groups section -->
-
-
-</main><!-- End #main -->
+  <!-- End Groups section -->
+</main>
+<!-- End #main -->
