@@ -30,6 +30,7 @@ export class CoachChatComponent {
   selectedGroup: Groups | null = null;
   chatMessages: any[] = [];
   userFirstName$!: Observable<string>;
+  userPhoto$!: Observable<string>;
   newMessage: string = '';
   private jwtToken: string;
   unreadCounts: { [groupId: number]: number } = {};
@@ -93,6 +94,9 @@ export class CoachChatComponent {
           senderFirstName$: this.userService
             .getUserById(message.senderId)
             .pipe(map((user: any) => user.firstName)),
+          userPhoto$: this.userService
+            .getUserById(message.senderId)
+            .pipe(map((user: any) => user.image)),
         }));
         setTimeout(() => {
           this.scrollToBottom();
