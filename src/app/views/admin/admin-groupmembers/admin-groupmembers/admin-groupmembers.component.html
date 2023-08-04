@@ -227,7 +227,10 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let student of studentDetails">
+        <tr
+          *ngFor="let student of studentDetails"
+          [ngClass]="{ 'table-warning': student.enabled === 0 }"
+        >
           <td>
             <div class="d-flex align-items-center">
               <img
@@ -240,6 +243,9 @@
                 <p class="fw-bold mb-1">{{ student.firstName }}</p>
                 <p class="text-muted mb-0">{{ student.lastName }}</p>
               </div>
+            </div>
+            <div *ngIf="student.enabled === 0" style="color: red">
+              This student is UNPAID
             </div>
           </td>
           <td>
@@ -256,7 +262,7 @@
               class="btn btn-md"
               (click)="openConfirmationDialog(group.id, student.id)"
             >
-              <i class="fa-regular fa-trash-can" style="color: #ba1d1d"></i>
+              <i class="fa-regular fa-trash-can" style="color: red"></i>
             </button>
           </td>
         </tr>
