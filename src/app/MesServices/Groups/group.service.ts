@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
 import { Groups } from 'src/app/Models/group.model';
 import { environement } from 'src/environement/environement.dev';
 
@@ -8,12 +8,16 @@ import { environement } from 'src/environement/environement.dev';
   providedIn: 'root',
 })
 export class GroupService {
+  private groupDataSubject = new BehaviorSubject<Groups[]>([]);
+  groupData$ = this.groupDataSubject.asObservable();
   constructor(private http: HttpClient) {}
 
   getAllGroups(): Observable<any[]> {
     return this.http.get<any[]>(`${environement.BASE_URL}/groups/all`);
   }
-
+  updateGroupData(groups: Groups[]): void {
+    this.groupDataSubject.next(groups);
+  }
   addGroups(groups: Groups): Observable<Groups> {
     return this.http.post<Groups>(
       `${environement.BASE_URL}/groups/add`,

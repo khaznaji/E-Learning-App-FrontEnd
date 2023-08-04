@@ -42,6 +42,9 @@ export class AdminGroupsComponent implements OnInit {
     this.getAllGroups();
     this.getFormations();
     this.getallCoach();
+    this.groupService.groupData$.subscribe((groups) => {
+      this.allGroups = groups;
+    });
   }
   openGroupMembersDialog(groupId: number) {
     const dialogRef = this.dialog.open(AdminGroupmembersComponent, {
@@ -101,7 +104,9 @@ export class AdminGroupsComponent implements OnInit {
   }
   getAllGroups(): void {
     this.groupService.getAllGroups().subscribe((groups) => {
+      this.groupService.updateGroupData(groups);
       this.allGroups = groups;
+
       console.log('groups', this.allGroups);
     });
   }

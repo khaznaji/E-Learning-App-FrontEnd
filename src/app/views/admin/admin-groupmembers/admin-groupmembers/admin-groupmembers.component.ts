@@ -171,6 +171,10 @@ export class AdminGroupmembersComponent {
             verticalPosition: 'bottom',
           });
           group.etudiants?.push({ id: userId });
+          this.fetchGroupMembers();
+          this.groupService.getAllGroups().subscribe((groups) => {
+            this.groupService.updateGroupData(groups);
+          });
         } else {
         }
       },
@@ -185,6 +189,9 @@ export class AdminGroupmembersComponent {
       (response: any) => {
         console.log('User removed from group successfully');
         this.fetchGroupMembers();
+        this.groupService.getAllGroups().subscribe((groups) => {
+          this.groupService.updateGroupData(groups);
+        });
       },
       (error) => {
         console.error('Error removing user from group:', error.error);
