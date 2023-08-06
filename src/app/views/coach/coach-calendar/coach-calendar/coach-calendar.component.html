@@ -103,6 +103,12 @@
                     {{ session.description }}
                   </p>
                 </div>
+                <div class="row mt-2 text-center">
+                <p>Groups for this session:</p>
+                <ul style="list-style-type: none;">
+                  <strong><li *ngFor="let group of sessionGroups">{{ group.groupName }}</li></strong>
+                </ul>
+              </div>
                 <div class="row mt-2 text-center d-flex justify-content-center">
                   <hr class="w-75 mt-4" />
                 </div>
@@ -195,6 +201,12 @@
               <p class="text-dark d-flex justify-content-center">
                 {{ session.description }}
               </p>
+            </div>
+            <div class="row mt-2 text-center">
+              <p>Groups for this session:</p>
+              <ul style="list-style-type: none;">
+                <strong><li *ngFor="let group of sessionGroups">{{ group.groupName }}</li></strong>
+              </ul>
             </div>
             <div class="row mt-2 text-center d-flex justify-content-center">
               <hr class="w-75 mt-4" />
