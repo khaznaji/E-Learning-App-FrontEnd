@@ -16,6 +16,9 @@
       
     }
   }
+  .initials-space {
+    margin-left: 1px;
+  }
   a {
     color: #01130b;
     text-decoration: none;
