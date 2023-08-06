@@ -10,7 +10,9 @@
 .linkable-text:hover {
   color: #af3065; /* Color when hovering over the name */
 }
-
+.initials-space {
+  margin-left: 1px;
+}
 /* Sidebar */
 .sidebar {
   position: fixed;

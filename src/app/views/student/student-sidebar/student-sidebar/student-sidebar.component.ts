@@ -27,6 +27,11 @@ export class StudentSidebarComponent implements OnInit {
       console.log(this.data);
       this.username = this.data.firstName + ' ' + this.data.lastName;
       this.photo = this.data.image;
+      if (this.data.image === "imagePath") {
+        this.photo = null; 
+      } else {
+        this.photo = this.data.image; 
+      }
     });
   }
   logout() {

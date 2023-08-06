@@ -8,22 +8,19 @@
       </a>
       <div class="mt-4 border-bottom border-top py-3" *ngIf="data">
         <div class="nav-profile d-flex align-items-center ms-4 pe-0">
-          <img
-            src="assets/Documents/{{ photo }}"
-            alt="Profile"
-            width="50px"
-            height="50px"
-            class="rounded-circle"
-          />
-          <a
-            [routerLink]="['/student/profile']"
-            class="ps-2 fw-bold black-text linkable-text"
-            >Welcome Back <br />{{ username }}</a
-          >
-          <a class="ps-4" routerLink="profile/Edit"
-            ><i class="btn bi bi-gear"></i
-          ></a>
-        </div>
+          <!-- Display user profile image or default initials -->
+          <img *ngIf="photo !== null" src="assets/Documents/{{ photo }}" alt="Profile" width="50px" height="50px" class="rounded-circle" />
+          <div *ngIf="photo === null" class="profile-initials rounded-circle d-flex align-items-center justify-content-center text-uppercase" style="width: 50px; height: 50px; background-color: #f0f0f0; color: #333;">
+            <strong>{{ username.charAt(0) }}<span class="initials-space">{{ username.split(' ')[1].charAt(0) }}</span></strong>
+
+          </div>
+          <a [routerLink]="['/student/profile']" class="ps-2 fw-bold black-text linkable-text">
+            Welcome Back <br />{{ username }}
+          </a>
+          <a class="ps-4" routerLink="profile/Edit">
+            <i class="btn bi bi-gear"></i>
+          </a>
+        </div>        
 
         <!-- End Profile Iamge Icon -->
       </div>
