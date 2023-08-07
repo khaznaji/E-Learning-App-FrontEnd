@@ -21,6 +21,10 @@
     text-decoration: none;
   
   }
+  .expired {
+    color: grey; 
+    opacity: 0.5; 
+  }
   
   a:hover {
     color: #AF3065;

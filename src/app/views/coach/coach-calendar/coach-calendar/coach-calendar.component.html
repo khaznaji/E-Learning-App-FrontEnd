@@ -27,6 +27,7 @@
                     [href]="'#tab-' + session.id"
                     (click)="selectSession(session)"
                     [class.active]="selectedSession === session"
+                    [class.expired]="isSessionExpired(session)"
                   >
                     <div class="row">
                       <div
@@ -112,9 +113,9 @@
                 <div class="row mt-2 text-center d-flex justify-content-center">
                   <hr class="w-75 mt-4" />
                 </div>
-                <div class="row mt-2">
-                  <p class="fw-bold text-dark fs-5 ms-3">
-                    <span class="me-3">
+                <div class="row mt-2 text-center justify-content-center">
+                  <p class="fw-bold text-dark fs-5">
+                    <span class="me-0">
                       <img
                         src="assets/img/calendar-empty.png"
                         alt="Profile"
@@ -125,9 +126,9 @@
                     {{ session.startDate | date : "EEE, dd MMMM yyyy" }}
                   </p>
                 </div>
-                <div class="row mt-2">
-                  <p class="fw-bold text-dark fs-5 ms-3">
-                    <span class="me-3">
+                <div class="row mt-2 text-center justify-content-center">
+                  <p class="fw-bold text-dark fs-5  ">
+                    <span class="me-2">
                       <img
                         src="assets/img/clock.png"
                         alt="Profile"
@@ -139,9 +140,9 @@
                     {{ session.finishDate | date : "HH:mm" }}
                   </p>
                 </div>
-                <div class="row mt-2">
-                  <p class="fw-bold text-dark fs-5 ms-3">
-                    <span class="me-3">
+                <div class="row mt-2 text-center justify-content-center">
+                  <p class="fw-bold text-dark fs-5 ">
+                    <span class="me-2">
                       <img
                         src="assets/img/alarm.png"
                         alt="Profile"
@@ -157,12 +158,14 @@
                 </div>
                 <div class="row text-center">
                   <div class="col-12 d-flex justify-content-center">
-                    <button
-                      class="button p-3 text-white fw-bold mx-4 mt-4 mb-4 fs-6"
-                      href="#"
-                    >
-                      Join class
-                    </button>
+                    <ng-container *ngIf="isSessionExpired(session)">                   
+                      <span style="cursor: not-allowed" class="badge bg-danger p-3 fw-bold mx-4 mt-4 mb-4 fs-6">Expired</span>                  
+                   </ng-container>
+                   <ng-container *ngIf="!isSessionExpired(session)">
+                     <button class="button p-3 text-white fw-bold mx-4 mt-4 mb-4 fs-6" href="#">
+                       Join class
+                     </button>
+                   </ng-container>
                   </div>
                 </div>
               </div>
@@ -211,8 +214,8 @@
             <div class="row mt-2 text-center d-flex justify-content-center">
               <hr class="w-75 mt-4" />
             </div>
-            <div class="row mt-2">
-              <p class="fw-bold text-dark fs-5 ms-5">
+            <div class="row mt-2 text-center justify-content-center">
+              <p class="fw-bold text-dark fs-5">
                 <span class="me-3">
                   <img
                     src="assets/img/calendar-empty.png"
@@ -224,8 +227,8 @@
                 {{ session.startDate | date : "dd MMMM yyyy" }}
               </p>
             </div>
-            <div class="row mt-2">
-              <p class="fw-bold text-dark fs-5 ms-5">
+            <div class="row mt-2 text-center justify-content-center">
+              <p class="fw-bold text-dark fs-5 ">
                 <span class="me-3">
                   <img
                     src="assets/img/clock.png"
@@ -238,8 +241,8 @@
                 {{ session.finishDate | date : "HH:mm" }}
               </p>
             </div>
-            <div class="row mt-2">
-              <p class="fw-bold text-dark fs-5 ms-5">
+            <div class="row mt-2 text-center justify-content-center">
+              <p class="fw-bold text-dark fs-5 ">
                 <span class="me-3">
                   <img
                     src="assets/img/alarm.png"
@@ -256,12 +259,14 @@
             </div>
             <div class="row text-center">
               <div class="col-12 d-flex justify-content-center">
-                <button
-                  class="button p-3 text-white fw-bold mx-4 mt-4 mb-4 fs-6"
-                  href="#"
-                >
-                  Join class
-                </button>
+                <ng-container *ngIf="isSessionExpired(session)">                   
+                  <span class="badge bg-danger p-3 fw-bold mx-4 mt-4 mb-4 fs-6">Expired</span>                  
+               </ng-container>
+               <ng-container *ngIf="!isSessionExpired(session)">
+                 <button class="button p-3 text-white fw-bold mx-4 mt-4 mb-4 fs-6" href="#">
+                   Join class
+                 </button>
+               </ng-container>
               </div>
             </div>
           </div>

@@ -31,7 +31,6 @@ export class CoachCalendarComponent {
       if (!isNaN(sessionId) && sessionId > 0) {
         this.selectSessionById(sessionId);
       } else {
-        // If no valid sessionId in queryParams, select the first session
         if (this.sessions.length > 0) {
           this.selectSession(this.sessions[0]);
         }
@@ -40,28 +39,41 @@ export class CoachCalendarComponent {
   }
 
   retrieveSessions(): void {
-    const formateurId = this.userAuthService.getId(); // Assuming getId() returns the formateurId
+    const formateurId = this.userAuthService.getId();
     this.sessionService.getSessionsByFormateurId(formateurId).subscribe(
       (sessions: Session[]) => {
-        this.sessions = sessions;
+        const currentDate = new Date();
+        const nonExpiredSessions = sessions.filter(session => !this.isSessionExpired(session));
+        const expiredSessions = sessions.filter(session => this.isSessionExpired(session));
+        this.sessions = nonExpiredSessions.sort((a, b) => {
+          const startDateA = new Date(a.startDate);
+          const startDateB = new Date(b.startDate);
+          return startDateA.getTime() - startDateB.getTime();
+        });
+        this.sessions.push(...expiredSessions);
+  
         if (this.selectedSession && this.selectedSession.id !== undefined) {
           this.getGroupsForSession(this.selectedSession.id);
-        } else if (sessions.length > 0) {
-          this.selectedSession = sessions[0];
+        } else if (this.sessions.length > 0) {
+          this.selectedSession = this.sessions[0];
           if (this.selectedSession.id !== undefined) {
             this.getGroupsForSession(this.selectedSession.id);
           }
         } else {
           this.sessionGroups = [];
-        }
-        console.log('Sessions:', sessions);
+        }     
       },
       (error) => {
         console.log('Error retrieving sessions:', error);
       }
     );
   }
+  isSessionExpired(session: Session): boolean {
+    const currentDate = new Date();
+    const sessionEndDate = new Date(session.finishDate); 
   
+    return sessionEndDate < currentDate;
+  }
 
   selectSession(session: Session) {
     this.selectedSession = session;
@@ -92,7 +104,6 @@ export class CoachCalendarComponent {
     this.groupService.getGroupsBySessionId(sessionId).subscribe(
       (groups: Groups[]) => {
         this.sessionGroups = groups;
-        console.log('Groups for session:', groups);
       },
       (error) => {
         console.log('Error retrieving groups:', error);

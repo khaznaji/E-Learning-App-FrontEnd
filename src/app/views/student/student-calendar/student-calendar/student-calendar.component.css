@@ -16,6 +16,11 @@
       
     }
   }
+  
+  .expired {
+    color: grey; 
+    opacity: 0.5; 
+  }
   a {
     color: #01130b;
     text-decoration: none;
@@ -38,6 +43,7 @@
   h6 {
     font-family: "Nunito", sans-serif;
   }
+  
   
   /*--------------------------------------------------------------
   # Main
