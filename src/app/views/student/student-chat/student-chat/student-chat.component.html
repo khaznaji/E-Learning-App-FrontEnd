@@ -77,7 +77,7 @@
                         <div
                           *ngIf="
                             message.userPhoto$ | async as userPhoto;
-                            else noPhoto
+                           
                           "
                         >
                           <img
@@ -87,14 +87,14 @@
                             width="60"
                           />
                         </div>
-                        <ng-template #noPhoto>
+                        <!--<ng-template #noPhoto>
                           <img
                             src="path-to-default-photo"
                             alt="Default User Photo"
                             width="50"
                             height="50"
                           />
-                        </ng-template>
+                        </ng-template>-->
                         <div
                           class="card"
                           style="
@@ -163,7 +163,7 @@
                         <div
                           *ngIf="
                             message.userPhoto$ | async as userPhoto;
-                            else noPhoto
+                           
                           "
                         >
                           <img
@@ -173,14 +173,14 @@
                             width="60"
                           />
                         </div>
-                        <ng-template #noPhoto>
+                        <!--<ng-template #noPhoto>
                           <img
                             src="path-to-default-photo"
                             alt="Default User Photo"
                             width="50"
                             height="50"
                           />
-                        </ng-template>
+                        </ng-template>-->
                       </div>
                     </li>
                   </ul>
