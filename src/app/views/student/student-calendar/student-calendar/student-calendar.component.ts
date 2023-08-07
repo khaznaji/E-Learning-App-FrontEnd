@@ -13,7 +13,7 @@ import { Groups } from 'src/app/Models/group.model';
 })
 export class StudentCalendarComponent {
  
-  sessions!: Session[];
+  sessions: Session[] = [];
   selectedSession!: Session;
   sessionGroups: Groups[] = [];
 
