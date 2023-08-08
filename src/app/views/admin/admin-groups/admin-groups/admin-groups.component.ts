@@ -62,8 +62,11 @@ export class AdminGroupsComponent implements OnInit {
   getallCoach() {
     this.sr.getAllUsers().subscribe((res) => {
       this.taballusers = res;
-      this.tabCoach = this.taballusers.filter((user: { roles: any[] }) => {
-        return user.roles.some((role) => role.name === 'FORMATEUR');
+      this.tabCoach = this.taballusers.filter((user: { roles: any[]; enabled: number }) => {
+        return (
+          user.roles.some((role) => role.name === 'FORMATEUR')&&
+          user.enabled === 1
+          );
       });
       console.log(this.tabCoach);
     });
