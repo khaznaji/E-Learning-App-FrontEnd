@@ -105,4 +105,15 @@ updateEnabeld(enabled:any,id:any){
 updateUser(formData:any){
   return this.http.put(`${environement.BASE_URL}/user/updateUser`,formData);
 }
+
+addNoteToUser(userId:any,note:any){
+  return this.http.post(`${environement.BASE_URL}/user/${userId}/notes`,note);
+}
+
+
+getUserNotes(userId:any){
+  return this.http.get(`${environement.BASE_URL}/user/${userId}/notes`);
+}
+
+
 }

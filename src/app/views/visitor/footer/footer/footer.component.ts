@@ -51,6 +51,7 @@ AddCoachForm() {
 
 
 
+
   this.isLoading = true;
   this.uploadInProgress = true;
 
@@ -156,6 +157,7 @@ this.AddCoach = this.formBuilder.group({
   fLastName: ['',[ Validators.required]],
   fPhoneNumber: ['', [Validators.required, ]],
   fabout: ['', [Validators.required]],
+
   CV: ['',[Validators.required]],
   fGithub: ['',[Validators.required]],
   fLinkedin: ['',[Validators.required]],

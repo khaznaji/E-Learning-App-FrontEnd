@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { CategorieService } from 'src/app/MesServices/Categorie/categorie.service';
+import { categorie } from 'src/app/Models/categorie';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,7 +13,59 @@ export class CategorieComponent implements OnInit {
   tabCategorie:any=[]
   Categorie =""
 
-  constructor(private cs: CategorieService) { }
+  selectedCategory: categorie = new categorie();
+  updateFormVisible = false;
+  constructor(private cs: CategorieService , public dialog: MatDialog) { }
+
+  showUpdateForm(category: categorie) {
+    // Set the selected category for update
+    this.selectedCategory = { ...category };
+
+    // Show SweetAlert2 popup with the update form
+    Swal.fire({
+      title: 'Update Category',
+      html: `
+        <input id="swal-input1" class="swal2-input" value="${this.selectedCategory.nomCate}" />
+        <!-- Add other form fields as needed -->
+      `,
+      focusConfirm: false,
+      preConfirm: () => {
+        // Retrieve the updated values from the form
+        const name = (<HTMLInputElement>document.getElementById('swal-input1')).value.trim();
+        // Update the selectedCategory object with the new values
+        this.selectedCategory.nomCate = name;
+
+        // Call your update method here or subscribe to the service to handle the update
+        // For example:
+        this.updateCategory();
+
+        // Close the SweetAlert2 popup
+        return true;
+      },
+    });
+  }
+
+  
+
+
+  updateCategory() {
+    this.cs.updateCategorie(this.selectedCategory.id, this.selectedCategory).subscribe(
+      (response) => {
+        Swal.fire('Updated!', 'Category updated successfully.', 'success');
+        this.getAllCategorie(); // Update the Page after successful update
+        this.updateFormVisible = false; // Hide the update form after successful update
+      },
+      (error) => {
+        console.error('Failed to update category!', error);
+        // Handle error scenarios
+      }
+    );
+  }
+
+
+
+
+
 
   deleteCategrie(id: any) {
     Swal.fire({
@@ -38,40 +92,11 @@ export class CategorieComponent implements OnInit {
 
     })
   }
-  async updateCategory(category: any) {
-    const newName = await Swal.fire({
-      title: 'Update Category',
-      input: 'text',
-      inputValue: category.name,
-      showCancelButton: true,
-      confirmButtonText: 'Update',
-      preConfirm: (name) => {
-        if (!name || name.trim() === '') {
-          Swal.showValidationMessage('Please enter a valid category name.');
-        } else {
-          return name.trim();
-        }
-      },
-    });
 
-    if (newName.isConfirmed) {
-      try {
-        const updatedCategory = await this.cs.updateCategorie(category.id, { name: newName.value }).toPromise();
-        Swal.fire({
-          icon: 'success',
-          title: 'Category Updated!',
-          text: 'The category has been successfully updated.',
-        });
-        this.getAllCategorie(); // Refresh the categories list after the update
-      } catch (error) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Update Failed!',
-          text: `Failed to update the category: ${error}`,
-        });
-      }
-    }
-  }
+
+
+
+
 
   ngOnInit(): void {
     this.getAllCategorie()

@@ -5,6 +5,7 @@ import { StudentLayoutComponent } from './layouts/student-layout/student-layout.
 import { CoachLayoutComponent } from './layouts/coach-layout/coach-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { NotFoundComponent } from './views/not-found/not-found/not-found/not-found.component';
+import { MeetComponent } from './views/student/meet/meet.component';
 
 const routes: Routes = [
   {
@@ -135,6 +136,7 @@ const routes: Routes = [
             (m) => m.FeedbackModule
           ),
       },
+      
     ],
   },
   {

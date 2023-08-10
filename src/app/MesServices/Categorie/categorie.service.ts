@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { categorie } from 'src/app/Models/categorie';
 import { environement } from 'src/environement/environement.dev';
 
 @Injectable({
@@ -26,9 +27,9 @@ searchCategorieByNomCate(nomCate: string) {
   return this.http.get(`${environement.BASE_URL}/categorie/categories/search/${nomCate}`);
 }
 //update categorie
-updateCategorie(id: any, categorie: any) {
-  return this.http.put(`${environement.BASE_URL}/categorie/updateCategories/${id}`, categorie);
-}
 
+updateCategorie(id: any, updatedCategorie: categorie) {
+  return this.http.put(`${environement.BASE_URL}/categorie/updateCategories/${id}`, updatedCategorie);
+}
 
 }

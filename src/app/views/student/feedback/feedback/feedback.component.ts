@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FeedbackService } from 'src/app/MesServices/Feedback/feedback.service';
 import { FormationsService } from 'src/app/MesServices/Formations/formations.service';
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
@@ -15,6 +16,7 @@ export class FeedbackComponent implements OnInit {
   feedbackData: any[] = [];
   Allformation: any = [];
   selectedRating: number = 0;
+  showSuccessModal: boolean = false;
 
   successMessage: string = '';
   errorMessage: string = '';
@@ -22,7 +24,7 @@ formation: any;
 UserConnected: any=[];
 comment: any;
 idUser!:any;
-  constructor(private FormationsService:FormationsService,private fb:FeedbackService, private User:UserService,private AuthSer:UserAuthService ) {
+  constructor(private FormationsService:FormationsService,private fb:FeedbackService, private User:UserService,private AuthSer:UserAuthService ,  private   router : Router ) {
     this.idUser = this.AuthSer.getId()
   }
   setRating(rating: number) {
@@ -51,6 +53,11 @@ idUser!:any;
             icon: 'success',
             title: 'Success!',
             text: 'Your feedback added successfully.'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Call the handleOKClick function to navigate to '/admin/trainings'
+              this.handleOKClick();
+            }
           });
 
           console.log(data);
@@ -80,7 +87,10 @@ idUser!:any;
       });
     }
   }
-
+  handleOKClick() {
+    this.showSuccessModal = false;
+    this.router.navigate(['/student']);
+  }
 
 
 
