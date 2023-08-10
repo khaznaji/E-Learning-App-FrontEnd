@@ -153,6 +153,7 @@
                           autofocus="true"
                           class="form__field"
                         >
+                        <option value="" [selected]="true" disabled>Select a formation</option>
                           <option
                             *ngFor="let formation of formations"
                             [value]="formation.id"
@@ -185,6 +186,7 @@
                           autofocus="true"
                           class="form__field"
                         >
+                        <option value="" [selected]="true" disabled>Select a coach</option>
                           <option
                             *ngFor="let coach of tabCoach"
                             [value]="coach.id"

@@ -373,6 +373,9 @@ export class AdminSessionformComponent implements OnInit {
     this.confirmationDialogRef?.close(true);
   }
   openSessionDialog() {
+    if (this.formations.length > 0) {
+      this.selectedTraining = this.formations[0].id;
+    }
     if (this.selectedDay !== null) {
       const selectedDate = new Date(
         this.currentYear,
