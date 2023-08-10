@@ -46,7 +46,7 @@ export class GroupService {
 
   deleteGroups(id: number): Observable<void> {
     return this.http.delete<void>(
-      `${environement.BASE_URL}/api/Groups/deleteGroups/${id}`
+      `${environement.BASE_URL}/groups/${id}`
     );
   }
   getGroupsByFormation(trainingId: number): Observable<any[]> {

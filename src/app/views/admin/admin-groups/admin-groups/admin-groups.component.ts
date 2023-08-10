@@ -7,6 +7,7 @@ import { Groups } from 'src/app/Models/group.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdminGroupmembersComponent } from '../../admin-groupmembers/admin-groupmembers/admin-groupmembers.component';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-groups',
@@ -104,6 +105,33 @@ export class AdminGroupsComponent implements OnInit {
         }
       );
     }
+  }
+  confirmDeleteGroup(groupId: number): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to delete this group.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteGroup(groupId);
+      }
+    });
+  }
+  deleteGroup(groupId: number): void {
+    this.groupService.deleteGroups(groupId).subscribe(
+      () => {
+        this.getAllGroups();
+        Swal.fire('Deleted!', 'The group has been deleted.', 'success');
+      },
+      (error) => {
+        console.error('Error deleting group:', error);
+        Swal.fire('Error', 'An error occurred while deleting the group.', 'error');
+      }
+    );
   }
   getAllGroups(): void {
     this.groupService.getAllGroups().subscribe((groups) => {
