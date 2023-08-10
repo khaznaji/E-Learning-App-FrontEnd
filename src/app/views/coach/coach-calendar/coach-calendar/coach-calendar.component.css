@@ -16,9 +16,9 @@
       
     }
   }
-  /* Apply styles to the scroll bar 
+  /*
 ::-webkit-scrollbar {
-  width: 5px; 
+  width: 4px; 
 }
 ::-webkit-scrollbar-track {
   background: #f1f1f1; 
