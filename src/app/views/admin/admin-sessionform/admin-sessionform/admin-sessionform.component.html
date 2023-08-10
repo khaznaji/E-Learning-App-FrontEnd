@@ -11,9 +11,9 @@
     </nav>
   </div>
   <div class="container">
-    <div class="details">
-      <button class="btn btn-primary add-button" (click)="openSessionDialog()">
-        <i class="bi bi-plus"></i> Add Session
+    <div class="details"  style="overflow-x:auto">
+      <button class="btn btn-primary add-button" (click)="openSessionDialog()" >
+        <span><i class="bi bi-plus"></i> Add Session</span>
       </button>
       <p *ngIf="selectedDay" class="date-selected">
         {{ selectedDay }} {{ currentMonth }}
