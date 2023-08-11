@@ -51,16 +51,14 @@ export class StudentChatComponent {
                 this.groups.sort((a, b) => {
                   const dateA = a.lastMessage?.timestamp ? new Date(a.lastMessage.timestamp) : new Date(0);
                   const dateB = b.lastMessage?.timestamp ? new Date(b.lastMessage.timestamp) : new Date(0);
-                
-                  // Check if the parsed dates are valid before comparing
                   if (!isNaN(dateA.getTime()) && !isNaN(dateB.getTime())) {
                     return dateB.getTime() - dateA.getTime();
                   } else if (!isNaN(dateA.getTime())) {
-                    return -1; // dateB is invalid, so a should come before b
+                    return -1; 
                   } else if (!isNaN(dateB.getTime())) {
-                    return 1; // dateA is invalid, so b should come before a
+                    return 1; 
                   } else {
-                    return 0; // Both dates are invalid, keep their order unchanged
+                    return 0; 
                   }
                 });
             });
