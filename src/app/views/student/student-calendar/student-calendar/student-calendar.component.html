@@ -19,6 +19,14 @@
               </nav>
             </div>
             <!-- End Page Title -->
+            <div class="d-flex justify-content-end mb-3">
+              <label for="filterSelect" class="me-2">Filter:</label>
+              <select id="filterSelect" class="form-select form-select-sm w-25" [(ngModel)]="selectedFilter" (ngModelChange)="retrieveSessions()">
+                <option value="all">All Sessions</option>
+                <option value="upcoming">Upcoming Sessions</option>
+                <option value="expired">Expired Sessions</option>
+              </select>
+            </div>
             <div style="height: 80vh" class="overflow-auto">
               <ul class="nav nav-tabs flex-column">
                 <li class="nav-item" *ngFor="let session of sessions">
@@ -155,7 +163,6 @@
                       [hidden]="isButtonDisabled" [routerLink]="['/student/calendar/meeting/', session.generatedLink]">
                       Join class
                     </button>
-
                     <p style="color:red" *ngIf="isButtonDisabled">
                       {{msj}}
                     </p>

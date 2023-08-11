@@ -22,6 +22,7 @@ export class StudentCalendarComponent {
   durationInMinutes!: any
   databaseDate!: Date;
   msj!: any
+  selectedFilter: string = 'all';
 
   constructor(
     private sessionService: SessionService,
@@ -44,13 +45,24 @@ export class StudentCalendarComponent {
       }
     });
   }
-
+  applySessionFilter(sessions: Session[], selectedFilter: string): Session[] {
+    switch (selectedFilter) {
+      case 'upcoming':
+        return sessions.filter(session => !this.isSessionExpired(session));
+      case 'expired':
+        return sessions.filter(session => this.isSessionExpired(session));
+      default:
+        return sessions;
+    }
+  }
   retrieveSessions(): void {
+    
     this.currentDate = new Date();
 
     const userId = this.userAuthService.getId();
     this.sessionService.getSessionsByUserId(userId).subscribe(
       (sessions: Session[]) => {
+        sessions = this.applySessionFilter(sessions, this.selectedFilter);
         this.sessions = sessions;
 
         // Find the first session that hasn't started yet
