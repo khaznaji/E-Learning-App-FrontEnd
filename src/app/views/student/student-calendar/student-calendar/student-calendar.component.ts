@@ -51,6 +51,19 @@ export class StudentCalendarComponent {
     const userId = this.userAuthService.getId();
     this.sessionService.getSessionsByUserId(userId).subscribe(
       (sessions: Session[]) => {
+        this.sessions = sessions;
+
+        // Find the first session that hasn't started yet
+        const notStartedSession = sessions.find(session => new Date(session.startDate).getTime() > this.currentDate.getTime());
+
+        // If a notStartedSession is found, use it as the selectedSession
+        if (notStartedSession) {
+          this.selectSession(notStartedSession);
+        } else {
+          // If no session is found with a start time in the future, use the first session in the array as selectedSession
+          this.selectedSession = sessions[0];
+          this.updateButtonStatus();
+        }
         const currentDate = new Date();
         const nonExpiredSessions = sessions.filter(session => !this.isSessionExpired(session));
         const expiredSessions = sessions.filter(session => this.isSessionExpired(session));
@@ -72,19 +85,7 @@ export class StudentCalendarComponent {
           this.sessionGroups = [];
         }
         console.log('Sessions:', this.sessions);
-        this.sessions = sessions;
-
-        // Find the first session that hasn't started yet
-        const notStartedSession = sessions.find(session => new Date(session.startDate).getTime() > this.currentDate.getTime());
-
-        // If a notStartedSession is found, use it as the selectedSession
-        if (notStartedSession) {
-          this.selectSession(notStartedSession);
-        } else {
-          // If no session is found with a start time in the future, use the first session in the array as selectedSession
-          this.selectedSession = sessions[0];
-          this.updateButtonStatus();
-        }
+       
 
         console.log('Sessions:', sessions);
       },
