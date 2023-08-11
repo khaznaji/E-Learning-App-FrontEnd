@@ -12,9 +12,15 @@ import { Groups } from 'src/app/Models/group.model';
   styleUrls: ['./coach-calendar.component.css'],
 })
 export class CoachCalendarComponent {
-  sessions: Session[] = [];
+  sessions: any[] = [];
   selectedSession!: Session;
   sessionGroups: Groups[] = [];
+  isButtonDisabled!: boolean;
+  currentDate!: Date;
+  durationInMinutes!: any
+  databaseDate!: Date;
+  msj!: any
+  selectedFilter: string = 'all';
 
   constructor(
     private sessionService: SessionService,
@@ -37,11 +43,34 @@ export class CoachCalendarComponent {
       }
     });
   }
-
+  applySessionFilter(sessions: Session[], selectedFilter: string): Session[] {
+    switch (selectedFilter) {
+      case 'upcoming':
+        return sessions.filter(session => !this.isSessionExpired(session));
+      case 'expired':
+        return sessions.filter(session => this.isSessionExpired(session));
+      default:
+        return sessions;
+    }
+  }
   retrieveSessions(): void {
+    this.currentDate = new Date();
     const formateurId = this.userAuthService.getId();
     this.sessionService.getSessionsByFormateurId(formateurId).subscribe(
       (sessions: Session[]) => {
+        sessions = this.applySessionFilter(sessions, this.selectedFilter);
+        this.sessions = sessions;
+        // Find the first session that hasn't started yet
+        const notStartedSession = sessions.find(session => new Date(session.startDate).getTime() > this.currentDate.getTime());
+
+        // If a notStartedSession is found, use it as the selectedSession
+        if (notStartedSession) {
+          this.selectSession(notStartedSession);
+        } else {
+          // If no session is found with a start time in the future, use the first session in the array as selectedSession
+          this.selectedSession = sessions[0];
+          this.updateButtonStatus();
+        }
         const currentDate = new Date();
         const nonExpiredSessions = sessions.filter(session => !this.isSessionExpired(session));
         const expiredSessions = sessions.filter(session => this.isSessionExpired(session));
@@ -74,14 +103,27 @@ export class CoachCalendarComponent {
   
     return sessionEndDate < currentDate;
   }
+  private updateButtonStatus(): void {
+    const currentTime = new Date().getTime();
+    const databaseTime = this.databaseDate.getTime();
+    const durationInMillis = this.durationInMinutes * 60 * 1000;
+    this.msj = "You can't join this session now"
+    console.log(this.msj)
+    this.isButtonDisabled = currentTime <= databaseTime || currentTime >= databaseTime + durationInMillis;
+
+console.log(this.isButtonDisabled)
+  }
 
   selectSession(session: Session) {
+    this.databaseDate = new Date(session.startDate);
+    this.durationInMinutes = this.calculateDuration(session);
     this.selectedSession = session;
     if (session?.id) {
       this.getGroupsForSession(session.id);
     } else {
       this.sessionGroups = []; 
     }
+    this.updateButtonStatus();
   }
   selectSessionById(sessionId: number | undefined) {
     if (sessionId === undefined) {

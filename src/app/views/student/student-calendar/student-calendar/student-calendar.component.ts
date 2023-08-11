@@ -96,10 +96,6 @@ export class StudentCalendarComponent {
         } else {
           this.sessionGroups = [];
         }
-        console.log('Sessions:', this.sessions);
-       
-
-        console.log('Sessions:', sessions);
       },
       (error) => {
         console.log('Error retrieving sessions:', error);
