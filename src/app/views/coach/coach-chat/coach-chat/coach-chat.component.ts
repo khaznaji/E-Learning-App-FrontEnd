@@ -12,20 +12,6 @@ import { Groups } from 'src/app/Models/group.model';
   styleUrls: ['./coach-chat.component.css'],
 })
 export class CoachChatComponent {
-  /*  groups: Groups[] = [];
-
-  constructor(
-    private groupsService: GroupService,
-    private userAuthService: UserAuthService
-  ) {}
-  ngOnInit() {
-    const formateurid = this.userAuthService.getId();
-    this.groupsService
-      .getGroupsByFormateurId(formateurid)
-      .subscribe((groups) => {
-        this.groups = groups;
-      });
-  }*/
   groups: Groups[] = [];
   selectedGroup: Groups | null = null;
   chatMessages: any[] = [];
@@ -65,6 +51,19 @@ export class CoachChatComponent {
                   .subscribe((unreadCount) => {
                     group.unreadCount = unreadCount;
                     this.unreadCounts[group.id] = unreadCount;
+                  });
+                  this.groups.sort((a, b) => {
+                    const dateA = a.lastMessage?.timestamp ? new Date(a.lastMessage.timestamp) : new Date(0);
+                    const dateB = b.lastMessage?.timestamp ? new Date(b.lastMessage.timestamp) : new Date(0);
+                    if (!isNaN(dateA.getTime()) && !isNaN(dateB.getTime())) {
+                      return dateB.getTime() - dateA.getTime();
+                    } else if (!isNaN(dateA.getTime())) {
+                      return -1; 
+                    } else if (!isNaN(dateB.getTime())) {
+                      return 1;
+                    } else {
+                      return 0;
+                    }
                   });
               });
           });
