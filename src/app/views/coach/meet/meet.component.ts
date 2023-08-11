@@ -10,7 +10,7 @@ declare var JitsiMeetExternalAPI: any;
   styleUrls: ['./meet.component.css']
 })
 export class MeetComponent implements OnInit, AfterViewInit {
-  domain: string = "meet.jit.si"; // For self hosted use your domain
+  domain: string = "jitsi1.geeksec.de"; // For self hosted use your domain
   room: any;
   options: any;
   api: any;
@@ -82,7 +82,7 @@ executeCommand(command: string) {
   ngOnInit(): void {
       this.room = 'bwb-bfqi-vmh'; // Set your room name
       this.user = {
-          name: 'Akash Verma' // Set your username
+          name: 'Akffash Verma' // Set your username
       }
   }
 

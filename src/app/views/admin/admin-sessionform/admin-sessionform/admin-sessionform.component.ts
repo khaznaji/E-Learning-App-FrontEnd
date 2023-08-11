@@ -235,7 +235,7 @@ export class AdminSessionformComponent implements OnInit {
   createSession() {
     if (this.selectedDay) {
       const currentDate = new Date();
-      currentDate.setHours(currentDate.getHours() + 1);
+      currentDate.setHours(currentDate.getHours());
       const sessionTimeParts = this.sessionTime.split(':');
       const sessionHour = parseInt(sessionTimeParts[0], 10);
       const sessionMinute = parseInt(sessionTimeParts[1], 10);
@@ -247,7 +247,7 @@ export class AdminSessionformComponent implements OnInit {
         sessionMinute
       );
 
-      if (selectedDate > currentDate) {
+      if (selectedDate >= currentDate) {
         const groupIdselected: number[] = this.selectedGroups.map((group) =>
           Number(group.id)
         );

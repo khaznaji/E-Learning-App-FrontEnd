@@ -4,8 +4,7 @@ import { CoachCalendarComponent } from './coach-calendar/coach-calendar.componen
 import { MeetComponent } from '../meet/meet.component';
 
 const routes: Routes = [
-  {path:'',component:CoachCalendarComponent},
-  {path:'meet',component:MeetComponent}
+  {path:'',component:CoachCalendarComponent}
 
 ];
 

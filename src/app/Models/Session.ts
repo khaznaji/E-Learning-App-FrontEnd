@@ -10,4 +10,5 @@ export class Session {
   groupSession?: string;
   groups: Groups[] = [];
   formation!: Formation;
+  GeneratedLink?: string;
 }

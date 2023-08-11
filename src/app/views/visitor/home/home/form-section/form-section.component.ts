@@ -40,6 +40,7 @@ export class FormSectionComponent implements OnInit {
     formData.append('roles', this.Role);
     formData.append('about', this.AddStudent.get('fabout')?.value);
 
+
     this.isLoading = true;
     this.uploadInProgress = true;
     this.UserService.ajoutStudent(formData).subscribe(
@@ -113,6 +114,7 @@ export class FormSectionComponent implements OnInit {
       fFormation: ['Select Training', [Validators.required]],
       fCountry: ['Select Country', [Validators.required]],
       fabout: ['', [Validators.required]],
+
     });
   }
   isValidNumber(number: any) {

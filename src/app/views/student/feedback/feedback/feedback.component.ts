@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FeedbackService } from 'src/app/MesServices/Feedback/feedback.service';
 import { FormationsService } from 'src/app/MesServices/Formations/formations.service';
 import { UserService } from 'src/app/MesServices/UserService/user-service.service';
@@ -14,20 +15,16 @@ export class FeedbackComponent implements OnInit {
   feedbackData: any[] = [];
   Allformation: any = [];
   selectedRating: number = 0;
+  showSuccessModal: boolean = false;
 
   successMessage: string = '';
   errorMessage: string = '';
-  formation: any;
-  UserConnected: any = [];
-  comment: any;
-  idUser!: any;
-  constructor(
-    private FormationsService: FormationsService,
-    private fb: FeedbackService,
-    private User: UserService,
-    private AuthSer: UserAuthService
-  ) {
-    this.idUser = this.AuthSer.getId();
+formation: any;
+UserConnected: any=[];
+comment: any;
+idUser!:any;
+  constructor(private FormationsService:FormationsService,private fb:FeedbackService, private User:UserService,private AuthSer:UserAuthService ,  private   router : Router ) {
+    this.idUser = this.AuthSer.getId()
   }
   setRating(rating: number) {
     console.log('Selected Rating:', rating);
@@ -52,7 +49,12 @@ export class FeedbackComponent implements OnInit {
           Swal.fire({
             icon: 'success',
             title: 'Success!',
-            text: 'Your feedback added successfully.',
+            text: 'Your feedback added successfully.'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Call the handleOKClick function to navigate to '/admin/trainings'
+              this.handleOKClick();
+            }
           });
 
           console.log(data);
@@ -83,6 +85,12 @@ export class FeedbackComponent implements OnInit {
       });
     }
   }
+  handleOKClick() {
+    this.showSuccessModal = false;
+    this.router.navigate(['/student']);
+  }
+
+
 
   getALLFormations() {
     this.FormationsService.getFormations().subscribe((data) => {

@@ -22,6 +22,8 @@ export class AdminTrainingsComponent  implements OnInit{
       this.getAllCategorie()
       this.getAllFormation()
       this.getAllCategorie2()
+      this.sortFeedbacksByDate();
+
 
     }
     getAllCategorie() {
@@ -69,17 +71,31 @@ export class AdminTrainingsComponent  implements OnInit{
         }
       });
     }
-
-
     getAllFormation() {
-      this.fs.getFormations().subscribe(res=>{
-        this.tabFormation=res
-        console.log(this.tabFormation);
+      this.fs.getFormations().subscribe(res => {
+        const sortedFormations = Object.values(res).sort((a: any, b: any) => {
+          const dateA = new Date(a.createdAt).getTime();
+          const dateB = new Date(b.createdAt).getTime();
+          return dateB - dateA;
+        });
 
-      }
-        )
+        this.tabFormation = []; // Clear existing formations before rendering with delay
+
+        let index = 0;
+        const interval = setInterval(() => {
+          if (index < sortedFormations.length) {
+            this.tabFormation.push(sortedFormations[index]);
+            index++;
+          } else {
+            clearInterval(interval); // Stop the interval when all formations are displayed
+          }
+        }, 300); // You can adjust the time delay (in milliseconds) as per your requirement
+      });
     }
 
+    getCategoryById(categoryId: any) {
+      return this.tabCategorie.find((category: any) => category.id === categoryId);
+    }
     cat2:any
     searchCategorieByid() {
       this.getAllCategorie()
@@ -101,5 +117,23 @@ this.Categorie = '';
       // If a filter is applied, return the filtered categories; otherwise, return the original tabCategorie
       return this.filteredCategories.length > 0 ? this.filteredCategories : this.tabCategorie;
     }
+    sortFeedbacksByDate() {
+      this.tabFormation.forEach((category: any) => {
+        category.formations.sort((a: any, b: any) => {
+          const dateA = new Date(a.createdAt).getTime();
+          const dateB = new Date(b.createdAt).getTime();
+          return dateB - dateA;
+        });
+      });
+    }
+    renderFormationsWithDelay(formations: any[], index: number) {
+      if (index < formations.length) {
+        setTimeout(() => {
+          this.tabFormation.push(formations[index]);
+          this.renderFormationsWithDelay(formations, index + 1);
+        }, 300); // You can adjust the time delay (in milliseconds) as per your requirement
+      }
+    }
+    
 
 }

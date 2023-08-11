@@ -182,98 +182,50 @@
         </div>
         <div class="col-sm-6 mb-6 overflow-auto" style="max-height: 300px">
           <div class="card">
-            <div class="card-body">
+            <div class="card-body text-center">
               <h4 class="d-flex mb-4 fw-bold">Notes</h4>
-              <h5>Angular</h5>
-              <hr />
-              <h5>Backend API</h5>
-              <hr />
-              <h5>Spring boot</h5>
-              <hr />
-              <h5>Node js</h5>
-              <hr />
-              <h5>Backend API</h5>
-              <hr />
-              <h5>Spring boot</h5>
-              <hr />
-              <h5>Node js</h5>
+              <ng-container *ngIf="tabFormateur && tabFormateur.length > 0; else noNotes">
+                <ng-container *ngFor="let note of tabFormateur">
+                  <h5>{{ note.content }}</h5>
+                  <hr>
+                </ng-container>
+              </ng-container>
+              <ng-template #noNotes>
+                <p>No notes available.</p>
+              </ng-template>
             </div>
           </div>
         </div>
-      </div>
-      <div class="row mt-5">
+</div>
+      <div class="row mt-5 ">
         <div class="text-center">
-          <a
-            class="btn px-4 mx-2"
-            style="background-color: #de1607; color: white"
-            target="__blank"
-            href="profile.html"
-            >Delete</a
-          >
-          <a
-            class="btn px-4 mx-2"
-            style="background-color: #af3065; color: white"
-            target="__blank"
-            href="profile.html"
-            >New group</a
-          >
-          <a
-            class="btn px-4 mx-2"
-            style="background-color: #af3065; color: white"
-            target="__blank"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop1"
-            >Add Note</a
-          >
-          <a
-            class="btn px-4 mx-2"
-            style="background-color: #af3065; color: white"
-            target="__blank"
-            href="profile.html"
-            >Save</a
-          >
+
+          <a class="btn px-4 mx-2 " style="background-color: #AF3065; color: white;" target="__blank" href="profile.html">New group</a>
+          <a class="btn px-4 mx-2 " style="background-color: #AF3065; color: white;" target="__blank" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Add Note</a>
+
         </div>
       </div>
-      <div
-        class="modal fade"
-        id="staticBackdrop1"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3 style="color: #af3065">Add Notes</h3>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <form action="">
-              <div class="modal-body">
-                <div class="row">
-                  <div class="form__group field mt-3 mb-3">
-                    <textarea
-                      type="input"
-                      class="form__field"
-                      placeholder="Note"
-                      name="Note"
-                      id="Note"
-                      required
-                    ></textarea>
-                    <label for="Note" class="form__label">Note</label>
-                  </div>
+      <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 style="color: #AF3065;">Add Notes</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form (submit)="addNoteToUser(Note.value)">
+            <div class="modal-body">
+              <div class="row">
+                <div class="form__group field mt-3 mb-3">
+                  <textarea type="input" class="form__field" placeholder="Note" name="Note" #Note required></textarea>
+                  <label for="Note" class="form__label">Note</label>
                 </div>
               </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn register">Save</button>
-              </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+              <button  type="submit"  class="btn-close" data-bs-dismiss="modal" aria-label="Close" class="btn register">Save</button>
+            </div>
+          </form>
           </div>
         </div>
       </div>
