@@ -58,6 +58,7 @@ export class StudentCalendarComponent {
     const userId = this.userAuthService.getId();
     this.sessionService.getSessionsByUserId(userId).subscribe(
       (sessions: Session[]) => {
+        console.log('any', sessions);
         sessions = this.applySessionFilter(sessions, this.selectedFilter);
         this.sessions = sessions;
         // Find the first session that hasn't started yet
