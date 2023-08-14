@@ -36,8 +36,7 @@ export class UserService {
           }
         }
       }
-
-    }
+   }
     return isMatch;
   }
   getRoles(): any {
