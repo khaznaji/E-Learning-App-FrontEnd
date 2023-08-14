@@ -55,7 +55,6 @@ export class StudentCalendarComponent {
   }
   retrieveSessions(): void {
     this.currentDate = new Date();
-
     const userId = this.userAuthService.getId();
     this.sessionService.getSessionsByUserId(userId).subscribe(
       (sessions: Session[]) => {
