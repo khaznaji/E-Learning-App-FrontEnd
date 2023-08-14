@@ -13,15 +13,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./student-calendar.component.css'],
 })
 export class StudentCalendarComponent {
- 
   sessions: any[] = [];
   selectedSession!: Session;
   sessionGroups: Groups[] = [];
   isButtonDisabled!: boolean;
   currentDate!: Date;
-  durationInMinutes!: any
+  durationInMinutes!: any;
   databaseDate!: Date;
-  msj!: any
+  msj!: any;
   selectedFilter: string = 'all';
 
   constructor(
@@ -32,7 +31,6 @@ export class StudentCalendarComponent {
   ) {}
 
   ngOnInit(): void {
-
     this.retrieveSessions();
     this.route.queryParams.subscribe((params) => {
       const sessionId = Number(params['sessionId']);
@@ -48,15 +46,14 @@ export class StudentCalendarComponent {
   applySessionFilter(sessions: Session[], selectedFilter: string): Session[] {
     switch (selectedFilter) {
       case 'upcoming':
-        return sessions.filter(session => !this.isSessionExpired(session));
+        return sessions.filter((session) => !this.isSessionExpired(session));
       case 'expired':
-        return sessions.filter(session => this.isSessionExpired(session));
+        return sessions.filter((session) => this.isSessionExpired(session));
       default:
         return sessions;
     }
   }
   retrieveSessions(): void {
-    
     this.currentDate = new Date();
 
     const userId = this.userAuthService.getId();
@@ -65,7 +62,10 @@ export class StudentCalendarComponent {
         sessions = this.applySessionFilter(sessions, this.selectedFilter);
         this.sessions = sessions;
         // Find the first session that hasn't started yet
-        const notStartedSession = sessions.find(session => new Date(session.startDate).getTime() > this.currentDate.getTime());
+        const notStartedSession = sessions.find(
+          (session) =>
+            new Date(session.startDate).getTime() > this.currentDate.getTime()
+        );
         // If a notStartedSession is found, use it as the selectedSession
         if (notStartedSession) {
           this.selectSession(notStartedSession);
@@ -75,15 +75,19 @@ export class StudentCalendarComponent {
           this.updateButtonStatus();
         }
         const currentDate = new Date();
-        const nonExpiredSessions = sessions.filter(session => !this.isSessionExpired(session));
-        const expiredSessions = sessions.filter(session => this.isSessionExpired(session));
+        const nonExpiredSessions = sessions.filter(
+          (session) => !this.isSessionExpired(session)
+        );
+        const expiredSessions = sessions.filter((session) =>
+          this.isSessionExpired(session)
+        );
         this.sessions = nonExpiredSessions.sort((a, b) => {
           const startDateA = new Date(a.startDate);
           const startDateB = new Date(b.startDate);
           return startDateA.getTime() - startDateB.getTime();
         });
         this.sessions.push(...expiredSessions);
-  
+
         if (this.selectedSession && this.selectedSession.id !== undefined) {
           this.getGroupsForSession(this.selectedSession.id);
         } else if (this.sessions.length > 0) {
@@ -102,8 +106,8 @@ export class StudentCalendarComponent {
   }
   isSessionExpired(session: Session): boolean {
     const currentDate = new Date();
-    const sessionEndDate = new Date(session.finishDate); 
-  
+    const sessionEndDate = new Date(session.finishDate);
+
     return sessionEndDate < currentDate;
   }
 
@@ -111,14 +115,14 @@ export class StudentCalendarComponent {
     const currentTime = new Date().getTime();
     const databaseTime = this.databaseDate.getTime();
     const durationInMillis = this.durationInMinutes * 60 * 1000;
-    this.msj = "You can't join this session now"
-    console.log(this.msj)
-    this.isButtonDisabled = currentTime <= databaseTime || currentTime >= databaseTime + durationInMillis;
+    this.msj = "You can't join this session now";
+    console.log(this.msj);
+    this.isButtonDisabled =
+      currentTime <= databaseTime ||
+      currentTime >= databaseTime + durationInMillis;
 
-console.log(this.isButtonDisabled)
+    console.log(this.isButtonDisabled);
   }
-
-
 
   selectSession(session: Session) {
     this.databaseDate = new Date(session.startDate);
@@ -127,10 +131,9 @@ console.log(this.isButtonDisabled)
     if (session?.id) {
       this.getGroupsForSession(session.id);
     } else {
-      this.sessionGroups = []; 
+      this.sessionGroups = [];
     }
     this.updateButtonStatus();
-
   }
   selectSessionById(sessionId: number | undefined) {
     if (sessionId === undefined) {
@@ -139,10 +142,9 @@ console.log(this.isButtonDisabled)
     const session = this.sessions.find((s) => s.id === sessionId);
     if (session) {
       this.selectedSession = session;
-      this.getGroupsForSession(session.id as number); 
+      this.getGroupsForSession(session.id as number);
     }
   }
-
 
   calculateDuration(session: Session): number {
     const start = new Date(session.startDate);

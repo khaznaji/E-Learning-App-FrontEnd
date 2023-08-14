@@ -491,6 +491,7 @@ export class AdminSessionformComponent implements OnInit {
   }
 
   closeGroupsDialog(): void {
+    this.selectedGroups = [];
     this.groupsDialogRef?.close();
   }
 
