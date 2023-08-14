@@ -7,6 +7,7 @@ import { Groups } from 'src/app/Models/group.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdminGroupmembersComponent } from '../../admin-groupmembers/admin-groupmembers/admin-groupmembers.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CertificatService } from 'src/app/MesServices/Certificat/certificat.service';
 
 @Component({
   selector: 'app-admin-groups',
@@ -29,7 +30,8 @@ export class AdminGroupsComponent implements OnInit {
     private groupService: GroupService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog // Inject the CertificateService
+
   ) {
     this.myForm = this.fb.group({
       formationId: ['', Validators.required],
@@ -105,4 +107,5 @@ export class AdminGroupsComponent implements OnInit {
       console.log('groups', this.allGroups);
     });
   }
+
 }

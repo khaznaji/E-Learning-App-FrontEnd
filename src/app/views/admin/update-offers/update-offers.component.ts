@@ -19,6 +19,7 @@ export class UpdateOffersComponent implements OnInit{
     categories: Company[] = [];
     food!:Offers;
     project: Offers = new Offers();
+      
     selectedCategory!: string; // Assuming categoryId is of type string
 
 

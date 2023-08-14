@@ -5,6 +5,8 @@ import { environement } from 'src/environement/environement.dev';
 import { Coach } from '../../Models/Coach';
 import { Students } from '../../Models/Students';
 import { UserAuthService } from '../user-auth.service';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/Models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -86,7 +88,9 @@ getUserById(id:any){
   return this.http.get(`${environement.BASE_URL}/user/finduserbyid/${id}`);
 }
 
-
+getById2(id: number): Observable<any> {
+  return this.http.get(`${environement.BASE_URL}/user/finduserbyid/${id}`);
+}
 
 //update image
 updateImage(id:any,formData:any){

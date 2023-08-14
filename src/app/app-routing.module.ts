@@ -26,6 +26,8 @@ children:[
   {path:'offers-details/:id',loadChildren:()=>import('./views/visitor/detail-offers/detail-offers.module').then(m=>m.DetailOffersModule)},
   {path:'specific-offer',loadChildren:()=>import('./views/visitor/specific-offer/specific-offer.module').then(m=>m.SpecificOfferModule)},
   {path:'add-candidacy',loadChildren:()=>import('./views/visitor/add-candidacy/add-candidacy.module').then(m=>m.AddCandidacyModule)},
+  {path:'student/profile/:id',loadChildren:()=>import('./views/student/getcertifcates/getcertifcates.module').then(m=>m.GetcertifcatesModule)},
+
   {
     path: 'online',
     loadChildren: () =>
@@ -46,7 +48,9 @@ children:[
     {path:'records',loadChildren:()=>import('./views/student/student-records/student-records.module').then(m=>m.StudentRecordsModule)},
     {path:'projects',loadChildren:()=>import('./views/student/student-projects/student-projects.module').then(m=>m.StudentProjectsModule)},
     {path:'FeedBack',loadChildren:()=>import('./views/student/feedback/feedback.module').then(m=>m.FeedbackModule)},
-]},
+    {path:'profile/:id',loadChildren:()=>import('./views/student/getcertifcates/getcertifcates.module').then(m=>m.GetcertifcatesModule)},
+
+  ]},
 {path:"coach",component:CoachLayoutComponent,
 children:[
   {path:'',loadChildren:()=>import('./views/coach/coach-home/coach-home.module').then(m=>m.CoachHomeModule)},

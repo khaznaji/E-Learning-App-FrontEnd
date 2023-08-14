@@ -4,6 +4,7 @@ export class Groups {
   id!: number;
   groupName?: string;
   creationDate?: Date;
+  certificatesGenerated!:boolean;
   formateur?: {
     id: number;
   };
