@@ -15,6 +15,7 @@ export class AdminGroupcalendarComponent implements OnInit {
   sessions: Session[] = [];
   selectedSession!: Session;
   groupId!: number;
+  selectedFilter: string = 'all';
   groups: Groups[] = [];
 
   constructor(
@@ -31,18 +32,44 @@ export class AdminGroupcalendarComponent implements OnInit {
       this.retrieveSessions(this.groupId);
     });
   }
-
+  applySessionFilter(sessions: Session[], selectedFilter: string): Session[] {
+    switch (selectedFilter) {
+      case 'upcoming':
+        return sessions.filter(session => !this.isSessionExpired(session));
+      case 'expired':
+        return sessions.filter(session => this.isSessionExpired(session));
+      default:
+        return sessions;
+    }
+  }
   retrieveSessions(groupId: number): void {
     this.sessionService.getSessionsByGroupId(groupId).subscribe(
       (sessions: Session[]) => {
+        sessions = this.applySessionFilter(sessions, this.selectedFilter);
         this.sessions = sessions;
         this.selectedSession = sessions[0];
-        console.log('Sessions:', sessions);
+        const currentDate = new Date();
+        const nonExpiredSessions = sessions.filter(session => !this.isSessionExpired(session));
+        const expiredSessions = sessions.filter(session => this.isSessionExpired(session));
+        this.sessions = nonExpiredSessions.sort((a, b) => {
+          const startDateA = new Date(a.startDate);
+          const startDateB = new Date(b.startDate);
+          return startDateA.getTime() - startDateB.getTime();
+        });
+        this.sessions.push(...expiredSessions);
+  
+       
       },
       (error) => {
         console.log('Error retrieving sessions:', error);
       }
-    );
+    );    
+  }
+  isSessionExpired(session: Session): boolean {
+    const currentDate = new Date();
+    const sessionEndDate = new Date(session.finishDate); 
+  
+    return sessionEndDate < currentDate;
   }
 
   getGroupsBySessionId(sessionId: number): void {

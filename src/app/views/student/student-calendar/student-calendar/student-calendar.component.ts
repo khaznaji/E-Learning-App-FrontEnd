@@ -64,10 +64,8 @@ export class StudentCalendarComponent {
       (sessions: Session[]) => {
         sessions = this.applySessionFilter(sessions, this.selectedFilter);
         this.sessions = sessions;
-
         // Find the first session that hasn't started yet
         const notStartedSession = sessions.find(session => new Date(session.startDate).getTime() > this.currentDate.getTime());
-
         // If a notStartedSession is found, use it as the selectedSession
         if (notStartedSession) {
           this.selectSession(notStartedSession);
