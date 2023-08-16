@@ -11,7 +11,10 @@ import { Groups } from 'src/app/Models/group.model';
 @Component({
   selector: 'app-admin-sessionform',
   templateUrl: './admin-sessionform.component.html',
-  styleUrls: ['./admin-sessionform.component.css'],
+  styleUrls: [
+    './admin-sessionform.component.css',
+    '../../../../../assets/css/add_session.css',
+  ],
 })
 export class AdminSessionformComponent implements OnInit {
   //calendar declarations
