@@ -46,4 +46,18 @@ export class AdminStudentlistComponent implements OnInit {
     this.getallStudent();
     this.getAllFormation();
   }
+  idUser!: Number;
+
+  getId(id: any) {
+    this.idUser = id;
+    console.log(this.idUser);
+  }
+
+  updateEnable(enabled: any) {
+    this.sr.updateEnabeld(this.idUser, enabled).subscribe((res) => {
+      console.log(res);
+      this.getallStudent();
+    });
+  }
+
 }

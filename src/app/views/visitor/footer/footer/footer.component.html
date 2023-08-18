@@ -410,7 +410,7 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <h6 class="text-center" style="color: red;">NB: The asterisk (*) denotes a mandatory field</h6>
+                              <h6 *ngIf="!formSubmitted" class="text-center" style="color: red;">NB: The asterisk (*) denotes a mandatory field</h6>
 
                               <form (ngSubmit)="save()" #foodForm="ngForm" *ngIf="!formSubmitted">
                                 <div class="row gutters-sm mt-5">
@@ -464,7 +464,7 @@
                                       </div>
                                     
                                       <div class="modal-footer">
-                                        <button type="submit" [disabled]="!foodForm.form.valid" class="btn" style="background-color: #AF3065; color: white; border-radius: 5px;">Register</button>
+                                        <button type="submit" [disabled]="!foodForm.form.valid || !imagePreview" class="btn" style="background-color: #AF3065; color: white; border-radius: 5px;">Register</button>
                                       </div>
                                   
                                 <div class="row mt-5">
@@ -498,7 +498,7 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <h6 class="text-center" style="color: red;">NB: The asterisk (*) denotes a mandatory field</h6>
+                              <h6 *ngIf="!formSubmitteds" class="text-center" style="color: red;">NB: The asterisk (*) denotes a mandatory field</h6>
 
                               <form (ngSubmit)="saveCompany()" #foodForm="ngForm" *ngIf="!formSubmitteds">
                                 <div class="row gutters-sm mt-5">
@@ -535,7 +535,7 @@
                                           </div> 
                                         </div>
                                         <div class="form__group field col-md-12 mb-4">                                            
-                                          <label for="nbProjects" class="form__label">Description</label>
+                                          <label for="nbProjects" class="form__label">Description<span class="required">*</span></label>
                                           <textarea class="form__field" type="text" id="email" [(ngModel)]="projects.description" name="description" required #description="ngModel"></textarea>
                                           <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
                                             <div *ngIf="description?.errors?.['required']">Description is required!</div>

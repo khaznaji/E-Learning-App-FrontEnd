@@ -74,16 +74,7 @@
                                 <div *ngIf="thisPriwce?.errors?.['pattern']">Invalid email format! The email must contain '@' and '.'.</div>
                               </div>   
                               </div>
-                              <!-- <div class="form__group field">
-
-                              <label for="nbExercices" class="form__label">Github</label>
-                             
-                              <input  class="form__field" type="text" id="price" [(ngModel)]="project.github" name="github" >
-                             </div>                             <div class="form__group field">
-
-                              <label for="nbExercices" class="form__label">Linkedin</label>
-                              <input class="form__field" type="text" id="price" [(ngModel)]="project.linkedin" name="linkedin" >
-                              </div> -->
+  
                               <div class="form__group field">
 
                               <label for="nbExercices" class="form__label">Remark</label>
@@ -114,13 +105,7 @@
                     Your browser does not support the video tag.
                   </video>
                 </div>
-                
-      <!-- <div class="form__group field">
-                    <label for="nbMeetings">Your Picture <span class="required">*</span></label>
-                    <input class="form-control" type="file" (change)="onFileChange4($event)"  id="file"  name="file" accept="image/*" required>                  </div>
-                    <div class="image-container" *ngIf="imagePreview">
-                      <img [src]="imagePreview" alt="Preview" class="centered-image">
-                    </div> -->
+       
                     
                 <div class="form__group field">
                   <label for="nbExercices">Pictures</label>
@@ -129,19 +114,20 @@
     <div class="row">
       <div class="col-md-12">
         <div class="thumbnails-container">
+          <br>
           <div *ngFor="let thumbnail of thumbnails" class="thumbnail">
             <img [src]="thumbnail" alt="Thumbnail" class="thumbnail-image">
           </div>
+          
         </div>
         
       </div>
    
                  <br><br>
                   <div class="row d-flex justify-content-center">
-                    <div class="col-2">
-                      <button type="submit" [disabled]="!foodForm.form.valid ">Submit</button>
+                      <button type="submit" class=" register btn col-lg-5 mt-2"
+                      [disabled]="!foodForm.form.valid ">Submit</button>
   
-                    </div>
                     <div></div>
                     <br>
                   </div>
@@ -152,7 +138,7 @@
           </div>
         </form>
         <div *ngIf="formSubmitted">
-          <h2>Thank you!</h2>
+          <h2>Thank you! Your specific project has been sent. Our team will contact you as soon as possible.</h2>
         </div>  
       </div>
       <div class="col-lg-5 order-1 order-lg-2 photo d-flex align-items-center" data-aos="zoom-in" data-aos-delay="200">

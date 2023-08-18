@@ -12,6 +12,7 @@ export class Session {
   formation!: Formation;
   userPresence!: { [key: number]: boolean }; // Represents the map of userId to presence status
 
+  GeneratedLink?: string;
 }
 function mapToObject(map: Map<number, boolean>): { [key: number]: boolean } {
   const obj: { [key: number]: boolean } = {};

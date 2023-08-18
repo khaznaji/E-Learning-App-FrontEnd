@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminGroupcalendarRoutingModule } from './admin-groupcalendar-routing.module';
 import { AdminGroupcalendarComponent } from './admin-groupcalendar/admin-groupcalendar.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -10,7 +11,7 @@ import { AdminGroupcalendarComponent } from './admin-groupcalendar/admin-groupca
     AdminGroupcalendarComponent
   ],
   imports: [
-    CommonModule,
+    CommonModule,FormsModule,
     AdminGroupcalendarRoutingModule
   ]
 })

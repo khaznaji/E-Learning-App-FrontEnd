@@ -14,8 +14,11 @@ export class Groups {
   sessions?: Session[];
 
   etudiants?: {
-    username :string;
     id: number;
+    username :string;
+
   }[];
+  lastMessage?: any;
+  unreadCount?: number;
 
 }

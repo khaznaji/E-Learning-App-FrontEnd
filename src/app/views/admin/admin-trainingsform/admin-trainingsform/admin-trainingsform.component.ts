@@ -7,7 +7,7 @@ import { TrainingService } from 'src/app/MesServices/Training/training.service';
 @Component({
   selector: 'app-admin-trainingsform',
   templateUrl: './admin-trainingsform.component.html',
-  styleUrls: ['./admin-trainingsform.component.css']
+  styleUrls: ['./admin-trainingsform.component.css'],
 })
 export class AdminTrainingsformComponent implements OnInit {
   trainingForm: FormGroup;
@@ -21,7 +21,7 @@ export class AdminTrainingsformComponent implements OnInit {
     private fb: FormBuilder,
     private cs: CategorieService,
     private trainingService: TrainingService,
-    private   router : Router ,
+    private router: Router
   ) {
     this.trainingForm = this.fb.group({
       categorie: ['', Validators.required],
@@ -31,6 +31,8 @@ export class AdminTrainingsformComponent implements OnInit {
       nbProjects: ['', Validators.required],
       nbMeetings: ['', Validators.required],
       nbChapters: ['', Validators.required],
+      workspaces: ['', Validators.required],
+      posibility: ['', Validators.required],
     });
   }
 
@@ -61,7 +63,8 @@ export class AdminTrainingsformComponent implements OnInit {
         },
         (error: any) => {
           this.successMessage = '';
-          this.errorMessage = 'Error adding the training program. Please try again.';
+          this.errorMessage =
+            'Error adding the training program. Please try again.';
           console.log(error);
         }
       );
@@ -73,7 +76,6 @@ export class AdminTrainingsformComponent implements OnInit {
     this.showSuccessModal = false;
     this.router.navigate(['/admin/trainings']);
   }
-
 
   isValidNumber(number: any) {
     // Regular expression to match numbers

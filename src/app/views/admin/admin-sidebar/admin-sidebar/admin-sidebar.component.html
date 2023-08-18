@@ -1,193 +1,198 @@
 <!--Main Navigation-->
 <header>
-    <!-- Sidebar -->
-    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-      <div class="position-sticky" style="max-height: calc(100vh - 56px); overflow-y: auto;">
-        <a class="navbar-brand ms-5  d-lg-block d-none" href="#">
-          <img
-               src="assets/img/logo1.png"
-               height="30"
-               alt=""
-               loading="lazy"
-               />
-        </a>
-        <div class="mt-4 border-bottom border-top py-3">
-        <div class="nav-profile d-flex align-items-center ms-4 pe-0 text-black "   >
-          <img src="assets/img/profile-img.jpg" alt="Profile" width="50px" height="50px" class="rounded-circle">
-          <span class="ps-2 fw-bold">Welcome Back <br>{{username}}</span> <a class="ps-4" routerLink="profile"><i class="btn  bi bi-gear" ></i></a>
-        </div>
-        <!-- End Profile Iamge Icon --></div>
-        <div class="list-group list-group-flush mx-3 mt-5">
-          <a
-             [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}"  routerLink="/admin"
-             class="list-group-item list-group-item-action py-3 "
-             aria-current="true"
-             >
-            <i class="fa-solid fa-house fa-fw me-3"></i
-              ><span>Home</span>
-          </a>
-          <a
-          class="list-group-item list-group-item-action py-2 "
-          aria-current="true"
-          data-mdb-toggle="collapse"
-          href="#collapseExample1"
-          aria-expanded="true"
-          aria-controls="collapseExample1"
-        >
-        <i class="fa-solid fa-repeat me-3"></i><span class="me-5">Update</span><i class="fa-solid fa-sort-down ms-5 mb-2"></i>
-        </a>
-        <!-- Collapsed content -->
-        <ul id="collapseExample1" class="collapse  list-group list-group-flush">
-          <li class="list-group-item ">
-            <a routerLink="categories" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Update Categories</a>
-          </li>
-          <li class="list-group-item ">
-            <a routerLink="trainings" [routerLinkActive]="'active'" class="list-group-item list-group-item-action ">Update trainings</a>
-          </li>
-          <li class="list-group-item ">
-            <a routerLink="chapters" [routerLinkActive]="'active'" class="list-group-item list-group-item-action ">Update Chapters</a>
-          </li>
-          <li class="list-group-item ">
-            <a routerLink="hackerspace" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Update hackerspaces</a>
-          </li>
-          <li class="list-group-item ">
-            <a routerLink="sessionform" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Add sessions</a>
-          </li>
-        </ul>
-          <a [routerLinkActive]="'active'"   routerLink="groups"
-             class="list-group-item list-group-item-action py-3  "
-             >
-             <i class="fa-solid fa-user-group me-3"></i><span>Groups</span>
-          </a>
-          <a
-          [routerLinkActive]="'active'"   routerLink="coachlist"
-          class="list-group-item list-group-item-action py-3 "
-             ><i class="fa-solid fa-user me-3"></i><span>Coashs</span></a
-            >
-          <a
-          [routerLinkActive]="'active'"   routerLink="studentlist"
-             class="list-group-item list-group-item-action py-3 "
-             ><i class="fa-solid fa-user-graduate me-3"></i><span>Students</span></a
-            >
-        <!-- Collapsed content -->
+  <!-- Sidebar -->
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky" style="max-height: calc(100vh - 56px); overflow-y: auto;">
+      <a class="navbar-brand ms-5  d-lg-block d-none" href="#">
+        <img
+             src="assets/img/logo1.png"
+             height="30"
+             alt=""
+             loading="lazy"
+             />
+      </a>
+      <div class="mt-4 border-bottom border-top py-3">
+      <div class="nav-profile d-flex align-items-center ms-4 pe-0 text-black "   >
+        <img src="assets/img/profile-img.jpg" alt="Profile" width="50px" height="50px" class="rounded-circle">
+        <span class="ps-2 fw-bold">Welcome Back <br>{{username}}</span> <a class="ps-4" routerLink="profile"><i class="btn  bi bi-gear" ></i></a>
+      </div>
+      <!-- End Profile Iamge Icon --></div>
+      <div class="list-group list-group-flush mx-3 mt-5">
         <a
-        [routerLinkActive]="'active'"   routerLink="feedback"
+           [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}"  routerLink="/admin"
+           class="list-group-item list-group-item-action py-3 "
+           aria-current="true"
+           >
+          <i class="fa-solid fa-house fa-fw me-3"></i
+            ><span>Home</span>
+        </a>
+        <a
+        class="list-group-item list-group-item-action py-2 "
+        aria-current="true"
+        data-mdb-toggle="collapse"
+        href="#collapseExample1"
+        aria-expanded="true"
+        aria-controls="collapseExample1"
+      >
+      <i class="fa-solid fa-repeat me-3"></i><span class="me-5">Update</span><i class="fa-solid fa-sort-down ms-5 mb-2"></i>
+      </a>
+      <!-- Collapsed content -->
+      <ul id="collapseExample1" class="collapse  list-group list-group-flush">
+        <li class="list-group-item ">
+          <a routerLink="categories" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Update Categories</a>
+        </li>
+        <li class="list-group-item ">
+          <a routerLink="trainings" [routerLinkActive]="'active'" class="list-group-item list-group-item-action ">Update trainings</a>
+        </li>
+        <li class="list-group-item ">
+          <a routerLink="chapters" [routerLinkActive]="'active'" class="list-group-item list-group-item-action ">Update Chapters</a>
+        </li>
+        <li class="list-group-item ">
+          <a routerLink="hackerspace" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Update hackerspaces</a>
+        </li>
+        <li class="list-group-item ">
+          <a routerLink="sessionform" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Add sessions</a>
+        </li>
+      </ul>
+        <a [routerLinkActive]="'active'"   routerLink="groups"
+           class="list-group-item list-group-item-action py-3  "
+           >
+           <i class="fa-solid fa-user-group me-3"></i><span>Groups</span>
+        </a>
+        <a
+        [routerLinkActive]="'active'"   routerLink="coachlist"
+        class="list-group-item list-group-item-action py-3 "
+           ><i class="fa-solid fa-user me-3"></i><span>Coashs</span></a
+          >
+        <a
+        [routerLinkActive]="'active'"   routerLink="studentlist"
+           class="list-group-item list-group-item-action py-3 "
+           ><i class="fa-solid fa-user-graduate me-3"></i><span>Students</span></a
+          >
+      <!-- Collapsed content -->
+      <a
+      [routerLinkActive]="'active'"   routerLink="feedback"
+         class="list-group-item list-group-item-action py-3 "
+         >
+         <i class="fa-solid fa-folder fa-fw me-3"></i><span>Feedback</span>
+      </a>
+      <a
+        class="list-group-item list-group-item-action py-2 "
+        aria-current="true"
+        data-mdb-toggle="collapse"
+        href="#collapseExample2"
+        aria-expanded="true"
+        aria-controls="collapseExample1"
+      >
+      <i class="fa-solid fa-folder fa-fw me-3"></i><span class="me-5">  Projects</span><i class="fa-solid fa-sort-down ms-5 mb-2"></i>
+      </a>
+      <!-- Collapsed content -->
+      <ul id="collapseExample2" class="collapse  list-group list-group-flush">
+        <li class="list-group-item ">
+          <a routerLink="projectowner" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Project Owners</a>
+        </li>
+        <li class="list-group-item ">
+          <a routerLink="projects" [routerLinkActive]="'active'" class="list-group-item list-group-item-action ">Projects</a>
+        </li>
+        <li class="list-group-item ">
+          <a  routerLink="projectclients" [routerLinkActive]="'active'" class="list-group-item list-group-item-action ">Project Clients</a>
+        </li>
+        <li class="list-group-item ">
+          <a routerLink="specificproject" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Specific project</a>
+        </li>
+      </ul>
+     <!-- ... -->
+<a
+class="list-group-item list-group-item-action py-2"
+aria-current="true"
+data-mdb-toggle="collapse"
+href="#collapseExample7"
+aria-expanded="true"
+aria-controls="collapseExample2"
+>
+<i class="fa-solid fa-folder fa-fw me-3"></i>
+<span class="me-5"> Jobs    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<i class="fa-solid fa-sort-down ms-5 mb-2 arrow-up"></i>
+</a>
+<!-- ... -->
+
+      <!-- Collapsed content -->
+      <ul id="collapseExample7" class="collapse  list-group list-group-flush">
+        <li class="list-group-item ">
+          <a routerLink="company" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Company</a>
+        </li>
+        <li class="list-group-item ">
+          <a routerLink="list-offer" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Offers</a>
+        </li>
+        <li class="list-group-item ">
+          <a routerLink="all-specific-offer" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Specific Offers</a>
+        </li>
+        <li class="list-group-item ">
+          <a routerLink="candidacy" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Candidacy 
+            
+          </a>
+        </li>
+      
+        </ul>
+        <a
+        [routerLinkActive]="'active'"   routerLink="certificate"
            class="list-group-item list-group-item-action py-3 "
            >
-           <i class="fa-solid fa-folder fa-fw me-3"></i><span>Feedback</span>
+           <i class="fa-solid fa-folder fa-fw me-3"></i><span>Certificate</span>
         </a>
+      <!-- Collapse 1 -->
         <a
-          class="list-group-item list-group-item-action py-2 "
-          aria-current="true"
-          data-mdb-toggle="collapse"
-          href="#collapseExample2"
-          aria-expanded="true"
-          aria-controls="collapseExample1"
-        >
-        <i class="fa-solid fa-folder fa-fw me-3"></i><span class="me-5">  Projects</span><i class="fa-solid fa-sort-down ms-5 mb-2"></i>
-        </a>
-        <!-- Collapsed content -->
-        <ul id="collapseExample2" class="collapse  list-group list-group-flush">
-          <li class="list-group-item ">
-            <a routerLink="projectowner" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Project Owners</a>
-          </li>
-          <li class="list-group-item ">
-            <a routerLink="projects" [routerLinkActive]="'active'" class="list-group-item list-group-item-action ">Projects</a>
-          </li>
-          <li class="list-group-item ">
-            <a  routerLink="projectclients" [routerLinkActive]="'active'" class="list-group-item list-group-item-action ">Project Clients</a>
-          </li>
-          <li class="list-group-item ">
-            <a routerLink="specificproject" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Specific project</a>
-          </li>
-        </ul>
-        <a
-          class="list-group-item list-group-item-action py-2 "
-          aria-current="true"
-          data-mdb-toggle="collapse"
-          href="#collapseExample7"
-          aria-expanded="true"
-          aria-controls="collapseExample2"
-        >
-        <i class="fa-solid fa-folder fa-fw me-3"></i><span class="me-5"> Jobs</span><i class="fa-solid fa-sort-down ms-5 mb-2"></i>
-        </a>
-        <!-- Collapsed content -->
-        <ul id="collapseExample7" class="collapse  list-group list-group-flush">
-          <li class="list-group-item ">
-            <a routerLink="company" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Company</a>
-          </li>
-          <li class="list-group-item ">
-            <a routerLink="list-offer" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Offers</a>
-          </li>
-          <li class="list-group-item ">
-            <a routerLink="all-specific-offer" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Specific Offers</a>
-          </li>
-          <li class="list-group-item ">
-            <a routerLink="candidacy" [routerLinkActive]="'active'" class="list-group-item list-group-item-action">Candidacy 
-              
-            </a>
-          </li>
-        
-          </ul>
-          <a
-          [routerLinkActive]="'active'"   routerLink="certificate"
-             class="list-group-item list-group-item-action py-3 "
-             >
-             <i class="fa-solid fa-folder fa-fw me-3"></i><span>Certificate</span>
-          </a>
-        <!-- Collapse 1 -->
-          <a
-            (click)="logout()"
-             class="list-group-item list-group-item-action border-top " style="margin-top: 120px;"
-             ><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180 fa-fw me-3"></i><span>LogOut</span></a
-            >
-
-        </div>
-      </div>
-
-    </nav>
-    <!-- Sidebar -->
-
-    <!-- Navbar -->
-    <nav
-         id="main-navbar"
-         class="navbar navbar-expand-lg navbar-light bg-white fixed-top d-block d-lg-none"
-         >
-      <!-- Container wrapper -->
-      <div class="container-fluid">
-        <!-- Toggle button -->
-        <button
-                class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#sidebarMenu"
-                aria-controls="sidebarMenu"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-                >
-                <img src="assets/img/menu.png" class="w-10" alt="">
-        </button>
-
-        <!-- Brand -->
-        <a class="navbar-brand ms-5 mt-2" href="#">
-          <img
-               src="assets/img/logo1.png"
-               height="30"
-               alt=""
-               loading="lazy"
-               />
-        </a>
-
-
-        <!-- Right links -->
+          (click)="logout()"
+           class="list-group-item list-group-item-action border-top " style="margin-top: 120px;"
+           ><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180 fa-fw me-3"></i><span>LogOut</span></a
+          >
 
       </div>
-      <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
-  </header>
-  <!--Main Navigation-->
+    </div>
 
-  <!--Main layout-->
+  </nav>
+  <!-- Sidebar -->
 
-  <!--Main layout-->
+  <!-- Navbar -->
+  <nav
+       id="main-navbar"
+       class="navbar navbar-expand-lg navbar-light bg-white fixed-top d-block d-lg-none"
+       >
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+              class="navbar-toggler"
+              type="button"
+              data-mdb-toggle="collapse"
+              data-mdb-target="#sidebarMenu"
+              aria-controls="sidebarMenu"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              >
+              <img src="assets/img/menu.png" class="w-10" alt="">
+      </button>
+
+      <!-- Brand -->
+      <a class="navbar-brand ms-5 mt-2" href="#">
+        <img
+             src="assets/img/logo1.png"
+             height="30"
+             alt=""
+             loading="lazy"
+             />
+      </a>
+
+
+      <!-- Right links -->
+
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+
+<!--Main layout-->

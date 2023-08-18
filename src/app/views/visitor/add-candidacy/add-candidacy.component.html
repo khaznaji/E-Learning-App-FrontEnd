@@ -6,7 +6,7 @@
         data-aos-delay="200">
 <form (ngSubmit)="onSubmit()" enctype="multipart/form-data" #foodForm="ngForm" role="form"
 class="php-email-form" *ngIf="!formSubmitted">
-<h1 class="text-center">Order your specific project</h1>
+<h1 class="text-center">Add your candidacy</h1>
 <h6 class="text-center" style="color: red;">NB: The asterisk (*) denotes a mandatory field</h6>
 <div class=" text-center">
   <div class="trainers">
@@ -48,15 +48,15 @@ class="php-email-form" *ngIf="!formSubmitted">
                          </div>
   
                          <div class="form__group field" >
-                          <label for="cv" class="form__label">CV (PDF)</label>
+                          <label for="cv" class="form__label">CV (PDF) <span class="required">*</span></label>
                           <hr>
                           <br>
-      <input type="file" id="cv" class="form__field" (change)="onCvSelected($event)" accept="application/pdf" required>
+      <input type="file" id="cv" class="form__field" (change)="onCvSelected($event)" accept="application/pdf" required >
     </div>
   
     <div class="form__group field">
       <label for="lettre" class="form__label">Lettre de motivation  </label>
-      <textarea class="form__field" id="lettre" [(ngModel)]="project.lettre" name="description" required  >
+      <textarea class="form__field" id="lettre" [(ngModel)]="project.lettre" name="description"   >
       </textarea>
       
     </div>
@@ -71,7 +71,7 @@ class="php-email-form" *ngIf="!formSubmitted">
     
   
     <div class="form__group field">
-      <label for="nbProjects" class="form__label">Experience level</label>
+      <label for="nbProjects" class="form__label">Experience level <span class="required">*</span></label>
      <hr> <select id="domaine" class="form__field" [(ngModel)]="project.experience" name="domaine" required #domaine="ngModel">
       <option value="" >Select Experience Level</option>
       <option value="Mid Level">Mid Level</option>
@@ -87,7 +87,7 @@ class="php-email-form" *ngIf="!formSubmitted">
           </div>
   
           <div class="form__group field">
-            <label for="nbProjects" class="form__label">Job Type</label>
+            <label for="nbProjects" class="form__label">Job Type <span class="required">*</span></label>
            <hr> <select class="form__field" id="type" [(ngModel)]="project.type" name="type" required #type="ngModel">
             <option value="">Select Job Type</option>
 
@@ -101,14 +101,14 @@ class="php-email-form" *ngIf="!formSubmitted">
              
               </select>
               <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-danger">
-                <div *ngIf="type?.errors?.['required']">type is required.</div>
+                <div *ngIf="type?.errors?.['required']">Type is required.</div>
               </div>
               
                 </div>
   
                 <div class="form__group field">
-                  <label for="nbProjects" class="form__label">Education</label>
-                 <hr> <select class="form__field" id="type" [(ngModel)]="project.education" name="type" required #type="ngModel">
+                  <label for="nbProjects" class="form__label">Education <span class="required">*</span></label>
+                 <hr> <select class="form__field" id="ed" [(ngModel)]="project.education" name="ed" required #ed="ngModel">
                   <option value="">Select Education</option>
                   <option value="High School Degree">High School Degree </option>
                   <option value="Associate's Degree">Associate's Degree </option>
@@ -117,8 +117,8 @@ class="php-email-form" *ngIf="!formSubmitted">
                   <option value="Doctoral Degree">Doctoral Degree</option> 
                    
                     </select>
-                    <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-danger">
-                      <div *ngIf="type?.errors?.['required']">Education is required.</div>
+                    <div *ngIf="ed.invalid && (ed.dirty || ed.touched)" class="text-danger">
+                      <div *ngIf="ed?.errors?.['required']">Education is required.</div>
                     </div>
                     
                       </div>
@@ -135,7 +135,7 @@ class="php-email-form" *ngIf="!formSubmitted">
  </div>
 </form>
 <div *ngIf="formSubmitted">
-<h2>Thank you!</h2>
+<h2>Thank you, your candidcacy has been successfully submitted. Our team will contact you as soon as possible.</h2>
 </div>  
 </div>
 <div class="col-lg-5 order-1 order-lg-2 photo d-flex align-items-center" data-aos="zoom-in" data-aos-delay="200">

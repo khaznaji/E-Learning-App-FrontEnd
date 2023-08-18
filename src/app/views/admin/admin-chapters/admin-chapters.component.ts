@@ -6,20 +6,20 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-admin-chapters',
   templateUrl: './admin-chapters.component.html',
-  styleUrls: ['./admin-chapters.component.css']
+  styleUrls: ['./admin-chapters.component.css'],
 })
 export class AdminChaptersComponent implements OnInit {
   tabFormation: any[] = [];
   chaptersByFormation: any = {};
 
-  constructor(private cs: ChaptersService, private fs: FormationsService) { }
+  constructor(private cs: ChaptersService, private fs: FormationsService) {}
 
   ngOnInit(): void {
     this.getAllFormation();
   }
 
   getChaptersByNomFormation(nomFormation: string) {
-    this.cs.getChaptersByNomFormation(nomFormation).subscribe(res => {
+    this.cs.getChaptersByNomFormation(nomFormation).subscribe((res) => {
       this.chaptersByFormation[nomFormation] = res;
       console.log(this.chaptersByFormation);
     });
@@ -43,7 +43,7 @@ export class AdminChaptersComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
         this.cs.deleteChapters(id).subscribe((res) => {
@@ -62,5 +62,35 @@ export class AdminChaptersComponent implements OnInit {
       }
     }
     return chapters;
+  }
+  updateChapter(chapter: any) {
+    Swal.fire({
+      title: 'Update Chapter',
+      html:
+        '<input id="title" class="swal2-input" placeholder="Title" value="' +
+        chapter.title +
+        '">' +
+        '<textarea id="description" class="swal2-input" placeholder="Description">' +
+        chapter.description +
+        '</textarea>',
+      focusConfirm: false,
+      preConfirm: () => {
+        const title = (<HTMLInputElement>document.getElementById('title'))
+          .value;
+        const description = (<HTMLTextAreaElement>(
+          document.getElementById('description')
+        )).value;
+
+        return { title: title, description: description };
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const updatedChapter = result.value;
+        this.cs.updateChapters(chapter.id, updatedChapter).subscribe((res) => {
+          Swal.fire('Updated!', 'Your chapter has been updated.', 'success');
+          this.getAllFormation(); // Refresh the chapter list after successful update
+        });
+      }
+    });
   }
 }

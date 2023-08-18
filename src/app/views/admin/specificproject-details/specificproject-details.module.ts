@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { SpecificprojectDetailsRoutingModule } from './specificproject-details-routing.module';
 import { FormsModule } from '@angular/forms';
+import { SpecificprojectDetailsComponent } from './specificproject-details.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [SpecificprojectDetailsComponent],
   imports: [
     CommonModule,
     FormsModule,

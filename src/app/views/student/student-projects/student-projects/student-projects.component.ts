@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ProjectService } from 'src/app/MesServices/Projects/projects.service';
+import { UserService } from 'src/app/MesServices/UserService/user-service.service';
 
 import { UserAuthService } from 'src/app/MesServices/user-auth.service';
 import { Projects } from 'src/app/Models/Projects';
@@ -15,13 +16,34 @@ export class StudentProjectsComponent implements OnInit{
   project:any ;
   selectedProjectId: number | null = null;
 
-  constructor(private sanitazer: DomSanitizer,private projectService: ProjectService , private sanitizer: DomSanitizer ,  private authService: UserAuthService) { }
+  constructor(private sanitazer: DomSanitizer,private projectService: ProjectService , private sr: UserService ,  private authService: UserAuthService) { }
   ngOnInit() {
+    console.log("id"+localStorage.getItem('id'))
+    this.getUserByid(localStorage.getItem('id'));
+
     this.reloadData();
 
   }
+  data: any = [];
+  username!: string;
+  country!: string;
+  numeroTel!: string;
+  email!: string;
+  photo!: any;
+  image!: any;
+  getUserByid(id: any) {
+    this.sr.getUserById(id).subscribe((res) => {
+      this.data = res;
+      console.log(this.data);
+      this.username = this.data.firstName + ' ' + this.data.lastName;
+      this.country = this.data.Country;
+      this.numeroTel = this.data.numeroTel;
+      this.email = this.data.username;
+      this.photo = this.data.image;
+    });
+  }
   reloadData() {
-    this.project = this.projectService.getProjectStudent().subscribe((res)=>{
+    this.project = this.projectService.getProjectStudent2(localStorage.getItem('id')).subscribe((res)=>{
       this.project=res;
       console.log(res);
      });
@@ -29,7 +51,7 @@ export class StudentProjectsComponent implements OnInit{
   onFileChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      this.projectService.addProject(file).subscribe(
+      this.projectService.addProject2(file,localStorage.getItem('id')).subscribe(
         (response) => {
           // Traitement de la réponse
           console.log(response);

@@ -48,7 +48,9 @@ export class UserAuthService {
   public getImage(): string {
     return localStorage.getItem("image")!;
   }
-
+  public getUsername(): string {
+    return localStorage.getItem("username")!;
+  }
 
   public setRolesSession(roles:any) {
     sessionStorage.setItem("roles", JSON.stringify(roles)) ;

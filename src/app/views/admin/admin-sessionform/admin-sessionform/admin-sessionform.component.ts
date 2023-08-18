@@ -11,7 +11,10 @@ import { Groups } from 'src/app/Models/group.model';
 @Component({
   selector: 'app-admin-sessionform',
   templateUrl: './admin-sessionform.component.html',
-  styleUrls: ['./admin-sessionform.component.css'],
+  styleUrls: [
+    './admin-sessionform.component.css',
+    '../../../../../assets/css/add-session.css',
+  ],
 })
 export class AdminSessionformComponent implements OnInit {
   //calendar declarations
@@ -231,11 +234,10 @@ export class AdminSessionformComponent implements OnInit {
       }
     });
   }
-
   createSession() {
     if (this.selectedDay) {
       const currentDate = new Date();
-      currentDate.setHours(currentDate.getHours() + 1);
+      currentDate.setHours(currentDate.getHours());
       const sessionTimeParts = this.sessionTime.split(':');
       const sessionHour = parseInt(sessionTimeParts[0], 10);
       const sessionMinute = parseInt(sessionTimeParts[1], 10);
@@ -247,7 +249,7 @@ export class AdminSessionformComponent implements OnInit {
         sessionMinute
       );
 
-      if (selectedDate > currentDate) {
+      if (selectedDate >= currentDate) {
         const groupIdselected: number[] = this.selectedGroups.map((group) =>
           Number(group.id)
         );
@@ -280,8 +282,7 @@ export class AdminSessionformComponent implements OnInit {
           // groups: groupIdselected.map((groupId) => ({
           //   id: groupId,
           // })),
-          formation: newFormation,          // Set the initial value to an empty object, assuming it's a map of userIds to presence status
-
+          formation: newFormation, 
         };
 
         console.log('selected groups hey', groupIdselected);
@@ -377,6 +378,9 @@ export class AdminSessionformComponent implements OnInit {
     this.confirmationDialogRef?.close(true);
   }
   openSessionDialog() {
+    if (this.formations.length > 0) {
+      this.selectedTraining = this.formations[0].id;
+    }
     if (this.selectedDay !== null) {
       const selectedDate = new Date(
         this.currentYear,
@@ -492,6 +496,7 @@ export class AdminSessionformComponent implements OnInit {
   }
 
   closeGroupsDialog(): void {
+    this.selectedGroups = [];
     this.groupsDialogRef?.close();
   }
 

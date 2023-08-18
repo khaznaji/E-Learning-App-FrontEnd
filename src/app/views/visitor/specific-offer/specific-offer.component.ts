@@ -56,7 +56,8 @@ export class SpecificOfferComponent implements OnInit{
       console.error('No file selected');
     }
   }
-  
+  imagePreview: string | null = null;
+
 onFileChange4(event: Event) {
   const inputElement = event.target as HTMLInputElement;
   if (inputElement.files && inputElement.files.length > 0) {
@@ -65,11 +66,11 @@ onFileChange4(event: Event) {
     const reader = new FileReader();
     reader.onload = (e) => {
       this.imagePreview = e.target?.result as string;
+
     };
     reader.readAsDataURL(this.file);
   } 
 }
-imagePreview: string | undefined;
 onFileChange(event: Event) {
   const inputElement = event.target as HTMLInputElement;
   if (inputElement.files && inputElement.files.length > 0) {

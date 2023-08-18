@@ -4,14 +4,11 @@ import { CommonModule } from '@angular/common';
 import { AdminFeedbackRoutingModule } from './admin-feedback-routing.module';
 import { AdminFeedbackComponent } from './admin-feedback/admin-feedback.component';
 
-
 @NgModule({
   declarations: [
-    AdminFeedbackComponent
+    AdminFeedbackComponent,
+    // Add the comma here
   ],
-  imports: [
-    CommonModule,
-    AdminFeedbackRoutingModule
-  ]
+  imports: [CommonModule, AdminFeedbackRoutingModule],
 })
-export class AdminFeedbackModule { }
+export class AdminFeedbackModule {}

@@ -13,9 +13,24 @@ export class ProjectService {
   addProject(file: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
-
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('access_token') // Remplacez par votre méthode d'authentification
+    });
     return this.http.post<any>(`${this.BASE_URL}add`, formData);
   }
+
+  
+  addProject2(file: File,id:string|null): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    formData.append('id', id!);
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('access_token') // Remplacez par votre méthode d'authentification
+    });
+    return this.http.post<any>(`${this.BASE_URL}add`, formData);
+  }
+ 
+
   updateProject(id: number, file: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
@@ -29,6 +44,9 @@ export class ProjectService {
   }
   getProjectStudent(): Observable<any> {
     return this.http.get(`${this.BASE_URL}StudentProjects`);
+  }
+  getProjectStudent2(id:string|null): Observable<any> {
+    return this.http.get(`${this.BASE_URL}StudentProjects/${id}`);
   }
   deleteProject(id: number): Observable<any> {
     return this.http.delete(`${this.BASE_URL}deleteProjects/${id}`, { responseType: 'text' });

@@ -200,7 +200,9 @@ save() {
         this.project = new ProjectOwner();
         this.file = null;
         this.formSubmitted = true;
-
+        setTimeout(() => {
+          window.location.reload();
+        }, 4000); 
 
       },
       (error) => console.log(error)
@@ -239,7 +241,9 @@ saveCompany() {
         this.projects = new Company();
         this.file = null;
         this.formSubmitteds = true;
-
+        setTimeout(() => {
+          window.location.reload();
+        }, 4000); 
       },
       (error) => console.log(error)
     );

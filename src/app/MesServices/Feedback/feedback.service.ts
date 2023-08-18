@@ -4,25 +4,45 @@ import { Observable } from 'rxjs';
 import { environement } from 'src/environement/environement.dev';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FeedbackService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) {
+  ajoutFeedback(Feedback: any): Observable<any> {
+    return this.http.post(
+      `${environement.BASE_URL}/Feedback/addFeedback/`,
+      Feedback
+    );
+  }
 
-   }
+  //get all feedbacks
+  getAllFeedbacks(): Observable<any> {
+    return this.http.get(`${environement.BASE_URL}/Feedback/allFeedback`);
+  }
 
-   ajoutFeedback(Feedback: any): Observable<any> {
-    return this.http.post(`${environement.BASE_URL}/Feedback/addFeedback/`, Feedback);
-   }
+  getFeedbackByFormation(id: any): Observable<any> {
+    return this.http.get(
+      `${environement.BASE_URL}/Feedback/getFeedbackByFormation/${id}`
+    );
+  }
+  //delete feedback
+  deleteFeedback(id: any): Observable<any> {
+    return this.http.delete(
+      `${environement.BASE_URL}/Feedback/deleteFeedback/${id}`
+    );
+  }
 
-   //get all feedbacks
-    getAllFeedbacks(): Observable<any> {
-      return this.http.get(`${environement.BASE_URL}/Feedback/allFeedback`);
-    }
+  pubunpub(id: any) {
+    return this.http.patch(
+      `${environement.BASE_URL}/Feedback/updateFeedbackPosted/${id}`,
+      null
+    );
+  }
 
-    getFeedbackByFormation(id: any): Observable<any> {
-      return this.http.get(`${environement.BASE_URL}/Feedback/getFeedbackByFormation/${id}`);
-    }
-
+  getPostedFeedback() {
+    return this.http.get(
+      `${environement.BASE_URL}/Feedback/getFeedbackByPosted`
+    );
+  }
 }

@@ -33,10 +33,10 @@
             
             
                       <div class="form__group field">
-                        <label for="description" class="form__label">Adresse<span class="required">*</span></label>
+                        <label for="description" class="form__label">Adress<span class="required">*</span></label>
                         <input class="form__field" type="text" id="tech" [(ngModel)]="project.adresse" name="technologies" required #thisT="ngModel">
                         <div class="alert alert-danger" *ngIf="thisT.touched && thisT.invalid">
-                          <div *ngIf="thisT?.errors?.['required']">Adresse is required!</div>
+                          <div *ngIf="thisT?.errors?.['required']">Adress is required!</div>
                         </div>
                       
                     
@@ -59,17 +59,17 @@
                               </div>                           
                           </div>  
                                 <div class="form__group field">
-                                <label for="nbExercices" class="form__label">Poste <span class="required">*</span></label>
+                                <label for="nbExercices" class="form__label">Job <span class="required">*</span></label>
                                 <input  class="form__field" type="text" id="price" [(ngModel)]="project.poste" name="nom" required #m="ngModel">
                                 <div class="alert alert-danger" *ngIf="m.touched && m.invalid">
-                                  <div *ngIf="m?.errors?.['required']">Poste is required!</div>
+                                  <div *ngIf="m?.errors?.['required']">Job is required!</div>
                               </div>                            </div>  
                               
                               <div class="form__group field">
-                                <label for="description" class="form__label">Description Poste <span class="required">*</span></label>
+                                <label for="description" class="form__label">Job Description  <span class="required">*</span></label>
                                 <textarea class="form__field" id="description" [(ngModel)]="project.description" name="description" required #thisDesxc="ngModel"></textarea>
                                 <div class="alert alert-danger" *ngIf="thisDesxc.touched && thisDesxc.invalid">
-                                  <div *ngIf="thisDesxc?.errors?.['required']">Description Poste is required!</div>
+                                  <div *ngIf="thisDesxc?.errors?.['required']">Job Description is required!</div>
                                 </div>
                               </div>
                                
@@ -132,18 +132,20 @@
       
     <div class="form__group field">
                     <label for="nbMeetings">Image <span class="required">*</span></label>
-                    <input class="form-control" type="file" (change)="onFileChange4($event)"  id="file"  name="file" accept="image/*" required>                  </div>
-                    <div class="image-container" *ngIf="imagePreview">
-                      <img [src]="imagePreview" alt="Preview" class="centered-image">
-                    </div>             
+                    <input class="form-control" type="file" (change)="onFileChange4($event)" id="file" name="file" accept="image/*" required>
+                  </div>
+                  <div class="image-container" *ngIf="imagePreview">
+                    <img [src]="imagePreview" alt="Preview" class="centered-image">
+                  </div>          
     
       <div class="row">
        
      
                    <br><br>
                     <div class="row d-flex justify-content-center">
-                        <button type="submit" class=" register btn col-lg-5 mt-2" [disabled]="!foodForm.form.valid ">Submit</button>
-    
+                        <!-- <button type="submit" class=" register btn col-lg-5 mt-2" [disabled]="!foodForm.form.valid ">Submit</button> -->
+                        <button type="submit" class="register btn col-lg-5 mt-2" [disabled]="!foodForm.form.valid || !imagePreview">Submit</button>
+
                       <div></div>
                       <br>
                     </div>
@@ -153,7 +155,7 @@
             </div>
           </form>
           <div *ngIf="formSubmitted">
-            <h2>Thank you!</h2>
+            <h2>Thank you! Your specific offer has been sent. Our team will contact you as soon as possible.</h2>
           </div>  
         </div>
         <div class="col-lg-5 order-1 order-lg-2 photo d-flex align-items-center" data-aos="zoom-in" data-aos-delay="200">

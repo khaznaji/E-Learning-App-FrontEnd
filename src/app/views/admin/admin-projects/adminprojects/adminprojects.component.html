@@ -32,8 +32,8 @@
           </thead>
           <tbody>
           
-            <tr  *ngFor="let project of adminProjects"
-            >
+            <ng-container *ngFor="let project of adminProjects">
+              <tr>
              
               <td>
                 <p class="text-muted mb-0">{{ project.titre }}</p>
@@ -91,9 +91,7 @@
                   <button class="btn btn-danger btn-circle" (click)="deleteEvents(project.id)">
                     <span class="bi bi-trash"></span>
                   </button>
-                  <button class="btn btn-success btn-circle" (click)="clientProject(project.id)">
-                    <span class="bi bi-eye"></span>
-                  </button>
+              
                 </td>
                 
                 
@@ -107,8 +105,7 @@
     
     
             </tr>
-          </tbody>
-    
+         </ng-container> </tbody>
         </table>
       </div>
     

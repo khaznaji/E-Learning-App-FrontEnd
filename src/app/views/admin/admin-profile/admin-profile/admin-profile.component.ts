@@ -7,18 +7,20 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-admin-profile',
   templateUrl: './admin-profile.component.html',
-  styleUrls: ['./admin-profile.component.css']
+  styleUrls: ['./admin-profile.component.css'],
 })
-export class AdminProfileComponent  implements OnInit {
+export class AdminProfileComponent implements OnInit {
   currentUser: any;
+  emailInvalid: boolean = false;
   data: any = [];
-  username!:string;
-  country!:string;
-  numeroTel!:string
-  email!:string;
-  photo!:any
-  image!:any
-UpdaImage!:FormGroup
+  status = '';
+  username!: string;
+  country!: string;
+  numeroTel!: string;
+  email!: string;
+  photo!: any;
+  image!: any;
+  UpdaImage!: FormGroup;
   uploadInProgress!: boolean;
   showSuccessMessage!: boolean;
   isLoading!: boolean;
@@ -26,39 +28,109 @@ UpdaImage!:FormGroup
   Addetat!: boolean;
   showSuccessIcon!: boolean;
   msjEtat!: string;
-  constructor(private http: HttpClient,private  sr : UserService, private sf:FormBuilder ) {
+  firstNameInp!: any;
+  lastNameInp!: any;
+  usernameInp!: any;
+  phoneInp!: any;
+  passwordInp!: any;
+  cppasswordInp!: any;
+  aboutInp!: any;
+
+  constructor(
+    private http: HttpClient,
+    private sr: UserService,
+    private sf: FormBuilder
+  ) {
     this.UpdaImage = this.sf.group({
-      Photo: ''
-    })
-   }
+      Photo: '',
+    });
+  }
+  checkEmailFormat() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    this.emailInvalid = !emailRegex.test(this.usernameInp);
+  }
+  isValidEmail(email: string) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+  updateUser() {
+    if (!this.isValidEmail(this.usernameInp)) {
+      // Invalid email format, show error message
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Invalid email format. Please enter a valid email.',
+        showConfirmButton: true,
+      });
+      return; // Exit the method without updating the user
+    }
 
+    // If email format is valid, proceed with the update
+    let ddata: any = {
+      id: localStorage.getItem('id'),
+      firstName: this.firstNameInp,
+      lastName: this.lastNameInp,
+      username: this.usernameInp,
+      numeroTel: this.phoneInp,
+      password: this.cppasswordInp,
+      about: this.aboutInp,
+    };
 
+    this.sr.updateUser(ddata).subscribe(
+      (res) => {
+        console.log(res);
+        this.status = 'User Updated';
+        this.getUserByid(localStorage.getItem('id'));
 
+        // Show success message
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'User updated successfully!',
+          showConfirmButton: true,
+        });
+      },
+      (error) => {
+        console.error(error);
+
+        // Show error message
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Error updating user. Please try again later.',
+          showConfirmButton: true,
+        });
+      }
+    );
+  }
 
   ngOnInit(): void {
     this.getCurrentUserDetails();
-    this.getUserByid(localStorage.getItem('id'))
+    this.getUserByid(localStorage.getItem('id'));
   }
-  getUserByid(id:any){
-    this.sr.getUserById(id).subscribe(res=>{
-      this.data=res
+  getUserByid(id: any) {
+    this.sr.getUserById(id).subscribe((res) => {
+      this.data = res;
       console.log(this.data);
-      this.username=this.data.firstName+" "+this.data.lastName
-      this.country =this.data.Country
-      this.numeroTel=this.data.numeroTel
-      this.email=this.data.username
+      this.username = this.data.firstName + ' ' + this.data.lastName;
+      this.country = this.data.Country;
+      this.numeroTel = this.data.numeroTel;
+      this.email = this.data.username;
       this.photo = this.data.image;
-
-
-    })
+      this.usernameInp = this.data.username;
+      this.firstNameInp = this.data.firstName;
+      this.lastNameInp = this.data.lastName;
+      this.phoneInp = this.data.numeroTel;
+      this.aboutInp = this.data.about;
+    });
   }
   getCurrentUserDetails(): void {
     this.http.get<any>('http://localhost:8094/api/user/me').subscribe(
-      response => {
+      (response) => {
         this.currentUser = response;
         console.log('Current user:', this.currentUser);
       },
-      error => {
+      (error) => {
         console.error('Error fetching current user details:', error);
       }
     );
@@ -66,7 +138,6 @@ UpdaImage!:FormGroup
   imageUrl!: string;
 
   selectedFile!: File;
-
 
   onFileSelected(event: any) {
     if (event.target.files.length > 0) {
@@ -82,7 +153,6 @@ UpdaImage!:FormGroup
     throw new Error('Method not implemented.');
   }
 
-
   AddCoachForm() {
     const formData = new FormData();
     const photoFile = this.UpdaImage.get('Photo')?.value;
@@ -90,22 +160,13 @@ UpdaImage!:FormGroup
       formData.append('file', photoFile, photoFile.name);
     }
 
-
     this.isLoading = true;
     this.uploadInProgress = true;
 
-    this.sr.updateUserImage(localStorage.getItem("id"),formData).subscribe(
-     res=>{
-      console.log(res);
-     }
-
-
-    );
+    this.sr
+      .updateUserImage(localStorage.getItem('id'), formData)
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
-
-
-
 }
-
-
-

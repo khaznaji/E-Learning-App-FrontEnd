@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminStudentprofileRoutingModule } from './admin-studentprofile-routing.module';
 import { AdminStudentprofileComponent } from './admin-studentprofile/admin-studentprofile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { AdminStudentprofileComponent } from './admin-studentprofile/admin-stude
   ],
   imports: [
     CommonModule,
-    AdminStudentprofileRoutingModule
+    AdminStudentprofileRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
-export class AdminStudentprofileModule { }
+export class AdminStudentprofileModule {}

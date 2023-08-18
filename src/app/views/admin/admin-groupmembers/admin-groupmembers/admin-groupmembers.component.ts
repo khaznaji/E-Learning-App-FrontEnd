@@ -18,7 +18,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-admin-groupmembers',
   templateUrl: './admin-groupmembers.component.html',
-  styleUrls: ['./admin-groupmembers.component.css'],
+  styleUrls: ['./admin-groupmembers.component.css',   
+    '../../../../../assets/css/groupmembers.css',
+],
  
 })
 

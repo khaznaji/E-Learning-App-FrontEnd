@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { BehaviorSubject,Observable, catchError, of } from 'rxjs';
 import { Groups } from 'src/app/Models/group.model';
 import { environement } from 'src/environement/environement.dev';
 
@@ -8,12 +8,18 @@ import { environement } from 'src/environement/environement.dev';
   providedIn: 'root',
 })
 export class GroupService {
+
+  private groupDataSubject = new BehaviorSubject<Groups[]>([]);
+  groupData$ = this.groupDataSubject.asObservable();
   constructor(private http: HttpClient) {}
 
   getAllGroups(): Observable<any[]> {
     return this.http.get<any[]>(`${environement.BASE_URL}/groups/all`);
   }
 
+  updateGroupData(groups: Groups[]): void {
+    this.groupDataSubject.next(groups);
+  }
   addGroups(groups: Groups): Observable<Groups> {
     return this.http.post<Groups>(
       `${environement.BASE_URL}/groups/add`,
@@ -39,10 +45,9 @@ export class GroupService {
     const url = `${environement.BASE_URL}/groups/check-existence?groupName=${groupName}`;
     return this.http.get<boolean>(url);
   }
-
   deleteGroups(id: number): Observable<void> {
     return this.http.delete<void>(
-      `${environement.BASE_URL}/api/Groups/deleteGroups/${id}`
+      `${environement.BASE_URL}/groups/${id}`
     );
   }
   getGroupsByFormation(trainingId: number): Observable<any[]> {
@@ -70,5 +75,14 @@ export class GroupService {
   ): Observable<string> {
     const url = `${environement.BASE_URL}/groups/${groupId}/etudiants/${etudiantId}`;
     return this.http.delete<string>(url);
+  }
+
+  getGroupsByUserId(userId: number): Observable<Groups[]> {
+    const url = `${environement.BASE_URL}/groups/by-user/${userId}`;
+    return this.http.get<Groups[]>(url);
+  }
+  getGroupsByFormateurId(formateurId: number): Observable<Groups[]> {
+    const url = `${environement.BASE_URL}/groups/by-formateur/${formateurId}`;
+    return this.http.get<Groups[]>(url);
   }
 }
