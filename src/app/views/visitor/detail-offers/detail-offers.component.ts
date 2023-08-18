@@ -86,7 +86,6 @@ export class DetailOffersComponent implements OnInit{
         this.isSubmitted = true;
         this.showThankYouPopup = true; // Afficher la fenêtre contextuelle "Thank you"
         this.projectClient = new OfferClient();
-      this.isSubmitted = false;
       },
       (error) => {
         // Handle error response

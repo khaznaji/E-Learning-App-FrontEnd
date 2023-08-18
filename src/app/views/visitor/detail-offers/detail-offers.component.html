@@ -96,7 +96,6 @@
       <div class="row justify-content-between">
         <div class="col-lg-5 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up"
           data-aos-delay="200">
-          <h1 class="text-center">Transform Your Vision into Reality</h1>
           <h5 class="text-center">Order Your Project Today!</h5>
           <div class=" text-center">
             <div class="trainers">
@@ -107,6 +106,8 @@
             <h2>Thank you!</h2>
             <p>Your form has been submitted successfully.</p>
           </div> -->
+          <ng-container *ngIf="!showThankYouPopup; else thankYouSection">
+
           <form (submit)="onSubmit()" method="post" role="form" class="php-email-form" #foodForm="ngForm">
             <div class="form__group field">
               <input [(ngModel)]="projectClient.nom" type="input" name="username" id="name" class="form__field" placeholder="email" required #thisdescription="ngModel"/>
@@ -149,9 +150,13 @@
               <button class="register btn col-lg-5 mt-2" type="submit" [disabled]="!foodForm.form.valid">Submit</button>
             </div>
           </form>
-          <div *ngIf="isSubmitted">
+        </ng-container>
+        <ng-template #thankYouSection>
+          <div class="text-center popup">
             <h2>Thank you!</h2>
-          </div>  
+            <p>Your form has been submitted successfully.</p>
+          </div>
+        </ng-template>
         </div>
         <div class="col-lg-5 order-1 order-lg-2 photo d-flex align-items-center" data-aos="zoom-in" data-aos-delay="200">
           <img src="assets/img/login.png" class="img-fluid animated mb-5" alt="">

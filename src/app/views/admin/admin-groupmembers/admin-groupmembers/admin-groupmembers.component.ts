@@ -299,7 +299,7 @@ export class AdminGroupmembersComponent implements OnInit{
       const filterNames = this.usernameFilter.trim().toLowerCase().split(' ');
 
       return this.students.filter((student) => {
-        const fullName = `${student.user.firstName.toLowerCase()} ${student.user.lastName.toLowerCase()}`;
+        const fullName = `${student.firstName.toLowerCase()} ${student.lastName.toLowerCase()}`;
         return (
           filterNames.every((name) => fullName.includes(name)) &&
           !this.group.etudiants?.some((etudiant) => etudiant.id === student.id)
