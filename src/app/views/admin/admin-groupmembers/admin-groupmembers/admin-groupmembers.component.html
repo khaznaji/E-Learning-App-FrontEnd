@@ -163,23 +163,6 @@
     >
       Add User to Group
     </h2>
-    <div>
-      
-      
-      <!-- <form (ngSubmit)="modifyCertificates()">
-
-        <input type="text" [(ngModel)]="certif.month" name="month" placeholder="Month" class="form-control">
-          <input type="text" [(ngModel)]="certif.periode" name="periode" placeholder="Periode" class="form-control">
-        <button class="btn register" type="submit" [disabled]="!isValidCertif()">
-          Generate Certificates
-        </button>
-      </form> -->
-     
-      
-      
-    </div>
-    
-    
     <mat-dialog-content>
       <div class="filter-input-container">
         <input
@@ -382,11 +365,14 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let student of studentDetails">
+        <tr
+          *ngFor="let student of studentDetails"
+          [ngClass]="{ 'table-warning': student.enabled === 0 }"
+        >
           <td>
             <div class="d-flex align-items-center">
               <img
-                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                src="assets/Documents/{{ student.image }}"
                 alt=""
                 style="width: 45px; height: 45px"
                 class="rounded-circle"
@@ -395,6 +381,9 @@
                 <p class="fw-bold mb-1">{{ student.firstName }}</p>
                 <p class="text-muted mb-0">{{ student.lastName }}</p>
               </div>
+            </div>
+            <div *ngIf="student.enabled === 0" style="color: red">
+              This student is UNPAID
             </div>
           </td>
           <td>
@@ -411,7 +400,7 @@
               class="btn btn-md"
               (click)="openConfirmationDialog(group.id, student.id)"
             >
-              <i class="fa-regular fa-trash-can" style="color: #ba1d1d"></i>
+              <i class="fa-regular fa-trash-can" style="color: red"></i>
             </button>
           </td>
         </tr>

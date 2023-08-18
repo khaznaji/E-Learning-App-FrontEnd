@@ -270,11 +270,14 @@ export class AdminGroupmembersComponent implements OnInit{
     this.userService.getAllUsers().subscribe((res) => {
       this.taballusers = res;
       console.log(this.taballusers);
-
-      // Filter the array to get only users with role "ETUDIANT"
-      this.students = this.taballusers.filter((user: { roles: any[] }) => {
-        return user.roles.some((role) => role.name === 'ETUDIANT');
-      });
+      this.students = this.taballusers.filter(
+        (user: { roles: any[]; enabled: number }) => {
+          return (
+            user.roles.some((role) => role.name === 'ETUDIANT') &&
+            user.enabled === 1
+          );
+        }
+      );
 
       console.log(this.students);
     });
