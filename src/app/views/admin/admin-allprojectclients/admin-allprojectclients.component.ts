@@ -21,16 +21,16 @@ aa : AdminProjects[] =[];
     this.fetchAllProjects();
 
   }
-  fetchAllProjects(): void {
-    this.projectService.getAll().subscribe(
-      (projects: AdminProjects[]) => {
-        this.aa = projects;
-      },
-      (error: any) => {
-        // Handle error
-      }
-    );
-  }
+    fetchAllProjects(): void {
+      this.projectService.getAll().subscribe(
+        (projects: AdminProjects[]) => {
+          this.aa = projects;
+        },
+        (error: any) => {
+          // Handle error
+        }
+      );
+    }
    getAllProjectClients(): void {
     this.projectService.getAllC().subscribe(
       (projectClients: ProjectClient[]) => {

@@ -148,7 +148,7 @@ startRename(projectId: number): void {
 
   downloadFile(fileName: string): void {
     const timestamp = Date.now();
-    const fileUrl = `../../../../../assets/Projects/${fileName}?timestamp=${timestamp}`;
+    const fileUrl = `../../../../../assets/Documents/${fileName}?timestamp=${timestamp}`;
     const link = document.createElement('a');
     link.href = fileUrl;
     link.target = '_blank';
